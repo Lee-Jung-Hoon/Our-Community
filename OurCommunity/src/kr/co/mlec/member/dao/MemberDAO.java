@@ -3,7 +3,7 @@ package kr.co.mlec.member.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import kr.co.ca.util.ConnectionPool;
+import kr.co.mlec.util.ConnectionPool;
 import kr.co.mlec.member.vo.memberVO;
 
 public class MemberDAO {
