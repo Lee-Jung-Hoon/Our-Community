@@ -15,8 +15,8 @@ public class MemberDAO {
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = "insert into t_member(id, name, password, email_id, "
-					  + " email_domain, tel, gender, address, hint, hint_answer ) "
-					  + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+					  + " email_domain, tel, gender, address, hint, hint_answer, secession ) "
+					  + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " ;
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, member.getId());
@@ -29,6 +29,7 @@ public class MemberDAO {
 			pstmt.setString(index++, member.getAddress());
 			pstmt.setString(index++, member.getHint());
 			pstmt.setString(index++, member.getHintAnswer());
+			pstmt.setString(index++, "회원");
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			throw e;
@@ -48,7 +49,8 @@ public class MemberDAO {
 			String sql = "select id, password "
 					+ " from t_member "
 					+ " where id = ? "
-					+ "   and password = ? ";
+					+ "   and password = ? "
+					+ "   and secession = '회원' ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
@@ -70,10 +72,11 @@ public class MemberDAO {
 
 
 /* t_member 테이블 구성 	
- 	create t_member (
- 	id varchar2(20) primary key, not null,
+ 	create table t_member (
+ 	id varchar2(20) primary key not null,
  	name varchar2(20) not null,
  	password varchar2(30) not null,
+ 	secession varchar2(20) not null,
  	email_id varchar2(10) not null,
  	email_domain varchar2(20) not null,
  	tel varchar2(30) not null,
@@ -87,8 +90,8 @@ public class MemberDAO {
 
 /* 회원가입 SQL
  * "insert into t_member(id, name, password, email_id, "
-					  + " email_domain, tel, gender, address, hint, hint_answer ) "
-					  + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+					  + " email_domain, tel, gender, address, hint, hint_answer, secession ) "
+					  + " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
  */
 
 /* 로그인 SQL
@@ -96,5 +99,6 @@ public class MemberDAO {
 					+ " from t_member "
 					+ " where id = ? "
 					+ "   and password = ? "
+					+ "   and secession = '회원' "
  * 
  */

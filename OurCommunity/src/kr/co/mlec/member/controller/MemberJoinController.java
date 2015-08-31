@@ -2,6 +2,7 @@ package kr.co.mlec.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +33,9 @@ public class MemberJoinController extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		try {
 			dao.insertMember(member);
-			res.sendRedirect("/OurCommunity/jsp/login.html");
+			req.setAttribute("msg", "회원가입을 완료했습니다.");
+			RequestDispatcher rd = req.getRequestDispatcher("/member/login.jsp");
+			rd.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
