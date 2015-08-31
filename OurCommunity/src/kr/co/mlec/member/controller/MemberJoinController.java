@@ -32,6 +32,7 @@ public class MemberJoinController extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		try {
 			dao.insertMember(member);
+			res.sendRedirect("/OurCommunity/jsp/login.html");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
