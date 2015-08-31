@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet{
 		try {
 			memberVO member = dao.selectMember(id, password);
 			if(member.getId()==null)	// 아이디나 비밀번호가 틀리거나 없을 경우
-				res.sendRedirect("/OurCommunity/jsp/login.html");
+				res.sendRedirect("/OurCommunity/member/login.html");
 			else 						// 로그인 성공
 				System.err.println("로그인 성공");
 		} catch (Exception e) {

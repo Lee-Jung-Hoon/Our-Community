@@ -1,6 +1,7 @@
 package kr.co.mlec.member.vo;
 
 public class memberVO {
+
 	private String id;
 	private String name;
 	private String password;
@@ -14,6 +15,15 @@ public class memberVO {
 	private String joinDate;
 	private String hint;
 	private String hintAnswer;
+	private String secession;
+
+	public String getSecession() {
+		return secession;
+	}
+
+	public void setSecession(String secession) {
+		this.secession = secession;
+	}
 
 	public String getId() {
 		return id;
