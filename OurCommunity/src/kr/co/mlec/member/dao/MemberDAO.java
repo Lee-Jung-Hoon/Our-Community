@@ -69,19 +69,20 @@ public class MemberDAO {
 }
 
 
-/* t_member 테이블 구성
- * T_MEMBER	ID	Varchar2	20	-	-	1	-	-	-
- 	NAME	Varchar2	30	-	-	-	-	-	-
- 	PASSWORD	Varchar2	20	-	-	-	-	-	-
- 	EMAIL_ID	Varchar2	10	-	-	-	-	-	-
- 	EMAIL_DOMAIN	Varchar2	20	-	-	-	-	-	-
- 	TEL	Varchar2	30	-	-	-	-	-	-
- 	ADDRESS	Varchar2	200	-	-	-	-	-	-
- 	GENDER	Varchar2	8	-	-	-	-	-	-
- 	GRADE	Varchar2	10	-	-	-	널 가능	-	-
- 	JOIN_DATE	Date	7	-	-	-	널 가능	sysdate	-
- 	HINT	Varchar2	20	-	-	-	-	-	-
- 	HINT_ANSWER	Varchar2	200	-	-	-	-	-	-
+/* t_member 테이블 구성 	
+ 	create t_member (
+ 	id varchar2(20) primary key, not null,
+ 	name varchar2(20) not null,
+ 	password varchar2(30) not null,
+ 	email_id varchar2(10) not null,
+ 	email_domain varchar2(20) not null,
+ 	tel varchar2(30) not null,
+ 	address varchar2(30) not null,
+ 	gender varchar2(8) not null,
+ 	grade varchar2(10),
+ 	join_date date default sysdate,
+ 	hint varchar2(20) not null,
+ 	hint_answer varchar2(200) not null);
  */
 
 /* 회원가입 SQL
