@@ -1,5 +1,9 @@
 package kr.co.mlec.mypage.controller;
 
-public class PersonalHistoryController {
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/mypage/history")
+public class PersonalHistoryController extends HttpServlet{
 
 }
