@@ -26,7 +26,7 @@ public class VoteBoardDAO {
 			}
 
 			sql = "insert into t_vote_board(id, v_no, end_date, v_title, v_progress, v_clicks)"
-						+ " values(?, ?, ?, ?, ?, ?)";
+						+ " values('a', ?, ?, ?, ?, 0)";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, vote.getId());
@@ -34,7 +34,6 @@ public class VoteBoardDAO {
 			pstmt.setString(index++, vote.getEnd_date());
 			pstmt.setString(index++, vote.getV_title());
 			pstmt.setString(index++, vote.getV_progress());
-			pstmt.setString(index++, vote.getV_clicks());
 			
 			pstmt.executeUpdate();
 
@@ -56,13 +55,12 @@ public class VoteBoardDAO {
 			con = ConnectionPool.getConnection();
 
 			String sql = "insert into t_vote_items(v_no, subsection, count)"
-						+ " values(?, ?, ?)";
+						+ " values(?, ?, 0)";
 			pstmt = con.prepareStatement(sql);
 			
 			int index = 1;
 			pstmt.setString(index++, num);
 			pstmt.setString(index++, items.getSubsection());
-			pstmt.setString(index++, items.getCount());
 			
 			pstmt.executeUpdate();
 
