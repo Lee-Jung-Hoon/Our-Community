@@ -40,6 +40,8 @@ function frmCheck()
              alert("텍스트박스에 값을 입력하세요!");
              frm.elements[i].focus();
              return;
+          } else {
+        	  document.form.submit(); 
           }
       }
    }
@@ -64,6 +66,7 @@ function frmCheck()
 </head>
 <body>
 	<div>
+			<form action="/OurCommunity/vote/registVote" name="form" method="post">
 	<table align="center" border="1px" >
 		<tr>
 			<th> 제목 </th>
@@ -79,7 +82,6 @@ function frmCheck()
 			<td>
 			
 			
-			<form name="form" method="post">
 <table width="400" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td colspan="2" align="left" bgcolor="#FFFFFF">
@@ -112,12 +114,12 @@ function frmCheck()
     </td>
    </tr>
  </table>
-</form>
-			
-			
 			
 			</td>
+</form>
 	</div>
+	</tr>
+	</table>
 
 </body>
 </html>
