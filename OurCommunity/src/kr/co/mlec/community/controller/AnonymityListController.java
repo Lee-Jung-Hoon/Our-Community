@@ -36,3 +36,10 @@ public class AnonymityListController extends HttpServlet{
 	}
 	
 }
+/* "select id, no, title, boardhead, CHECK_CNT, reg_date "
+               + " from (select no, title, id, boardhead , CHECK_CNT, rownum rnum, reg_date "
+               + " from( select no, title , id, boardhead, CHECK_CNT, reg_date "
+               + " from t_notice_bitcamp_board "
+               + " order by reg_date desc)) "
+               + "   where rnum between ? and ? ";
+ */
