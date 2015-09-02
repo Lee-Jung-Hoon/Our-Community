@@ -258,4 +258,40 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
+	public List<AnonymityVO> searchAnonymity(String type, String text) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = " select no, title, id, to_char(reg_date, 'yyyy-mm-dd') as regDate, scope, check_cnt "
+					   + "   from t_anonymity_board"
+					   + "  where "+type+" like ? " 
+					   + "  order by no";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+text+"%");
+			ResultSet rs = pstmt.executeQuery();
+			
+			List<AnonymityVO> list = new ArrayList<>();
+			while (rs.next()) {
+				AnonymityVO anonymity = new AnonymityVO();
+				anonymity.setNo(rs.getInt("no"));
+				anonymity.setId(rs.getString("id"));
+				anonymity.setTitle(rs.getString("title"));
+				anonymity.setRegDate(rs.getString("regDate"));
+				anonymity.setScope(rs.getString("scope"));
+				anonymity.setCheckCnt(rs.getString("check_cnt"));
+				list.add(anonymity);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+	}
 }
