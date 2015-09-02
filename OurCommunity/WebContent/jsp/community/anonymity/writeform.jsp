@@ -12,11 +12,7 @@
    <br />
    <form action="/OurCommunity/Anonymity/write" method="POST">
       <table style="height: 500;" align="center">
-         <tr>
-            <th>글쓴이</th>
-            <td><input type="text" size="30" name="id" /></td>
-         </tr>
-         
+      
          <tr>
             <th>제목</th>
             <td colspan="3"><input type="text" size="148" name="title" /></td>
@@ -30,7 +26,7 @@
 
          <tr>
             <th>공개 설정</th>
-            <td colspan="3" align="center">
+            <td colspan="2" align="center">
             <input type="radio" name="scope"value="t" checked="checked" /> 전체공개 
             <input type="radio" name="scope" value="m" /> 멤버공개
          </tr>
