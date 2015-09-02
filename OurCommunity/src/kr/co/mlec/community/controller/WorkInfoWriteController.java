@@ -72,11 +72,11 @@ public class WorkInfoWriteController extends HttpServlet {
 					} else if ("active".equals(cName)) {
 						vo.setActive("1".equals(cValue) ? "진행중" : "마감");
 					} else if ("posting-timestamp".equals(cName)) {
-						vo.setPostingTimeStamp(cValue);
+						vo.setPostingTimeStamp(timeStamp(cValue));
 					} else if ("opening-timestamp".equals(cName)) {
-						vo.setOpeningTimeStamp(cValue);
+						vo.setOpeningTimeStamp(timeStamp(cValue));
 					} else if ("expiration-timestamp".equals(cName)) {
-						vo.setExpirationTimeStamp(cValue);
+						vo.setExpirationTimeStamp(timeStamp(cValue));
 					} else if ("company".equals(cName)) {
 						
 						NodeList workInfoSecList = cNode.getChildNodes();
@@ -85,7 +85,6 @@ public class WorkInfoWriteController extends HttpServlet {
 								Node comNode = workInfoSecList.item(secIndex);
 								String comName = comNode.getNodeName();
 								String comValue = comNode.getTextContent();
-								System.out.println(comName);
 								if ("name".equals(comName)) {
 									vo.setCompany(comValue);
 							}
