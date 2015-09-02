@@ -24,7 +24,7 @@ public class AnonymitySearchController extends HttpServlet {
 		AnonymityDAO dao = new AnonymityDAO();
 		List<AnonymityVO> list;
 		try {
-		  list = dao.searchAnonymity(type, text);
+		  list = dao.searchAnonymityBoard(type, text);
 		  req.setAttribute("board", list);
 		  RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/list.jsp");
 		  rd.forward(req, res);

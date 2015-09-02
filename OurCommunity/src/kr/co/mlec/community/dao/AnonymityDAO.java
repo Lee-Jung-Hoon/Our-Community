@@ -11,7 +11,7 @@ import kr.co.mlec.community.vo.AnonymityVO;
 import kr.co.mlec.util.ConnectionPool;
 
 public class AnonymityDAO {
-	public void insertAnonymity(AnonymityVO anonymity) throws Exception {
+	public void insertAnonymityBoard(AnonymityVO anonymity) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -37,7 +37,7 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
-	public void modifyAnonymity(AnonymityVO anonymity) throws Exception {
+	public void updateAnonymity(AnonymityVO anonymity) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -88,7 +88,7 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
-	public void DeleteAnonymity(int no) throws Exception {
+	public void deleteAnonymity(int no) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -109,7 +109,7 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
-	public void DeleteComment(int no) throws Exception {
+	public void deleteComment(int no) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -132,7 +132,7 @@ public class AnonymityDAO {
 	}
 	
 	
-	public List<AnonymityVO> selectAnonymity() throws Exception {
+	public List<AnonymityVO> selectAnonymityBoard() throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -258,7 +258,7 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
-	public List<AnonymityVO> searchAnonymity(String type, String text) throws Exception {
+	public List<AnonymityVO> searchAnonymityBoard(String type, String text) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {

@@ -30,7 +30,7 @@ public class AnonymityModifyController extends HttpServlet{
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
-			dao.modifyAnonymity(anonymity);
+			dao.updateAnonymity(anonymity);
 			
 			res.sendRedirect("/OurCommunity/Anonymity/detail?no="+no);
 		} catch (Exception e) {

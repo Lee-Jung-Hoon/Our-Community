@@ -21,7 +21,7 @@ public class AnonymityCommentDeleteController extends HttpServlet{
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
-			dao.DeleteComment(comment_no);
+			dao.deleteComment(comment_no);
 			
 			res.sendRedirect("/OurCommunity/Anonymity/detail?no="+no);
 		} catch (Exception e) {

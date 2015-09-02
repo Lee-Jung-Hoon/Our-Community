@@ -24,7 +24,7 @@ public class AnonymityListController extends HttpServlet{
 		
 		try {
 			
-			List<AnonymityVO>list= dao.selectAnonymity();
+			List<AnonymityVO>list= dao.selectAnonymityBoard();
 			req.setAttribute("board", list);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/list.jsp");

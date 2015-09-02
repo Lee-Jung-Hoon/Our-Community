@@ -31,7 +31,7 @@ public class AnonymityWriteController extends HttpServlet{
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
-			dao.insertAnonymity(anonymity);
+			dao.insertAnonymityBoard(anonymity);
 			
 			res.sendRedirect("/OurCommunity/Anonymity/list");
 		} catch (Exception e) {
