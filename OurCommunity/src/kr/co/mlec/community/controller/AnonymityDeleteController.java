@@ -20,7 +20,7 @@ public class AnonymityDeleteController extends HttpServlet{
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
-			dao.DeleteAnonymity(no);
+			dao.deleteAnonymity(no);
 			
 			res.sendRedirect("/OurCommunity/Anonymity/list");
 		} catch (Exception e) {
