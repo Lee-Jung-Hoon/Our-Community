@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.community.dao.AnonymityDAO;
 import kr.co.mlec.community.vo.AnonymityCommentVO;
@@ -20,6 +21,8 @@ public class AnonymityDetailController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		int no = Integer.parseInt(req.getParameter("no"));
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("userId");
 		
 		AnonymityDAO dao = new AnonymityDAO();
 		
@@ -31,6 +34,7 @@ public class AnonymityDetailController extends HttpServlet{
 			
 			List<AnonymityCommentVO> comment = dao.selectComment(no);
 			req.setAttribute("comment", comment);
+			req.setAttribute("userId", id);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/detail.jsp");
 			rd.forward(req, res);
