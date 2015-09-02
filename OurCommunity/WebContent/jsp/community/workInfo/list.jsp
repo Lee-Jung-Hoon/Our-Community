@@ -12,7 +12,7 @@
 				<hr>
 				<table border="1">
 				<tr>
-					<th>컴퍼니 이름</th><th>공고진행여부</th><th>제목</th><th>게시일</th><th>마감일</th>
+					<th>컴퍼니 이름</th><th>공고진행여</th><th>제목</th><th>게시일</th><th>마감일</th>
 				</tr>
 				<%-- DB Table --%>
 			<c:forEach var="info" items="${workInfoList}">
