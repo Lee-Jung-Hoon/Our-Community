@@ -11,33 +11,31 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.mlec.community.dao.AnonymityDAO;
 import kr.co.mlec.community.vo.AnonymityVO;
 
-@WebServlet("/Anonymity/write")
-public class AnonymityWriteController extends HttpServlet{
+@WebServlet("/Anonymity/modify")
+public class AnonymityModifyController extends HttpServlet{
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		
-		String id = req.getParameter("id");
+		int no = Integer.parseInt(req.getParameter("no"));
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		String scope = req.getParameter("scope");
 		
 		AnonymityVO anonymity = new AnonymityVO();
-		anonymity.setId(id);
+		anonymity.setNo(no);
 		anonymity.setTitle(title);
 		anonymity.setContent(content);
-		anonymity.setScope(scope);
 		
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
-			dao.insertAnonymity(anonymity);
+			dao.modifyAnonymity(anonymity);
 			
-			res.sendRedirect("/OurCommunity/Anonymity/list");
+			res.sendRedirect("/OurCommunity/Anonymity/detail?no="+no);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
-		
 	}
 	
 }
