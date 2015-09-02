@@ -12,27 +12,29 @@
 	<hr />
 	<table style="width: 80%" border="1" align="center">
 	<tr>
+			<td colspan="4"><a href="/OurCommunity/Anonymity/writeform"><button>글등록</button></a></td>
+	</tr>
+	<tr>
 		<th>번호</th><th>제목</th><th>등록일</th><th>조회수</th>
 	</tr>
 	<c:forEach var="list" items="${board}" >
 	<tr>
-		<td align="center">${list.no}</td>
-		<td align="center"><a href="/OurCommunity/Anonymity/detail?no=${list.no}">${list.title}</a></td>
-		<td align="center">${list.regDate}</td>
-		<td align="center">${list.checkCnt}</td>
+		<td align="center" width="10%">${list.no}</td>
+		<td align="center" width="60%"><a href="/OurCommunity/Anonymity/detail?no=${list.no}">${list.title}</a></td>
+		<td align="center" width="20%">${list.regDate}</td>
+		<td align="center" width="10%">${list.checkCnt}</td>
 	</tr>
 	</c:forEach>
 	</table>
-	<form action="/OurCommunity/Anonymity/search" method="POST ">
+	<form action="/OurCommunity/Anonymity/search" method="POST">
 	<table style="width: 80%" border="1" align="center">
-	<tr>
-		<td colspan="4">
-			<a href="/OurCommunity/Anonymity/writeform">글등록</a>
-			<select name="searchlist" >
-				<option value="1" >제목</option>
-				<option value="2" >내용</option>
+	<tr align="center">
+		<td colspan="3">
+			<select name="searchType" >
+				<option value="title" >제목</option>
+				<option value="content" >내용</option>
 			</select>
-			<input type="text" name="content" />
+			<input type="text" name="text" />
 			<input type="submit" value="검색"/>
 		</td>
 	</tr>
