@@ -14,8 +14,9 @@ public class WorkInfoDAO {
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = "insert into t_workInfo_board(no, id, url, active, posting_timestamp, "
-					+ "																opening_timestamp, expiration_timestamp, title) "
-					+ " values(seq_t_workInfo_board_no.nextVal, ?, ?, ?, ?, ?, ?, ?)";
+					+ "												  opening_timestamp, expiration_timestamp, company, title, job_type, "
+					+ "												  job_category, open_quantity, experience_level)"
+					+ " values(seq_t_workInfo_board_no.nextVal, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
@@ -25,7 +26,12 @@ public class WorkInfoDAO {
 			pstmt.setString(index++, info.getPostingTimeStamp());
 			pstmt.setString(index++, info.getOpeningTimeStamp());
 			pstmt.setString(index++, info.getExpirationTimeStamp());
+			pstmt.setString(index++, info.getCompany());
 			pstmt.setString(index++, info.getTitle());
+			pstmt.setString(index++, info.getJobType());
+			pstmt.setString(index++, info.getJobCategory());
+			pstmt.setString(index++, info.getOpenQuantity());
+			pstmt.setString(index++, info.getExperienceLevel());
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -49,8 +55,8 @@ create table t_workInfo_board (
 	    posting_timeStamp varchar2(1000),
 	    opening_timeStamp varchar2(1000),
 	    expiration_timeStamp varchar2(1000),
+		company varchar2(1000),
 	    title varchar2(1000),
-	    company_info varchar2(1000),
 	    job_type varchar2(1000),
 	    job_category varchar2(1000),
 	    open_quantity varchar2(1000),

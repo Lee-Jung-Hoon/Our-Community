@@ -2,7 +2,7 @@ package kr.co.mlec.community.vo;
 
 public class WorkInfoVO {
 	private int no; // 게시글 번호
-	private String id;
+	private String id; // 공고번호
 	private String url; // 사람인 게시글의 url
 	private String active; // 공고진행여부
 	private String postingTimeStamp; // 게시일
