@@ -14,8 +14,10 @@
 	<tr>
 		<td colspan="4">
 			<a href="/OurCommunity/Anonymity/list">목록</a>
+			<c:if test="${userId eq anonymity.id}">
 			<a href="/OurCommunity/Anonymity/modifyForm?no=${anonymity.no}">수정</a>
 			<a href="/OurCommunity/Anonymity/delete?no=${anonymity.no}">삭제</a>
+			</c:if>
 		</td>
 	</tr>
 	<tr>
@@ -49,7 +51,9 @@
 		<td align="center" width="15%">${comment.id}</td>
 		<td align="center" width="55%">${comment.content}</td>
 		<td align="center" width="25%">${comment.regDate}</td>
+		<c:if test="${userId eq comment.id}" >
 		<td width="5"><a href="/OurCommunity/Anonymity/Cdelete?no=${anonymity.no}&comment_no=${comment.commentNo}">삭제</a></td>
+		</c:if>
 	</tr>
 	</c:forEach>
 	<c:if test="${empty comment}">
