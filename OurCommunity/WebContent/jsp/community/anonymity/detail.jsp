@@ -12,6 +12,13 @@
 	<hr />
 	<table align="center" style="width: 50%" border="1">
 	<tr>
+		<td colspan="4">
+			<a href="/OurCommunity/Anonymity/list">목록</a>
+			<a href="/OurCommunity/Anonymity/modifyForm?no=${anonymity.no}">수정</a>
+			<a href="/OurCommunity/Anonymity/delete?no=${anonymity.no}">삭제</a>
+		</td>
+	</tr>
+	<tr>
 		<th>작성자</th>
 		<td >${anonymity.id}</td>
 	</tr>
@@ -30,13 +37,6 @@
 	<tr>
 		<th>내용</th>
 		<td style="height: 200px">${anonymity.content}</td>
-	</tr>
-	<tr>
-		<td colspan="4">
-			<a href="/OurCommunity/Anonymity/list">목록</a>
-			<a href="/OurCommunity/Anonymity/modifyForm?no=${anonymity.no}">수정</a>
-			<a href="/OurCommunity/Anonymity/delete?no=${anonymity.no}">삭제</a>
-		</td>
 	</tr>
 	</table>
 		<br /><br />
