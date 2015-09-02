@@ -14,22 +14,26 @@ import kr.co.mlec.community.dao.AnonymityDAO;
 import kr.co.mlec.community.vo.AnonymityCommentVO;
 import kr.co.mlec.community.vo.AnonymityVO;
 
-@WebServlet("/Anonymity/list")
-public class AnonymityListController extends HttpServlet{
+@WebServlet("/Anonymity/detail")
+public class AnonymityDetailController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		int no = Integer.parseInt(req.getParameter("no"));
 		
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
+			AnonymityVO anonymity = dao.selectDetail(no);
+			dao.updateCheckCnt(no);
+			req.setAttribute("anonymity", anonymity);
 			
-			List<AnonymityVO>list= dao.selectAnonymity();
-			req.setAttribute("board", list);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/list.jsp");
+			List<AnonymityCommentVO> comment = dao.selectComment(no);
+			req.setAttribute("comment", comment);
+			
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/detail.jsp");
 			rd.forward(req, res);
-			
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
