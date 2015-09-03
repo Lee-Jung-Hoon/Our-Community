@@ -3,6 +3,8 @@ package kr.co.mlec.contents.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.mlec.contents.vo.VoteBoardVO;
 import kr.co.mlec.contents.vo.VoteItemsVO;
@@ -26,14 +28,13 @@ public class VoteBoardDAO {
 			}
 
 			sql = "insert into t_vote_board(id, v_no, end_date, v_title, v_progress, v_clicks)"
-						+ " values('a', ?, ?, ?, ?, 0)";
+						+ " values(?, ?, ?, ?, 0, 0)";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, vote.getId());
 			pstmt.setString(index++, num);
 			pstmt.setString(index++, vote.getEnd_date());
 			pstmt.setString(index++, vote.getV_title());
-			pstmt.setString(index++, vote.getV_progress());
 			
 			pstmt.executeUpdate();
 
@@ -99,20 +100,227 @@ public class VoteBoardDAO {
 			ConnectionPool.close(con);
 		}
 	}
+
+	public List<VoteBoardVO> selectList() throws Exception {
+		List<VoteBoardVO> list = new ArrayList<>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+						+ " to_char(start_date,'yyyy-mm-dd') as startdate"
+					+ " from t_vote_board " + " order by v_no asc ";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				VoteBoardVO vote = new VoteBoardVO();
+				vote.setId(rs.getString("id"));
+				vote.setV_no(rs.getString("v_no"));
+				vote.setStart_date(rs.getString("startdate"));
+				vote.setEnd_date(rs.getString("end_date"));
+				vote.setV_title(rs.getString("v_title"));
+				vote.setV_progress(rs.getString("v_progress"));
+				vote.setV_clicks(rs.getString("v_clicks"));				
+				list.add(vote);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return list;
+	}
+
+	public List<VoteItemsVO> selectItems(String v_no) throws Exception {
+		List<VoteItemsVO> list = new ArrayList<>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select v_no, subsection, count " + " from t_vote_items " + " where v_no = ?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, v_no);
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				VoteItemsVO item = new VoteItemsVO();
+
+				item.setV_no(rs.getString("v_no"));
+				item.setSubsection(rs.getString("subsection"));
+				item.setCount(rs.getString("count"));
+
+				list.add(item);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return list;
+	}
+
+	public VoteBoardVO selectDetail(String v_no) throws Exception {
+		VoteBoardVO vote = new VoteBoardVO();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select v_no, id, start_date, end_date, v_title, v_progress, v_clicks,  "
+					+ "to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd hh:mi') as enddate "
+					+ " from t_vote_board " + " where v_no = ?";
+
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, v_no);
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vote.setV_no(rs.getString("v_no"));
+				vote.setId(rs.getString("id"));
+				vote.setStart_date(rs.getString("startdate"));
+				vote.setEnd_date(rs.getString("enddate"));
+				vote.setV_title(rs.getString("v_title"));
+				vote.setV_progress(rs.getString("v_progress"));
+				vote.setV_clicks(rs.getString("v_clicks"));
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return vote;
+	
+	}
+
+	public void updateVote(VoteItemsVO item) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sum = "";
+
+		try {
+			con = ConnectionPool.getConnection();
+
+			String sql = "update t_vote_items set count = (count+1) where v_no = ? and subsection = ?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, item.getV_no());
+			pstmt.setString(2, item.getSubsection());
+			pstmt.executeUpdate();
+			
+			sql = "select SUM(count) as sum_count from t_vote_items where v_no = ?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, item.getV_no());
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				sum = rs.getString("sum_count");
+				System.out.println("sum : " + sum);
+			}
+			
+			sql = "update t_vote_board set v_progress = ? where v_no = ?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, sum);
+			pstmt.setString(2, item.getV_no());
+			pstmt.executeUpdate();			
+
+		} catch (final Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (final Exception e) {
+					e.printStackTrace();
+				}
+			ConnectionPool.close(con);
+		}
+		
+	}
+
+	public void insertClicks(String v_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ConnectionPool.getConnection();
+
+			String sql = "update t_vote_board set v_clicks = (v_clicks+1) where v_no = ?";
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, v_no);
+			pstmt.executeUpdate();
+
+		} catch (final Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (final Exception e) {
+					e.printStackTrace();
+				}
+			ConnectionPool.close(con);
+		}
+	}
+	
+	public void deleteVote(String v_no) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "delete t_vote_board where v_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, v_no);
+			pstmt.executeUpdate();
+
+			sql = "delete t_vote_items where v_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, v_no);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+	}
 }
 
 /*
  * 
  * // 투표 테이블 
  * create table t_vote_board( 
- * id varchar2(20) not null primary key,
- * v_no number not null, 
- * start_date date default sysdate, 
- * end_date date, 
- * v_title varchar2(50) not null, 
- * v_progress char(1) not null, 
- * v_clicks number not null
- * );
+ id varchar2(20) not null ,
+ v_no number not null primary key, 
+ start_date date default sysdate, 
+  end_date date, 
+  v_title varchar2(50) not null, 
+  v_progress char(1) not null, 
+  v_clicks number not null
+  );
  * 
  * // 투표 상세 항목 테이블 
  * create table t_vote_items( 
