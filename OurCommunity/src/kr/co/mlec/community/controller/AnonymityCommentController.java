@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.community.dao.AnonymityDAO;
 import kr.co.mlec.community.vo.AnonymityCommentVO;
@@ -19,9 +20,10 @@ public class AnonymityCommentController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
 		
 		int no = Integer.parseInt(req.getParameter("no"));
-		String id = req.getParameter("id");
+		String id = (String) session.getAttribute("userId");
 		String content = req.getParameter("content");
 		AnonymityDAO dao = new AnonymityDAO();
 		
