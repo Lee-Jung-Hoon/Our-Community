@@ -2,18 +2,20 @@ package kr.co.mlec.community.gallery.vo;
 
 public class GalleryVO {
 
-	// create table t_community_Gallery_board (
-	// id varchar2(30) not null,
-	// no number not null,
-	// title varchar2(150),
-	// content varchar2(1500),
-	// reg_date date default sysdate,
-	// check_cnt number,
-	// scope number(1),
-	// file_name varchar(120),
-	// origin_file_name varchar2(120),
-	// file_path varchar(210)
-	// )
+	/*
+	 create table t_community_Gallery_board (
+	 id varchar2(30) not null,
+	 no number not null,
+	 title varchar2(150),
+	 content varchar2(1500),
+	 reg_date date default sysdate,
+	 check_cnt number,
+	 scope number(1),
+	 file_name varchar(120),
+	 origin_file_name varchar2(120),
+	 file_path varchar(210)
+	 )
+	 */
 
 	private String id;
 	private int no;

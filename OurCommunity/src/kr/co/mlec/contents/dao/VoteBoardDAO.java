@@ -312,7 +312,7 @@ public class VoteBoardDAO {
 /*
  * 
  * // 투표 테이블 
- * create table t_vote_board( 
+  create table t_vote_board( 
  id varchar2(20) not null ,
  v_no number not null primary key, 
  start_date date default sysdate, 
@@ -323,12 +323,12 @@ public class VoteBoardDAO {
   );
  * 
  * // 투표 상세 항목 테이블 
- * create table t_vote_items( 
- * v_no number not null, 
- * subsection varchar2(50) not null, 
- * count number not null 
- * );
+  create table t_vote_items( 
+  v_no number not null, 
+  subsection varchar2(50) not null, 
+  count number not null 
+  );
  * 
  * //v_no 생성 시퀀스
- * create sequence seq_t_vote_no
+  create sequence seq_t_vote_no
  */

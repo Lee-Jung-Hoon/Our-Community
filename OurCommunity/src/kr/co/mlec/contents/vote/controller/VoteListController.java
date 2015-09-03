@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.contents.dao.VoteBoardDAO;
 import kr.co.mlec.contents.vo.VoteBoardVO;
@@ -23,6 +24,9 @@ public class VoteListController extends HttpServlet{
 		
 		VoteBoardDAO dao = new VoteBoardDAO();
 		try {
+			HttpSession session = req.getSession();
+			String id = (String) session.getAttribute("userId");
+			req.setAttribute("userId", id);
 			List<VoteBoardVO> list = dao.selectList();
 			req.setAttribute("list", list);
 			

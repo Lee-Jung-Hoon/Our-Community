@@ -28,7 +28,7 @@ public class DetailVoteController extends HttpServlet{
 			String v_no = req.getParameter("v_no");
 			dao.insertClicks(v_no);
 			
-			System.out.println("디테일 넘버 : " + v_no );
+			//System.out.println("디테일 넘버 : " + v_no );
 			VoteBoardVO list = dao.selectDetail(v_no);
 			List<VoteItemsVO> ilist = dao.selectItems(v_no);
 

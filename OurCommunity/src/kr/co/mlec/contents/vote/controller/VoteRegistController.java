@@ -35,6 +35,7 @@ public class VoteRegistController extends HttpServlet {
 		VoteBoardVO vote = new VoteBoardVO();
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("userId");
+		
 		vote.setV_title(v_title);
 		vote.setId(id);
 		vote.setEnd_date(end_date);
