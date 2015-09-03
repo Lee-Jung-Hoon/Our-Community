@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body><%@ include file="/jsp/include/topMenu.jsp"%>
 	<h1 align="center">익명 게시판</h1>
 	<hr />
 	<table style="width: 80%" border="1" align="center">

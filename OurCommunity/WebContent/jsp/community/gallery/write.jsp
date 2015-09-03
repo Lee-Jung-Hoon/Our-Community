@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<body><%@ include file="/jsp/include/topMenu.jsp"%>
 	<h1 align="center">글 작성</h1>
 	<hr />
 	<br />
