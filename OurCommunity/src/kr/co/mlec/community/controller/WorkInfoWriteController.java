@@ -38,7 +38,7 @@ public class WorkInfoWriteController extends HttpServlet {
 							+ "keywords=프로그래머" 
 							+ "&sort=pd" 
 							+ "&loc_cd=101000"
-							+ "&count=10" 
+							+ "&count=50" 
 							+ "&output=xml";
 			URL url = new URL(calUrl);
 			InputStream in = url.openStream();
