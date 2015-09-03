@@ -52,6 +52,7 @@ font-size: 13px;
 </head>
 <body>
 
+<body><%@ include file="/jsp/include/topMenu.jsp"%>
 	<h1 align="center">${vo.no}번게시물</h1>
 	<hr />
 	<br />

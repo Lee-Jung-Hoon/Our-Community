@@ -84,6 +84,7 @@ width: 902px;
 </style>
 </head>
 <body>
+<body><%@ include file="/jsp/include/topMenu.jsp"%>
 <h1 align="center">Photo Gallery</h1>
 	<div class="wrapper">
 		<ul>

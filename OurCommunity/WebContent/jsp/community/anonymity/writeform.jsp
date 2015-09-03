@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body><%@ include file="/jsp/include/topMenu.jsp"%>
    <h1 align="center">글 작성</h1>
    <hr />
    <br />

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body><%@ include file="/jsp/include/topMenu.jsp"%>
 	<h1>게시글이 등록되었습니다.</h1>
 	<a href="/OurCommunity/Anonymity/list">목록</a>
 </body>
