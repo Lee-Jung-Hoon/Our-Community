@@ -19,13 +19,21 @@ public class AnonymityListController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
+		String type = req.getParameter("searchType");
+		String text = req.getParameter("text");
 		
 		AnonymityDAO dao = new AnonymityDAO();
 		
 		try {
-			
-			List<AnonymityVO>list= dao.selectAnonymityBoard();
-			req.setAttribute("board", list);
+			if (text != null) {
+				List<AnonymityVO> list = dao.searchAnonymityBoard(type, text);
+				req.setAttribute("board", list);
+			} else {
+				List<AnonymityVO> list = dao.selectAnonymityBoard();
+				req.setAttribute("board", list);
+			}
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/list.jsp");
 			rd.forward(req, res);
