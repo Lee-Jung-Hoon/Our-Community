@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.contents.dao.VoteBoardDAO;
 import kr.co.mlec.contents.vo.VoteBoardVO;
@@ -20,6 +21,8 @@ public class VoteRegistController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html; charset=UTF-8"); 
 		
+		req.setCharacterEncoding("utf-8");
+		
 		VoteBoardDAO dao = new VoteBoardDAO();
 				
 		String v_title = req.getParameter("v_title");
@@ -30,7 +33,10 @@ public class VoteRegistController extends HttpServlet {
 		System.out.println(end_date);
 		
 		VoteBoardVO vote = new VoteBoardVO();
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("userId");
 		vote.setV_title(v_title);
+		vote.setId(id);
 		vote.setEnd_date(end_date);
 		try {
 			dao.insertVote(vote);
@@ -39,6 +45,7 @@ public class VoteRegistController extends HttpServlet {
 					VoteItemsVO items = new VoteItemsVO();
 					System.out.println(subsection);
 					items.setSubsection(subsection);
+					dao.insertVoteItem(items);
 				}
 			}
 		} catch (Exception e) {
@@ -46,7 +53,7 @@ public class VoteRegistController extends HttpServlet {
 		}
 		
 		
-		res.sendRedirect("/OurCommunity/vote/");
+		res.sendRedirect("/OurCommunity/vote/listVote");
 		
 	}
 	
