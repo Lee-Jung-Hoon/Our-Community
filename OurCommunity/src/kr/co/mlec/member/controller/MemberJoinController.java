@@ -34,7 +34,7 @@ public class MemberJoinController extends HttpServlet {
 		try {
 			dao.insertMember(member);
 			req.setAttribute("msg", "회원가입을 완료했습니다.");
-			RequestDispatcher rd = req.getRequestDispatcher("/member/login.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/login.jsp");
 			rd.forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();

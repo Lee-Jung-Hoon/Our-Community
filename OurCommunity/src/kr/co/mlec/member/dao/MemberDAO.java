@@ -46,7 +46,7 @@ public class MemberDAO {
 		memberVO member= new memberVO();
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select id, password "
+			String sql = "select id, password, grade "
 					+ " from t_member "
 					+ " where id = ? "
 					+ "   and password = ? "
@@ -58,6 +58,7 @@ public class MemberDAO {
 			while(rs.next()) {
 				member.setId(rs.getString("id"));
 				member.setPassword(rs.getString("password"));
+				member.setGrade(rs.getString("grade"));
 			}
 		} catch (Exception e) {
 			throw e;

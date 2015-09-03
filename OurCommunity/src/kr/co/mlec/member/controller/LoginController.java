@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.member.dao.MemberDAO;
 import kr.co.mlec.member.vo.memberVO;
@@ -23,9 +24,15 @@ public class LoginController extends HttpServlet{
 		try {
 			memberVO member = dao.selectMember(id, password);
 			if(member.getId()==null)	// 아이디나 비밀번호가 틀리거나 없을 경우
-				res.sendRedirect("/OurCommunity/member/login.html");
-			else 						// 로그인 성공
+				res.sendRedirect("/OurCommunity/jsp/member/login.html");
+			else  {						// 로그인 성공
 				System.err.println("로그인 성공");
+				HttpSession session = req.getSession();
+				session.setAttribute("userId", id);
+				session.setAttribute("grade", member.getGrade());
+				System.err.println( member.getGrade());
+				res.sendRedirect("/OurCommunity/jsp/main/index.html");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
