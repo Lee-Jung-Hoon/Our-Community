@@ -14,11 +14,17 @@
 			<th>투표제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
-			<th>조회</th>
+			<th>조회수</th>
 		</tr>
-		<tr>
-			
-		</tr>
+		<c:forEach var="list" items="${list}"> 
+			<tr>
+				<td>${list.v_no}</td>
+				<td><a href="/OurCommunity/vote/detailVote?v_no=${list.v_no}">${list.v_title}</a></td> 
+				<td>${list.id}</td>
+				<td>${list.start_date}</td>
+				<td>${list.v_clicks}</td>
+			</tr>
+		</c:forEach>
 							
 	</table>
 </body>
