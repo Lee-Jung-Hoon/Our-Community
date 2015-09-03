@@ -23,7 +23,7 @@ public class NoticeBitcampBoardDAO {
 					+ " from( select no, title , id, boardhead, CHECK_CNT, reg_date "
 					+ " from t_notice_bitcamp_board "
 					+ " order by reg_date desc)) "
-					+ "   where rnum between ? and ? ";
+					+ "  where rnum between ? and ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
