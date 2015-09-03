@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,28 +17,26 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import kr.co.mlec.community.dao.WorkInfoDAO;
 import kr.co.mlec.community.vo.WorkInfoVO;
 
-@WebServlet("/workInfo/list")
+@WebServlet("/workInfo/regist")
 public class WorkInfoWriteController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		List<WorkInfoVO> list = new ArrayList<>();
-
 		try {
 			String calUrl = "http://api.saramin.co.kr/job-search?" 
-							+ "keywords=프로그래머" 
-							+ "&sort=pd" 
-							+ "&loc_cd=101000"
-							+ "&count=50" 
-							+ "&output=xml";
+								+ "keywords=프로그래머" 
+								+ "&sort=pd" 
+								+ "&loc_cd=101000"
+								+ "&count=2" 
+								+ "&output=xml";
 			URL url = new URL(calUrl);
 			InputStream in = url.openStream();
 
@@ -78,48 +75,71 @@ public class WorkInfoWriteController extends HttpServlet {
 					} else if ("expiration-timestamp".equals(cName)) {
 						vo.setExpirationTimeStamp(timeStamp(cValue));
 					} else if ("company".equals(cName)) {
-						
+
 						NodeList workInfoSecList = cNode.getChildNodes();
 
-							for (int secIndex = 0; secIndex < workInfoSecList.getLength(); secIndex++) {
-								Node comNode = workInfoSecList.item(secIndex);
-								String comName = comNode.getNodeName();
-								String comValue = comNode.getTextContent();
-								if ("name".equals(comName)) {
-									vo.setCompany(comValue);
+						for (int secIndex = 0; secIndex < workInfoSecList.getLength(); secIndex++) {
+							Node comNode = workInfoSecList.item(secIndex);
+							String comName = comNode.getNodeName();
+							String comValue = comNode.getTextContent();
+							if ("name".equals(comName)) {
+								vo.setCompany(comValue);
 							}
-						}	
+						}
 					} else if ("position".equals(cName)) {
 						NodeList workInfoThirdList = cNode.getChildNodes();
 
-							for (int thirdIndex = 0; thirdIndex < workInfoThirdList.getLength(); thirdIndex++) {
-								Node sNode = workInfoThirdList.item(thirdIndex);
-								String sName = sNode.getNodeName();
-								String sValue = sNode.getTextContent();
-								if ("title".equals(sName)) {
-									vo.setTitle(sValue);
-								} else if ("job-type".equals(sName)) {
-									vo.setJobType(sValue);
-								} else if ("job-category".equals(sName)) {
-									vo.setJobCategory(sValue);
-								} else if ("open-quantity".equals(sName)) {
-									vo.setOpenQuantity(sValue);
-								} else if ("experience-level".equals(sName)) {
-									vo.setExperienceLevel(sValue);
-								}
+						for (int thirdIndex = 0; thirdIndex < workInfoThirdList.getLength(); thirdIndex++) {
+							Node sNode = workInfoThirdList.item(thirdIndex);
+							String sName = sNode.getNodeName();
+							String sValue = sNode.getTextContent();
+							if ("title".equals(sName)) {
+								vo.setTitle(sValue);
+							} else if ("job-type".equals(sName)) {
+								vo.setJobType(sValue);
+							} else if ("job-category".equals(sName)) {
+								vo.setJobCategory(sValue);
+							} else if ("open-quantity".equals(sName)) {
+								vo.setOpenQuantity(sValue);
+							} else if ("experience-level".equals(sName)) {
+								vo.setExperienceLevel(sValue);
 							}
-							list.add(vo);
-							 dao.insertWorkInfo(vo);
+						}
+					}else if("salary".equals(cName)) {
+						vo.setActive(cValue);
+					}
+				}
+				list.add(vo);
+				dao.insertTemp(vo);
+			}
+			WorkInfoDAO wDao = new WorkInfoDAO();
+			List<String> sList = wDao.selectCompanyId();
+			for (String va : sList) {
+				System.out.println("sList id " + va);
+			}
+			if (sList.size() != 0) {
+				for (int index = 0; index < sList.size(); index++) {
+					for (int secIndex = 0; secIndex < list.size(); secIndex++) {
+						if (sList.get(index).equals(list.get(secIndex).getId())) {
+							System.out
+									.println("sList : " + sList.get(index) + ",  list : " + list.get(secIndex).getId());
+							wDao.insertWorkInfo(list.get(secIndex));
+							wDao.deleteTemp();
+							break;
 						}
 					}
 				}
-			req.setAttribute("workInfoList", list);
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/workInfo/list.jsp");
-			rd.forward(req, res);
+			} else {
+				wDao.deleteTemp();
+			}
+			
+			wDao.deleteWorkInfo();
+			res.sendRedirect("/OurCommunity/workInfo/list");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public String timeStamp(String time) {
