@@ -44,7 +44,7 @@
 		<br /><br />
 	<table style="width: 50%" border="1" align="center">
 	<tr>
-		<th >댓글</th><th>내용</th><th>등록일</th>
+		<th >댓글러</th><th>내용</th><th>등록일</th>
 	</tr>
 	<c:forEach var="comment" items="${comment}" >
 	<tr>
@@ -71,7 +71,6 @@
 				</td>
 			</tr>
 			<tr>
-         	<td><input type="text" size="15" name="id" /></td>
             <td colspan="3"><input type="text" size="80" name="content" /></td>
             <td align="right"><input type="submit" value="등록" ></td>
          </tr>

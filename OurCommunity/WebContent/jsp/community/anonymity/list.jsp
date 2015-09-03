@@ -26,7 +26,7 @@
 	</tr>
 	</c:forEach>
 	</table>
-	<form action="/OurCommunity/Anonymity/search" method="POST">
+	<form action="/OurCommunity/Anonymity/list" method="POST">
 	<table style="width: 80%" border="1" align="center">
 	<tr align="center">
 		<td colspan="3">
