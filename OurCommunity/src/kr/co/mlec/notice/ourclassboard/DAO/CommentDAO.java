@@ -16,8 +16,8 @@ public class CommentDAO {
 		
 		try{
 			con = ConnectionPool.getConnection();
-			String sql = " insert into t_notice_bitcamp_board_comment(comment_no, no, id, content) "
-						+ " values(seq_t_notice_board_comment_no.nextVal, ?, ?, ?) ";
+			String sql = " insert into t_notice_class_comment(comment_no, no, id, content) "
+						+ " values(seq_t_notice_class_comment_no.nextVal, ?, ?, ?) ";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, comment.getNo());
@@ -42,7 +42,7 @@ public class CommentDAO {
 		try{
 			con = ConnectionPool.getConnection();
 			String sql =" select comment_no ,no, id, content, to_char(reg_date, 'yyyy-mm-dd') as regDate "
-					+ " from t_notice_bitcamp_board_comment "
+					+ " from t_notice_class_comment "
 					+ " where no = ? "
 					+ "	order by comment_no desc ";
 			pstmt = con.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class CommentDAO {
 		PreparedStatement pstmt = null;
 		try{
 			con = ConnectionPool.getConnection();
-			String sql = " delete t_notice_bitcamp_board_comment "
+			String sql = " delete t_notice_class_comment "
 					   + " where comment_no = ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, comment.getCommentNo());

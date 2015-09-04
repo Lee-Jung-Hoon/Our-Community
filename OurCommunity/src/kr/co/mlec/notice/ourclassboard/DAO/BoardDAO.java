@@ -18,8 +18,8 @@ public class BoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " insert into t_notice_bitcamp_board(no, id, title, boardhead, content) "
-					   + " values(seq_t_notice_bitcamp_board_no.nextVal, ?, ?, ?, ?) ";
+			String sql = " insert into t_notice_class_board(no, id, title, boardhead, content) "
+					   + " values(seq_t_notice_class_board_no.nextVal, ?, ?, ?, ?) ";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -46,8 +46,8 @@ public class BoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, boardhead, to_char(reg_date, 'yyyy-mm-dd') as regDate "
-					+ "	  from t_notice_bitcamp_board "
+			String sql = " select no, title, id, boardhead, check_Cnt, to_char(reg_date, 'yyyy-mm-dd') as regDate "
+					+ "	  from t_notice_class_board "
 					+ "   order by no desc";
 			pstmt = con.prepareStatement(sql);
 			
@@ -60,6 +60,7 @@ public class BoardDAO {
 				board.setTitle(rs.getString("title"));
 				board.setId(rs.getString("id"));
 				board.setBoardhead(rs.getString("boardhead"));
+				board.setCheckCnt(rs.getString("check_Cnt"));
 				board.setRegDate(rs.getString("regDate"));
 				list.add(board);
 			}
@@ -83,7 +84,7 @@ public class BoardDAO {
 			try {
 				con = ConnectionPool.getConnection();
 				String sql = " select no, title, id, boardhead, content, to_char(reg_date, 'yyyy-mm-dd') as regDate "
-						  + "  from t_notice_bitcamp_board "
+						  + "  from t_notice_class_board "
 						  + "  where no = ? ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, no);
@@ -95,7 +96,6 @@ public class BoardDAO {
 					board.setBoardhead(rs.getString("boardhead"));
 					board.setContent(rs.getString("content"));
 					board.setRegDate(rs.getString("regDate"));
-//					board.setCheckCnt(rs.getString("checkCnt"));
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -116,7 +116,7 @@ public class BoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " delete from t_notice_bitcamp_board where no=? ";
+			String sql = " delete from t_notice_class_board where no=? ";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, no);
@@ -139,7 +139,7 @@ public class BoardDAO {
 		
 		try {
 				con = ConnectionPool.getConnection();
-				String sql = " update t_notice_bitcamp_board "
+				String sql = " update t_notice_class_board "
 							+ " set id=?, title=?, content=? "
 							+ " where no =? ";
 				pstmt = con.prepareStatement(sql);
@@ -167,7 +167,7 @@ public class BoardDAO {
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = " select no, title, id, boardhead, to_char(reg_date, 'yyyy-mm-dd') as regDate "
-					+ "	  from t_notice_bitcamp_board "
+					+ "	  from t_notice_class_board "
 					+ "   where "+ type +" like ? "
 					+ "   order by no desc ";
 			pstmt = con.prepareStatement(sql);
@@ -200,54 +200,25 @@ public class BoardDAO {
 		}
 	}
 	
-	public void updateCheckCnt(int seq_t_notice_bitcamp_board_no) throws Exception {
+	public void updateCheckCnt(String no) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "update t_notice_bitcamp_board set checkCnt = nvl(checkCnt,0) + 1 where seq = ?";
+			String sql = " update t_notice_class_board set check_Cnt = check_Cnt+1 "
+					+ 	 " where no = ? ";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 			throw e;
+		}finally{
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
 		}
 	}
-	
-//	public BoardVO pageBoard() throws Exception {
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		
-//		try {
-//			con = ConnectionPool.getConnection();
-//			String sql = " select * from(select rownum as rnum, a.* from board a order by seq) "
-//					+ " where rnum between ? and ?";
-//			pstmt = con.prepareStatement(sql);
-//			
-//			ResultSet rs= pstmt.executeQuery();
-//			
-//			List<BoardVO> list= new ArrayList<>();
-//			while(rs.next()) {
-//				BoardVO board = new BoardVO();
-//				board.setNo(rs.getString("no"));
-//				board.setTitle(rs.getString("title"));
-//				board.setId(rs.getString("id"));
-//				board.setBoardhead(rs.getString("boardhead"));
-//				board.setRegDate(rs.getString("regDate"));
-//				list.add(board);
-//			}
-//			
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//			throw e;
-//		}finally{
-//			if(pstmt != null) {
-//				pstmt.close();
-//			}
-//			ConnectionPool.close(con);
-//		}
-//		return null;
-//		
-//	}
-	
 }
