@@ -23,6 +23,8 @@ public class GallCommentDeleteController extends HttpServlet{
 		String no = req.getParameter("no");
 		String coNo = req.getParameter("coNo");
 		String id = req.getParameter("id");
+		
+		
 		GallCommentVO vo = new GallCommentVO();
 		GallCommentDAO dao = new GallCommentDAO();
 
@@ -33,7 +35,7 @@ public class GallCommentDeleteController extends HttpServlet{
 		try {
 			dao.deleteVO(vo);
 
-			resp.sendRedirect("/OurCommunity/gallery/list");
+			resp.sendRedirect("/OurCommunity/gallery/detail?no="+no);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
