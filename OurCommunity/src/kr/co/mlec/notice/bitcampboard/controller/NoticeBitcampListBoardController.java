@@ -22,25 +22,30 @@ public class NoticeBitcampListBoardController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		
 		String pageNum = req.getParameter("pageNum");
 		String search = req.getParameter("search");
 		String searchCategory = req.getParameter("searchCategory");
+		
 		if(pageNum==null)
 			pageNum="1";
+		
 		if(search==null)
 			search="";
+		
 		int pagingNum = 0;
+		
 		if(searchCategory==null)
 			searchCategory="1";
 
 		List<NoticeBitcampBoardVO> list = new ArrayList<>();
 		NoticeBitcampBoardDAO dao = new NoticeBitcampBoardDAO();
 
-		int pageStart = 1 + ((Integer.parseInt(pageNum)-1)*page);
-		int pageEnd = Integer.parseInt(pageNum)*page;
+		int pageStart = 1 + ((Integer.parseInt(pageNum)-1)*page);	//1	21
+		int pageEnd = Integer.parseInt(pageNum)*page;	//20	40
 
 		try {
-			if (search!=null) {
+			if (search!="") {
 				if (searchCategory.equals("1")) {
 					list = dao.selectBitcampBoardTitle(pageStart, pageEnd, search);
 					pagingNum = dao.selectBitcampBoardTitle(search);
@@ -52,11 +57,14 @@ public class NoticeBitcampListBoardController extends HttpServlet {
 					pagingNum = dao.selectBitcampBoardId(search);
 				}
 			} 
-			else if(search==null) {
+			
+			else if(search=="") {
 				list = dao.selectBitcampBoard(pageStart, pageEnd);
 				pagingNum = dao.selectBitcampBoard();
 			}
+			
 			req.setAttribute("list", list);
+			
 			HttpSession session = req.getSession();
 			String grade = (String) session.getAttribute("grade");
 			String userId = (String) session.getAttribute("userId");
@@ -67,8 +75,10 @@ public class NoticeBitcampListBoardController extends HttpServlet {
 			req.setAttribute("paging", leng);
 			req.setAttribute("search", search);
 			req.setAttribute("searchCategory", searchCategory);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/bitcampboard/listnoticebitcampboard.jsp");
 			rd.forward(req, resp);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

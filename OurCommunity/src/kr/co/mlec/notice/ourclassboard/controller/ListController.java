@@ -39,7 +39,7 @@ public class ListController extends HttpServlet {
 				List<BoardVO> list = dao.selectBoard();
 				req.setAttribute("list", list);
 				
-				RequestDispatcher rd = req.getRequestDispatcher("/board/list.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/list.jsp");
 				rd.forward(req, res);
 			} catch (Exception e) {
 				e.printStackTrace();

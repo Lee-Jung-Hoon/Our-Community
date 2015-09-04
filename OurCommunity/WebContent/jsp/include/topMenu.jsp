@@ -11,6 +11,13 @@
 a {
 	text-decoration: none;
 }
+
+top {
+    width: 100%;
+    height: 60px;
+    padding-top: 20px;
+    background: #313131;
+}
 </style>
 <script type="text/javascript">
 	function dday(y, m, d) {
@@ -23,12 +30,12 @@ a {
 </script>
 
 <div>
-	<table>
+	<table class="top" >
 		<tr>
 			<td id="dday"><script>
 				dday(2015, 12, 09);
 			</script></td>
-			<td align="right" width="1700px"><c:choose>
+			<td align="right" width="1320px"><c:choose>
 					<c:when test="${empty userId}">
 						<a href="/OurCommunity/jsp/memberjoin.html">Join Us | </a>
 						<a href="/OurCommunity/jsp/login.jsp">Login</a>
@@ -36,6 +43,8 @@ a {
 					<c:otherwise>
 						<a href="/OurCommunity/jsp/main/index.html">Home | </a>
 						<a href="/OurCommunity/jsp/login.jsp">마이페이지 | </a>
+						<a href='#'	onclick="window.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지', 
+					'width=380, height=300,scrollbars=no, menubar=no, status=no, toolbar=no');">쪽지함</a>
 						<a href="/OurCommunity/join/LogoutController">로그아웃</a>
 					</c:otherwise>
 				</c:choose></td>
