@@ -10,13 +10,17 @@
 <style type="text/css">
 .wrapper {
 	width: 902px;
+	height: 464px;
 	margin: 50px auto 0;
 	padding: 20px 16px;
 /* 	border: 1px solid #ddd; */
 	box-sizing: border-box;
 }
 
-
+html{
+background-color: orange;
+color: white;
+}
 a{
 
 color: black;
@@ -81,67 +85,59 @@ width: 902px;
 	padding: 20px 16px;
 	box-sizing: border-box;
 }
+div{
+width: 902px;
+margin: 0px auto 0;
+}
+
 </style>
 </head>
 <body>
-<body><%@ include file="/jsp/include/topMenu.jsp"%>
 <h1 align="center">Photo Gallery</h1>
 	<div class="wrapper">
 		<ul>
 			<c:forEach var="vo" items="${list}">
+			
 				<li>
 					<div>
 						<a href="/OurCommunity/gallery/detail?no=${vo.no }"><img src="${vo.filePath}/${vo.fileName}" width="100%"></a>
 					</div>
-					<p class="title"><a href="/OurCommunity/gallery/detail?no=${vo.no }">${vo.title}</a></p>
+					<p class="title"><a href="/OurCommunity/gallery/detail?no=${vo.no }">${vo.title}</a>
 					<p class="id">${vo.id}</p>
-					<p>&nbsp;</p>
+					
+					<c:forEach var="c" items="${cntList }">
+					<c:if test="${c.boardNO eq vo.no}"> <p>덧글수:[${c.commentCnt }]</p></c:if>
+				</c:forEach>
+					
 					<p>조회 : ${vo.checkCnt}</p>
 					<p>등록일 : ${vo.regDate}</p>
+					
 				</li>
 			</c:forEach>
 
 		</ul>
 	</div>
+	<div align="center">
+	<form action="/OurCommunity/gallery/search" >
+	<select><option>기간선택</option><option>1일</option><option>1주일</option><option>1달</option><option>1년</option></select>
+	<select name="select"><option value="tatal">제목+내용</option><option value="title">제목</option><option value="content">내용</option><option value="comment">덧글</option><option value="id">아이디</option></select>
+	<input type="text" name="search" size="20px"/>
+	<input type="submit" size="20px"/>
+	</form>
+	</div>
+	<div>
+	
+	</div>
+	<div align="center">
+	<c:forEach var="i" begin="1" end="${size }">
+
+	<a href="/OurCommunity/gallery/list?page=${i}" ><input type="button" value="[${i}]" /></a>
+	</c:forEach>
+	
+	</div>
+	
 	<div class="button" align="right"> <a href="/OurCommunity/jsp/community/gallery/write.jsp">글등록</a> </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
