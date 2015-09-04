@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,16 +44,14 @@ a {
 	font-size: 13px;
 }
 
-.cnt{
-font-size: 13px;
+.cnt {
+	font-size: 13px;
 }
-
 </style>
 
 </head>
 <body>
 
-<body><%@ include file="/jsp/include/topMenu.jsp"%>
 	<h1 align="center">${vo.no}번게시물</h1>
 	<hr />
 	<br />
@@ -71,31 +70,21 @@ font-size: 13px;
 				<td colspan="3"><p class="id">&nbsp;작성자 :
 						&nbsp;&nbsp;&nbsp;${ vo.id}</p> <img
 					src="${vo.filePath}/${vo.fileName}" width="100%"> <br /> <br />
-					<p>${vo.content}</p> <br />
-				<br />
-				<br /> 
-				<br />
-				<br />
-				</td>
+					<p>${vo.content}</p> <br /> <br /> <br /> <br /> <br /></td>
 				<td></td>
 			</tr>
-			<tr  class="cnt">
-			<td ></td>
-			<td >조회수 : ${vo.checkCnt } 덧글수 : </td>
-			<td ></td>
-			</tr>
-
-			<tr>
-				<td width="10%">${vo.id}</td>
-				<td width="80%"><textarea cols="115" rows="6"></textarea></td>
-				<td align="center"><a href="/OurCommunity/gallery/comment/regist?no=${vo.no}&id=${vo.id}">확인</a></td>
+			<tr class="cnt">
+				<td></td>
+				<td>조회수 : ${vo.checkCnt } 덧글수 : ${cntVO.commentCnt}</td>
+				<td></td>
 			</tr>
 
 
+
+
 			<tr>
-				<td align="right"><br />
-				<br />
-				<a href="/OurCommunity/gallery/modifyDetail?no=${vo.no}"><input
+				<td align="right"><br /> <br /> <a
+					href="/OurCommunity/gallery/modifyDetail?no=${vo.no}"><input
 						type="button" value="수정"> </a></td>
 				<td align="right"><a
 					href="/OurCommunity/gallery/delete?no=${vo.no}"><input
@@ -105,6 +94,40 @@ font-size: 13px;
 			</tr>
 		</table>
 	</form>
+	<form action="/OurCommunity/gallery/comment/regist" method="post">
+		<table style="height: 500; width: 900px" align="center">
+			<tr>
+				<td width="10%">${vo.id}</td>
+				<td width="80%"><textarea cols="115" rows="6" name="content"></textarea></td>
+				<td align="center"><input type="hidden" name="id" value="${vo.id}" /><input type="hidden" name="no"value="${vo.no }" /><input type="submit" value="확인" /></td>
+			</tr>
+		</table>
+	</form>
+
+
+
+	<div>
+	<form action="/OurCommunity/gellery/comment/delete" method="get">
+		<table style="height: 500; width: 900px" align="center">
+			<c:forEach var="cVO" items="${cList}">
+
+				<tr height="50px">
+
+					<td class="a">${cVO.id}</td>
+					<td class="b">${cVO.commentRegDate}</td>
+				</tr>
+				<tr height="50px">
+
+					<td >${cVO.commentContent}</td>
+					<td>
+					<input type="hidden" value="${cVO.id}" name="id" />
+					<input type="hidden" value="${cVO.commentNo}" name="coNo" />
+					<input type="hidden" value="${cVO.boardNo}" name="no" /><input type="submit" value="삭제"/></td>
+				</tr>
+			</c:forEach>
+		</table>
+		</form>
+	</div>
 
 
 
