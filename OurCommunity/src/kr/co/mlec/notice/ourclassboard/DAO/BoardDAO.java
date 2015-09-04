@@ -222,3 +222,20 @@ public class BoardDAO {
 		}
 	}
 }
+
+
+/*
+ create table t_notice_class_board(
+id varchar2(20),
+no number  primary key,
+boardhead varchar2(20),
+title varchar2(50),
+content varchar2(300),
+reg_date DATE default sysdate,
+check_cnt number default 0,
+scope varchar2(10)
+)
+ */
+
+// create table seq_t_notice_class_board_no
+
