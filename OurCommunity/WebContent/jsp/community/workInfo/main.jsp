@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/OurCommunity/workInfo/list" >목록</a>
+	<a href="/OurCommunity/workInfo/regist" >목록</a>
 	<a href="/OurCommunity/Anonymity/list">목록2</a>
 	<a href="http://api.saramin.co.kr/job-search?keywords=프로그래머&sort=pd&loc_cd=101000&count=70&output=xml" >모르겟다</a>
 </body>

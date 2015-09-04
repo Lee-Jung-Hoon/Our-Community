@@ -8,23 +8,47 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<%@ include file="/jsp/include/topMenu.jsp"%>
-	<h1>일이닷정보</h1>
-				<hr>
-				<table border="1">
+	<h1 align = "center">일이닷정보</h1>
+		<hr />
+			<table border="1" style="width:60%;" align="center">
 				<tr>
-					<th>컴퍼니 이름</th><th>공고진행여</th><th>제목</th><th>게시일</th><th>마감일</th>
+					<th>번호</th>
+					<th>회사이름</th>
+					<th>제목</th>
+					<th>등록일</th>
+					<th>조회수</th>
 				</tr>
 				<%-- DB Table --%>
-			<c:forEach var="info" items="${workInfoList}">
+		<c:forEach var="wInfo" items="${workInfoList}">
 			<tr>
-				<td>${info.company}</td>
-				<td>${info.active}</td>
-				<td>${info.title}</td >
-				<td>${info.postingTimeStamp}</td>
-				<td>${info.expirationTimeStamp}</td>
+				<td>${wInfo.no}</td>
+				<td>${wInfo.company}</td>
+				<td><a href = "/OurCommunity/workInfo/detail?no=${wInfo.no}">${wInfo.title}</a></td>
+				<td>${wInfo.postingTimeStamp} (~${wInfo.expirationTimeStamp}까지)</td >
+				<td>${wInfo.checkCnt}</td>
 			</tr>
 		</c:forEach>
-	
+		</table>
+		<div  style="text-align:center" >
+		<c:forEach var ="index" begin="1" end="${pagingSize}" >
+					[${index}]
+		</c:forEach>
+		</div> 
+		<br />
+	<form action="/OurCommunity/workInfo/list" method="get">
+		<table border="1" style="width:60%;" align="center" >
+			<tr>
+				<td>
+					<select name="searchlist" >
+						<option value="no">번호</option>
+						<option value="title" >제목</option>
+						<option value="company" >회사이름</option>
+					</select>
+					<input type="text" name="content" />
+					<input type="submit" value="검색"/>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
