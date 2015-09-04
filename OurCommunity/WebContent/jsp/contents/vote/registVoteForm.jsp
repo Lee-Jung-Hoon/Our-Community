@@ -9,27 +9,24 @@
 
 
 <script>
-	var pTbl;
-
-	//Row 추가
-	function insRow() {
-		pTbl = document.getElementById("addTable");
-		var pRow = pTbl.insertRow();
-		pRow.onmouseover = function() {
-			pTbl.clickedRowIndex = this.rowIndex
-		}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-		var oCell = pRow.insertCell();
-
-		//삽입될 Form Tag
-		var frmTag = "<input type=text name=addText[] style=width:150px; height:20px;> ";
-		frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
-		oCell.innerHTML = frmTag;
+	var count = 0;
+	
+	function addTB() {
+		count++;
+		var html = "<div id = d" + count + "><input type = 'text' name = 'addText[]'>" 
+				+ "<input type = 'button' name = 'removeText' value='삭제' id=de" + count + " onclick = 'del(" + count + ");'> <br/>";
+		
+		var tdObj = document.getElementById("tableTD");
+		
+		tdObj.innerHTML += html;
 	}
-
-	//Row 삭제
-	function removeRow() {
-		pTbl.deleteRow(pTbl.clickedRowIndex);
+	
+	function del(no) {
+		var div = document.getElementById("d" + no);
+		var parent = div.parentNode;
+		parent.removeChild(div);
 	}
+	
 
 	function frmCheck() {
 		var frm = document.form;
@@ -64,7 +61,6 @@ table {
 </style>
 </head>
 <body>
-
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<h1 align="center">글 작성</h1>
 	<hr />
@@ -78,57 +74,24 @@ table {
 						<td colspan="3"><input name="v_title" size="148" name="title" /></td>
 					</tr>
 					<tr>
-
-						<p />
 						<th>마감일</th>
-						<td colspan="3"><input type="text" name="end_date" size="148"
-							placeholder="예)20150831"></td>
+						<td colspan="3"><input type="text" name="end_date" size="148" placeholder="예)20150831"></td>
 					</tr>
 					<tr>
 						<th>선택항목</th>
-						<td>
-
-
-							<table width="400" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td colspan="2" align="left" bgcolor="#FFFFFF">
-										<table width="100%" border="0" cellpadding="0" cellspacing="0">
-											<tr>
-												<td colspan="5" bgcolor="#FFFFFF" height="25" align="left"><input
-													name="addButton" type="button" style="cursor: hand"
-													onClick="insRow()" value="항목추가"> <font
-													color="#FF0000"></font></td>
-											</tr>
-											<tr>
-												<td height="25">
-													<table id="addTable" width="400" cellspacing="0"
-														cellpadding="0" bgcolor="#FFFFFF" border="0">
-														<tr>
-															<td><input type="text" name="addText[]"
-																style="width: 150px; height: 20px;"></td>
-															<td align="left"></td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-							<table width="400" border="0" cellspacing="0" cellpadding="0">
-								<tr>
-									<td height="10"></td>
-								</tr>
-								<tr>
-									<td align="center"><input type="button" name="button"
+						<td><input type="button" name = "addTextBox" value="항목 추가" onClick="addTB();"/>
+						<br /> </td>
+					</tr>
+					<tr>
+						<td></td>
+						<td id = "tableTD"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="right"><input type="button" name="button"
 										value="확인" onClick="frmCheck();"></td>
-								</tr>
-							</table>
-
-						</td>
-						</form>
-						</div>
 					</tr>
 				</table>
+			</form>
+		</div>					
 </body>
 </html>
