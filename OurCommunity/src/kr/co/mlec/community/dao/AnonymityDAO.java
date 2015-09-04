@@ -130,18 +130,68 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
+	public int selectListCount() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select count(no)as count from t_anonymity_board";
+			pstmt = con.prepareStatement(sql);
+			ResultSet result = pstmt.executeQuery();
+			if(result.next()){
+				count = result.getInt("count");
+			}
+			return count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+	}
+	public int selectSearchListCount(String type, String text) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select count(no)as count from t_anonymity_board"
+					   + " where "+type+" like ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+text+"%");
+			ResultSet result = pstmt.executeQuery();
+			if(result.next()){
+				count = result.getInt("count");
+			}
+			return count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+	}
 	
-	
-	public List<AnonymityVO> selectAnonymityBoard() throws Exception {
+	public List<AnonymityVO> selectAnonymityBoard(int startNum, int endNum) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, to_char(reg_date, 'yyyy-mm-dd') as regDate, scope, check_cnt "
+			String sql = "select * "
+					   + " from(select no, title, id, regDate, scope, check_cnt, rownum rnum "
+					   + " from (select no, title, id, to_char(reg_date, 'yyyy-mm-dd') as regDate, scope, check_cnt "
 					   + "   from t_anonymity_board"
-					   + "  order by no";
+					   + "  order by no desc))"
+					   + " where rnum between ? and ?";
 
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
 			ResultSet rs = pstmt.executeQuery();
 
 			List<AnonymityVO> list = new ArrayList<>();
@@ -258,18 +308,23 @@ public class AnonymityDAO {
 			ConnectionPool.close(con);
 		}
 	}
-	public List<AnonymityVO> searchAnonymityBoard(String type, String text) throws Exception {
+	public List<AnonymityVO> searchAnonymityBoard(String type, String text, int startNum, int endNum) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, to_char(reg_date, 'yyyy-mm-dd') as regDate, scope, check_cnt "
+			String sql = " select * "
+					   + " from(select no, title, id, regDate, scope, check_cnt, rownum rnum "
+					   + "  from(select no, title, id, to_char(reg_date, 'yyyy-mm-dd') as regDate, scope, check_cnt "
 					   + "   from t_anonymity_board"
 					   + "  where "+type+" like ? " 
-					   + "  order by no";
+					   + "  order by no))"
+					   + " where rnum between ? and ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+text+"%");
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
 			ResultSet rs = pstmt.executeQuery();
 			
 			List<AnonymityVO> list = new ArrayList<>();
