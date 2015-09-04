@@ -1,6 +1,7 @@
 package kr.co.mlec.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -24,17 +25,20 @@ public class WorkInfoListController extends HttpServlet{
 		String content = req.getParameter("content");
 		
 	try {
+		int listSize = dao.selectList().size();
+		int paging = (int) Math.ceil(listSize/5);
+		req.setAttribute("pagingSize", paging);
+		
 		if(content == null) {
 			List<WorkInfoVO> list = dao.selectList();
 			req.setAttribute("workInfoList", list);
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/workInfo/list.jsp");
-			rd.forward(req, res);
-		} else {
+			} else {
 			List<WorkInfoVO> sList = dao.selectSearch(search, content);
 			req.setAttribute("workInfoList", sList);
+				}
+		
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/workInfo/list.jsp");
 			rd.forward(req, res);
-			}
 		}catch (Exception e) {
 			throw new ServletException(e);
 		}
