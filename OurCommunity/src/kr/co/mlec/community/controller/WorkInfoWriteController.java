@@ -35,7 +35,7 @@ public class WorkInfoWriteController extends HttpServlet {
 								+ "keywords=프로그래머" 
 								+ "&sort=pd" 
 								+ "&loc_cd=101000"
-								+ "&count=2" 
+								+ "&count=10" 
 								+ "&output=xml";
 			URL url = new URL(calUrl);
 			InputStream in = url.openStream();
@@ -105,10 +105,11 @@ public class WorkInfoWriteController extends HttpServlet {
 								vo.setExperienceLevel(sValue);
 							}
 						}
-					}else if("salary".equals(cName)) {
-						vo.setActive(cValue);
+					} else if("salary".equals(cName)) {
+						vo.setSalary(cValue);
 					}
 				}
+				System.out.println(vo.getSalary());
 				list.add(vo);
 				dao.insertTemp(vo);
 			}
