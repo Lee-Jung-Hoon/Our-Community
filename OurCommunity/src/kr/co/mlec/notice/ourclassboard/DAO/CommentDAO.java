@@ -94,3 +94,16 @@ public class CommentDAO {
 		}
 	}
 }
+/*
+create table t_notice_class_comment(
+id varchar2(20),
+no number,
+comment_no number,
+content varchar(300),
+reg_date DATE default sysdate
+)
+ */
+
+
+
+//create sequence seq_t_notice_class_comment_no
