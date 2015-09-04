@@ -37,6 +37,10 @@
 		.layerInner div:nth-child(6) {width:403px; height:200px; background:green; position:absolute; bottom:0; left:203px;}
 		.layerInner div:nth-child(7) {width:200px; height:200px; background:blue; position:absolute; bottom:0; right:203px;}
 		.layerInner div:nth-child(8) {width:200px; height:403px; background:aqua; position:absolute; bottom:0; right:0;}
+		
+		
+		
+		
 		html { background-color: black;}
 	</style>
 </head>
