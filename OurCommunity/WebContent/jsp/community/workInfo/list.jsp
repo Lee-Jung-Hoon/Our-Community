@@ -31,7 +31,7 @@
 		</table>
 		<div  style="text-align:center" >
 		<c:forEach var ="index" begin="1" end="${pagingSize}" >
-					<a href="/OurCommunity/workInfo/list?pagenum=${index}&search=${search}&content=${content}">[${index}]</a>
+					<a href="/OurCommunity/workInfo/list?pagenum=${index}&searchlist=${search}&content=${content}">[${index}]</a>
 		</c:forEach>
 		</div> 
 		<br />
