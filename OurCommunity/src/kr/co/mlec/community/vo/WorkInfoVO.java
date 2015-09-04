@@ -14,6 +14,7 @@ public class WorkInfoVO {
 	private String jobCategory; // 직종
 	private String openQuantity; // 경력
 	private String experienceLevel; //학력
+	private String salary; // 연봉
 	private int checkCnt; // 조회수
 	
 	
@@ -100,6 +101,12 @@ public class WorkInfoVO {
 	}
 	public void setExperienceLevel(String experienceLevel) {
 		this.experienceLevel = experienceLevel;
+	}
+	public String getSalary() {
+		return salary;
+	}
+	public void setSalary(String salary) {
+		this.salary = salary;
 	}
 	
 	
