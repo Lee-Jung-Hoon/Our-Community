@@ -101,7 +101,7 @@ public class VoteBoardDAO {
 		}
 	}
 
-	public List<VoteBoardVO> selectList() throws Exception {
+	public List<VoteBoardVO> selectList(int start , int end) throws Exception {
 		List<VoteBoardVO> list = new ArrayList<>();
 
 		Connection con = null;
@@ -110,18 +110,28 @@ public class VoteBoardDAO {
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = "select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
-						+ " to_char(start_date,'yyyy-mm-dd') as startdate"
-					+ " from t_vote_board " + " order by v_no asc ";
+						+ " to_char(start_date,'yyyy-mm-dd') as startdate,"
+						+ " to_char(end_date,'yyyy-mm-dd')as enddate"
+						+ " from(select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+						+ " to_char(start_date,'yyyy-mm-dd') as startdate,"
+						+ " to_char(end_date,'yyyy-mm-dd')as enddate, rownum as rnum "
+					+ "from(select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+						+ " to_char(start_date,'yyyy-mm-dd') as startdate,"
+						+ " to_char(end_date,'yyyy-mm-dd')as enddate "
+					+ " from t_vote_board order by enddate desc)) where rnum between ? and ? ";
 
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			pstmt.executeQuery();
+			
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				VoteBoardVO vote = new VoteBoardVO();
 				vote.setId(rs.getString("id"));
 				vote.setV_no(rs.getString("v_no"));
 				vote.setStart_date(rs.getString("startdate"));
-				vote.setEnd_date(rs.getString("end_date"));
+				vote.setEnd_date(rs.getString("enddate"));
 				vote.setV_title(rs.getString("v_title"));
 				vote.setV_progress(rs.getString("v_progress"));
 				vote.setV_clicks(rs.getString("v_clicks"));				
@@ -181,7 +191,7 @@ public class VoteBoardDAO {
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = "select v_no, id, start_date, end_date, v_title, v_progress, v_clicks,  "
-					+ "to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd hh:mi') as enddate "
+					+ "to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd') as enddate "
 					+ " from t_vote_board " + " where v_no = ?";
 
 			pstmt = con.prepareStatement(sql);
@@ -306,6 +316,35 @@ public class VoteBoardDAO {
 			}
 			ConnectionPool.close(con);
 		}
+	}
+
+	public int selectPageNum() throws Exception{
+		int cnt = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select * " 
+			+ " from t_vote_items ";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				cnt++;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		
+		return cnt;
 	}
 }
 
