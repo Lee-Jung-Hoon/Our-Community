@@ -15,7 +15,7 @@ import kr.co.mlec.community.vo.WorkInfoVO;
 
 @WebServlet("/workInfo/list")
 public class WorkInfoListController extends HttpServlet{
-	private int PAGE = 5;
+	private int PAGE = 2;
 	private int count = 0;
 
 	@Override
@@ -34,20 +34,22 @@ public class WorkInfoListController extends HttpServlet{
 		
 	try {
 		
-		
 		if(content == null || content == "") {
 			count = dao.selectCount();
 			List<WorkInfoVO> list = dao.selectList(startNum, endNum);
 			req.setAttribute("workInfoList", list);
-			} else {
+		} else {
+			
 			List<WorkInfoVO> sList = dao.selectSearch(search, content, startNum, endNum);
 			count = dao.selectSearchCount(search, content);
+			System.out.println(count);
 			req.setAttribute("workInfoList", sList);
 			req.setAttribute("search", search);
 			req.setAttribute("content", content);
-				}
+			}
 		
-			int paging = (int) Math.ceil(count/PAGE);
+			int paging = (int) Math.ceil((double)count/PAGE);
+			System.out.println(paging);
 			req.setAttribute("pagingSize", paging);
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/workInfo/list.jsp");
 			rd.forward(req, res);
