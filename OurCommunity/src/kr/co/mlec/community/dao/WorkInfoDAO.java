@@ -119,19 +119,26 @@ public class WorkInfoDAO {
 		}
 	}
 
-	public List<WorkInfoVO> selectList() throws Exception{
+	public List<WorkInfoVO> selectList(int startNum, int endNum) throws Exception{
 		
 		List<WorkInfoVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select no, id, url, active, posting_timestamp, "
-					+ "							opening_timestamp, expiration_timestamp, company, title, job_type, "
-					+ "							job_category, open_quantity, experience_level, salary, check_cnt "
-					+ "from t_workInfo_board "
-					+ "order by no desc";
+			String sql = "select * "
+						   + "from (select no, id, url, active, posting_timestamp, "
+						   + "							opening_timestamp, expiration_timestamp, company, title, job_type, "
+						   + "							job_category, open_quantity, experience_level, salary, check_cnt, rownum rnum "
+						   + "from (select no, id, url, active, posting_timestamp, "
+						   + "							opening_timestamp, expiration_timestamp, company, title, job_type, "
+						   + "							job_category, open_quantity, experience_level, salary, check_cnt "
+						   + "from t_workInfo_board "
+						   + "order by no desc)) "
+						   + "where rnum between ? and ? ";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				WorkInfoVO vo = new WorkInfoVO();
@@ -164,6 +171,34 @@ public class WorkInfoDAO {
 		}
 		return list;
 	}
+	
+	public int selectCount() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select count(no) as count "
+						   + "from t_workInfo_board "
+					       + " order by no desc ";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return count;
+	}
+	
 	public WorkInfoVO selectWorkInfoDetail(int no) throws Exception{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -229,20 +264,27 @@ public class WorkInfoDAO {
 		}
 	}
 
-	public List<WorkInfoVO> selectSearch(String search, String content) throws Exception{
+	public List<WorkInfoVO> selectSearch(String search, String content, int startNum, int endNum) throws Exception{
 		List<WorkInfoVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select no, id, url, active, posting_timestamp, "
-					+ "							opening_timestamp, expiration_timestamp, company, title, job_type, "
-					+ "							job_category, open_quantity, experience_level, salary, check_cnt "
-					+ "from t_workInfo_board "
-					+ "where "+search+" like ? "
-					+ " order by no desc ";
+			String sql = "select * "
+						   + "from (select no, id, url, active, posting_timestamp, "
+						   + "							opening_timestamp, expiration_timestamp, company, title, job_type, "
+						   + "							job_category, open_quantity, experience_level, salary, check_cnt, rownum rnum "
+						   + "from (select no, id, url, active, posting_timestamp, "
+						   + "							opening_timestamp, expiration_timestamp, company, title, job_type, "
+						   + "							job_category, open_quantity, experience_level, salary, check_cnt "
+						   + "from t_workInfo_board "
+					       + "where "+search+" like ? "
+					       + " order by no desc )) "
+					       + "where rnum between ? and ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+content+"%");
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				WorkInfoVO vo = new WorkInfoVO();
@@ -299,6 +341,35 @@ public class WorkInfoDAO {
 			}
 			ConnectionPool.close(con);
 		}
+	}
+
+	public int selectSearchCount(String search, String content) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select count(no) as count "
+						   + "from t_workInfo_board "
+					       + "where "+search+" like ? "
+					       + " order by no desc ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+content+"%");
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return count;
 	}
 }
 
