@@ -36,20 +36,43 @@
 				.getElementById('chart_div'));
 		chart.draw(data, options);
 	}
+	
+	Date.prototype.getInterval = function(otherDate) {
+		gap = this.getTime() - otherDate.getTime();
+		var result = Math.floor(gap / (60 * 60 * 24 * 1000));
+		return result;
+	}
 
 	function voteCheck() {
+		var now = new Date();
+		//alert("now : " + now);
+		
+		
+		var sDate = "${list.end_date}";
+		
+		year = sDate.substring(0,4);
+		month = sDate.substr(5,2)-1;
+		date = sDate.substr(8,2);
+		//alert(year+""+month+""+date);
+		
+		var inputDate = new Date(year, month, date);
+				
+		//alert(now.getInterval(inputDate));
 		var frm = document.detVote;
+		if (now.getInterval(inputDate) > 0) {
+			alert("투표가 마감 되었습니다");
+			return;
 
-		for (var i = 0; i <= frm.elements.length - 1; i++) {
-			if (frm.elements[i].name == "voteSubmit") {
-				if (!frm.elements[i].value) {
-					alert("투표 값을 선택 해주세요!!");
-					frm.elements[i].focus();
-					return;
-				} else {
-					document.detVote.submit();
+		} else if (now.getInterval(inputDate) <= 0) {
+			for (var i = 0; i <= frm.elements.length - 1; i++) {
+				if (frm.elements[i].name == "voteSubmit") {
+					if (!frm.elements[i].value) {
+						alert("투표 값을 선택 해주세요!!");
+						return false;
+					}
 				}
 			}
+			document.detVote.submit();
 		}
 	}
 
@@ -82,8 +105,8 @@ table {
 				<td><input type="button" name="regist" value="글쓰기"
 					onClick="location.href='/OurCommunity/jsp/contents/vote/registVoteForm.jsp'">
 					<input type="button" name="list" value="목록"
-					onClick="location.href='/OurCommunity/vote/listVote'"> <c:if
-						test="${id eq list.id}">
+					onClick="location.href='/OurCommunity/vote/listVote'"> 
+					<c:if test="${id eq list.id}">
 						<input type="button" name="deletes" value="투표삭제"
 							onClick="location.href='/OurCommunity/vote/deleteVote?v_no=${list.v_no}'">
 					</c:if></td>
@@ -111,20 +134,21 @@ table {
 		</table>
 		<table border="1px" align="center">
 			<c:forEach var="item" items="${ilist}">
+			<c:if test="${list.v_progress ne '0'}">		
+			<tr>
+				<td colspan="2"><div align="center" id="chart_div"></div></td>
+			</tr>
+			</c:if>
 				<tr>
 					<td><input type="radio" name="voteSubmit" id="subsection"
 						value="${item.subsection}"> ${item.subsection}<br /></td>
 					<td id="cnt">투표수 : ${item.count}</td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<div align="center" id="chart_div"></div>
-			</tr>
+			
 
 			<tr>
-				<input type="hidden" name="v_no" value="${list.v_no}">
-				
-				
+				<input type="hidden" name="v_no" value="${list.v_no}">				
 				<td colspan="2" align="right"><input type="button"
 					name="checkvote" value="투표" onClick="voteCheck();"></td>
 			</tr>

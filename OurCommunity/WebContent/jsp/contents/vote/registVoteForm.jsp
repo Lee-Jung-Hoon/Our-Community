@@ -40,11 +40,11 @@
 					alert("텍스트박스에 값을 입력하세요!");
 					frm.elements[i].focus();
 					return;
-				} else {
-					document.form.submit();
-				}
+					
+				} 
 			}
 		}
+		document.form.submit();
 	}
 </script>
 
@@ -82,7 +82,7 @@ table {
 						<p />
 						<th>마감일</th>
 						<td colspan="3"><input type="text" name="end_date" size="148"
-							value="예)20150831"></td>
+							placeholder="예)20150831"></td>
 					</tr>
 					<tr>
 						<th>선택항목</th>
