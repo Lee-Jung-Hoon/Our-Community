@@ -26,7 +26,14 @@
 	</tr>
 	</c:forEach>
 	</table>
-	<form action="/OurCommunity/Anonymity/list" method="POST">
+	<table align="center">
+		<tr>
+			<c:forEach var="i" begin="1" end="${page}">
+				<td><a href="/OurCommunity/Anonymity/list?page=${i}&searchType=${type}&text=${text}">[${i}]</a></td>
+			</c:forEach>
+		</tr>
+	</table>
+	<form action="/OurCommunity/Anonymity/list" method="GET">
 	<table style="width: 80%" border="1" align="center">
 	<tr align="center">
 		<td colspan="3">
