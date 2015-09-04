@@ -23,7 +23,7 @@ public class GalleryRegistController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(this.getServletContext().getRealPath("/"));
-		System.out.println(req.getServletContext().getRealPath("/"));
+		System.out.println(   req.getServletContext().getRealPath("/")   );
 
 		// 객체생성
 		GalleryDAO dao = new GalleryDAO();
