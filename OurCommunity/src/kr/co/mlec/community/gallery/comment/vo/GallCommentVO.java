@@ -2,13 +2,13 @@ package kr.co.mlec.community.gallery.comment.vo;
 
 public class GallCommentVO {
 
-	// create table t_community_gallery_comment(
-	// id varchar2(30) not null,
-	// comment_no number not null,
-	// comment_content varchar2(600),
-	// board_no number not null,
-	// comment_reg_date date default sysdate
-	// )
+//	 create table t_community_gallery_comment(
+//	 id varchar2(30) not null,
+//	 comment_no number not null,
+//	 comment_content varchar2(600),
+//	 board_no number not null,
+//	 comment_reg_date date default sysdate
+//	 )
 
 	// create sequence s_community_gallery_comment
 

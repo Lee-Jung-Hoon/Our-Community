@@ -29,15 +29,14 @@
 
 		.layerWrap {position:relative; width:1012px; height:606px; margin:100px auto 0; overflow:hidden;}
 		.layerInner {width:110%;}
-		.layerInner div:nth-child(1) {float:left; width:403px; height:200px; background:red; margin-right:3px;}
-		.layerInner div:nth-child(2) {float:left; width:403px; height:403px; background:yellow;}
-		.layerInner div:nth-child(3) {width:200px; height:200px; background:silver	; position:absolute; top:0; right:0;}
-		.layerInner div:nth-child(4) {width:200px; height:403px; background:orange; position:absolute; bottom:0; left:0;}
+		.layerInner div:nth-child(1) {float:left; width:403px; height:200px; background:gray; margin-right:3px;}
+		.layerInner div:nth-child(2) {float:left; width:403px; height:403px; background:gray;}
+		.layerInner div:nth-child(3) {width:200px; height:200px; background:gray	; position:absolute; top:0; right:0;}
+		.layerInner div:nth-child(4) {width:200px; height:403px; background:gray; position:absolute; bottom:0; left:0;}
 		.layerInner div:nth-child(5) {width:200px; height:200px; background:gray; position:absolute; bottom:203px; left:203px;}
-		.layerInner div:nth-child(6) {width:403px; height:200px; background:green; position:absolute; bottom:0; left:203px;}
-		.layerInner div:nth-child(7) {width:200px; height:200px; background:blue; position:absolute; bottom:0; right:203px;}
-		.layerInner div:nth-child(8) {width:200px; height:403px; background:aqua; position:absolute; bottom:0; right:0;}
-		
+		.layerInner div:nth-child(6) {width:403px; height:200px; background:gray; position:absolute; bottom:0; left:203px;}
+		.layerInner div:nth-child(7) {width:200px; height:200px; background:gray; position:absolute; bottom:0; right:203px;}
+		.layerInner div:nth-child(8) {width:200px; height:403px; background:gray; position:absolute; bottom:0; right:0;}
 		
 		
 		

@@ -12,18 +12,71 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 
-body {
-	color: white;
-	background-image: url("http://www.gphotography.ch/v1/assets/templates/Version2009/BG.jpg");
+html {
+	font-family: '나눔고딕';
+}
 	
+body {
+	color : white;
+	background-color: #282b30;
+}
+
+.bitcampdiv table {
+    border-top: 2px solid #cd5d31;
+}
+
+ a {
+	color: white;
+}
+
+.bitcampdiv table td {
+    padding: 6px 10px;
+    border: 1px solid #1f1f1f;
+    overflow: hidden;
+    text-align: center;
+    background: #373737;
+}
+
+.bitcampdiv table th {
+    padding: 13px 10px;
+    background: #1f1f1f;
+    border: 1px solid #2d2d2d;
+}
+
+.bitcampdiv h1 {
+    font-size: 25px;
+    line-height: 35px;
+    height: 41px;
+    padding: 42px 0;
+    text-align: center;
+    color: #fff;
+}
+.search_box {
+    background: #cd5d31;
+    padding: 15px 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+.SearchBtn {
+    border: 0px;
+    font-size: 0px;
+    width: 78px;
+    background: url(../../../images/egovframework/board/searchBtn.gif) no-repeat -2px -1px #2d2d2d;
+    height: 28px;
+    vertical-align: middle;
+    /* border: 1px solid #48556e; */
 }
 
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="bitcampdiv">
 		<%@ include file="/jsp/include/topMenu.jsp"%>
+	<div class="bitcampdiv">
 		<h1>비트캠프 공지사항</h1>
 		<small>해당 게시판은 비트캠프의 공지사항을 게시하는 공지사항 게시판입니다.</small>
 		<hr />
@@ -32,7 +85,7 @@ body {
 				onclick="location.href='/OurCommunity/jsp/notice/bitcampboard/registnoticebitcampboard.jsp'" />
 			<p />
 		</c:if>
-		<table border="1" id="listtable" align="center">
+		<table border="1" id="listtable" align="center" class="">
 			<tr>
 				<th align="center" width="100px">글번호</th>
 				<th align="center" width="200px">글머리</th>
@@ -63,15 +116,15 @@ body {
 			<%
 				}
 			%><p />
-			
+		<div  class="search_box">
 		<form action="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" method="get">
-			<select name="searchCategory">
+			검색 구분  <select name="searchCategory">
 				<option value="1">제목</option>
-				<option value="2">내용</option>
+				<option value="2">내용</option>	
 				<option value="3">작성자</option>
-			</select> <input type="text" name="search"> <input type="submit"
-				value="검색">
+			</select> <input type="text" name="search"> <input type="submit" class="SearchBtn" value="검색">
 		</form>
+		</div>
 	</div>
 </body>
 </html>
