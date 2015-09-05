@@ -48,7 +48,7 @@ public class RecommendMenuDAO {
 					+ " from ( select num, title, id, reg_date, count, rownum rnum "
 					+ " from ( select num, title, id, reg_date, count "
 					+ " from recommend_menu "
-					+ " order by num ) ) "
+					+ " order by num desc ) ) "
 					+ " where rnum between ? and ?";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
@@ -88,7 +88,7 @@ public class RecommendMenuDAO {
 					+ " from ( select num, title, id, reg_date, count "
 					+ " from recommend_menu "
 					+ " where " + type + " like ?"
-					+ " order by num ) ) "
+					+ " order by num desc) ) "
 					+ " where rnum between ? and ?";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;

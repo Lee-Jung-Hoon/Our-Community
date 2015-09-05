@@ -389,6 +389,37 @@ public class NoticeBitcampBoardDAO {
 		}
 		
 	}
+	
+	public ArrayList<NoticeBitcampBoardVO> selectMainList() throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ArrayList<NoticeBitcampBoardVO> list = new ArrayList<>();
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = " select * " 
+			+ " from ( select no, title, rownum rnum "
+			+ " from ( select no, title "
+			+ " from t_notice_bitcamp_board " 
+			+ " order by no desc )) " 
+			+ " where rnum between 1 and 5";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NoticeBitcampBoardVO board = new NoticeBitcampBoardVO();
+				board.setNo(rs.getString("no"));
+				board.setTitle(rs.getString("title"));
+				list.add(board);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return list;
+	}
 }
 
 

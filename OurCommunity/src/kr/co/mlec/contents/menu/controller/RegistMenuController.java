@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.contents.dao.RecommendMenuDAO;
 import kr.co.mlec.contents.vo.RecommendMenuVO;
@@ -24,10 +25,12 @@ public class RegistMenuController extends HttpServlet {
 		menu.setLongitude(req.getParameter("longitude"));
 		menu.setLatitude(req.getParameter("latitude"));
 
+		HttpSession session = req.getSession();
 		RecommendMenuDAO dao = new RecommendMenuDAO();
 		try {
 			//id받아오기
-			menu.setId("test");
+			String id = (String) session.getAttribute("userId");
+			menu.setId(id);
 			dao.insertRecommendMenu(menu);
 			res.sendRedirect("/OurCommunity/menu/list");
 		} catch (Exception e) {
