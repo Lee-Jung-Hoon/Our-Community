@@ -158,6 +158,13 @@ button {
 	bottom: 203px;
 	left: 203px;
 }
+.layerInner section:nth-child(5) a {
+	text-align:center;
+	line-height:200px;
+} 
+.layerInner section:nth-child(5) img {
+	vertical-align:middle;
+}
 
 .layerInner section:nth-child(6) {
 	width: 403px;
@@ -191,7 +198,7 @@ button {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	background:red;
+	background:gray;
 }
 .dday {
 	color: white;
@@ -262,7 +269,22 @@ html {
 			<img style="width: 150px; height: 150px;" src="/OurCommunity/image/photoImage.png">
 			</a></section>
 			<section>학습자료실?</section>
-			<section><a class="a" href="/OurCommunity/jsp/login.jsp">로그인</a></section>
+			<section>
+				<c:choose>
+					<c:when test="${empty id}">
+						<a class="a" href="/OurCommunity/jsp/login.jsp"> 
+							<img style="width: 100px; height: 100px;"
+							src="/OurCommunity/image/loginImage.png">
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a class="a" href="/OurCommunity/join/LogoutController">
+							<img style="width: 100px; height: 100px;"
+							src="/OurCommunity/image/logoutImage.png">
+						</a>
+					</c:otherwise>
+				</c:choose>
+			</section>
 			<section>
 					<span class="dday">NOTICE</span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -275,7 +297,7 @@ html {
 				<p id="title">${voteList.v_title}</p>
 			</section>
 			<section><a class="a" href="/OurCommunity/workInfo/list">취업정보</a></section>
-			<section></section>
+			<section>메세지</section>
 		</div>
 	</div>
 	<%@include file="/jsp/include/bottomMenu.jsp"%>
