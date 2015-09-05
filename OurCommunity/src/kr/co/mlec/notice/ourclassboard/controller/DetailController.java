@@ -33,10 +33,12 @@ public class DetailController extends HttpServlet{
 				BoardVO board =  dao.selectBoardDt(no);
 				req.setAttribute("board", board);
 				
+				dao.updateCheckCnt(no);
+				
 				List<CommentVO> list = cdao.selectComment(no);
 				req.setAttribute("list", list);
 				
-				RequestDispatcher rd = req.getRequestDispatcher("/board/detail.jsp");
+				RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/detail.jsp");
 				rd.forward(req, res);
 			} catch (Exception e) {
 				e.printStackTrace();
