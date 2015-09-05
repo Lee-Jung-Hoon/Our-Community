@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="KO">
 <head>
@@ -8,15 +9,6 @@
 <meta name="viewport" content="width=device-width">
 <title></title>
 <script src="http://www.imbc.com/commons/libs/jquery-1.11.1.min.js"></script>
-<script type="text/javascript">
-function dday(y, m, d) {
-	today = new Date();
-	dday = new Date(y, m - 1, d);
-	n = Math.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
-
-	document.write("D-" + n);
-}
-</script>
 <!--[if lt IE 9]><script src="http://www.imbc.com/commons/libs/html5shiv.min.js"></script><![endif]-->
 <style type="text/css">
 /* reset start */
@@ -107,7 +99,18 @@ button {
 	padding-bottom: 30;
 }
 
-.layerInner div:nth-child(1) {
+.a {
+	color: white;
+	padding-left: 10;
+	font-size: 40px;
+	color: white;
+	font-weight: bold;
+	display: block;
+	height: 100%;
+	overflow: hidden;
+	}
+
+.layerInner section:nth-child(1) {
 	float: left;
 	width: 403px;
 	height: 200px;
@@ -115,14 +118,14 @@ button {
 	margin-right: 3px;
 }
 
-.layerInner div:nth-child(2) {
+.layerInner section:nth-child(2) {
 	float: left;
 	width: 403px;
 	height: 403px;
 	background: gray;
 }
 
-.layerInner div:nth-child(3) {
+.layerInner section:nth-child(3) {
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -130,8 +133,15 @@ button {
 	top: 0;
 	right: 0;
 }
+.layerInner section:nth-child(3) a {
+	text-align:center;
+	line-height:200px;
+} 
+.layerInner section:nth-child(3) img {
+	vertical-align:middle;
+}
 
-.layerInner div:nth-child(4) {
+.layerInner section:nth-child(4) {
 	width: 200px;
 	height: 403px;
 	background: gray;
@@ -140,7 +150,7 @@ button {
 	left: 0;
 }
 
-.layerInner div:nth-child(5) {
+.layerInner section:nth-child(5) {
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -149,7 +159,7 @@ button {
 	left: 203px;
 }
 
-.layerInner div:nth-child(6) {
+.layerInner section:nth-child(6) {
 	width: 403px;
 	height: 200px;
 	background: gray;
@@ -158,7 +168,7 @@ button {
 	left: 203px;
 }
 
-.layerInner div:nth-child(7) {
+.layerInner section:nth-child(7) {
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -167,38 +177,107 @@ button {
 	right: 203px;
 }
 
-.layerInner div:nth-child(8) {
+.layerInner section:nth-child(8) {
 	width: 200px;
-	height: 403px;
+	height: 200px;
 	background: gray;
+	position: absolute;
+	bottom: 203px;
+	right: 0;
+}
+.layerInner section:nth-child(9) {
+	width: 200px;
+	height: 200px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
+	background:red;
 }
 .dday {
 	color: white;
+	padding-left: 10;
+	font-size: 40px;
+	color: white;
+	font-weight: bold;
 }
+.noticeATag {
+	display: block
+}
+
 
 html {
 	background-color: black;
 }
 </style>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+	google.load('visualization', '1.0', {
+		'packages' : [ 'corechart' ]
+	});
+
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		// Create the data table.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Topping');
+		data.addColumn('number', 'Slices');
+
+		<c:forEach var="item" items="${ilist}">
+		data.addRows([ [ "${item.subsection}", Number("${item.count}") ] ]);
+		</c:forEach>
+
+		var options = {
+			'title' : document.getElementById("title").innerHTML,
+			'width' : 200,
+			'height' : 200
+		};
+		// Instantiate and draw our chart, passing in some options.
+		var chart = new google.visualization.PieChart(document
+				.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
+</script>
 </head>
 <body>
 	<%@include file="/jsp/include/topMenu.jsp"%>
 	<div class="layerWrap">
 		<div class="layerInner">
-			<div><a href=""><div></div></a></div>
-			<div><a href=""><div></div></a></div>
-			<div>포토</div>
-			<div>학습자료실</div>
-			<div>로그인</div>
-			<div>비트공지</div>
-			<div>투표</div>
-			<div>취업정보</div>
+			<section>
+			<p align="center" class="dday">
+				<script>
+					function dday(y, m, d) {
+						today = new Date();
+						dday = new Date(y, m - 1, d);
+						n = Math
+								.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
+						document.write("D-" + n);
+					}
+					dday(2015, 12, 09);
+				</script>
+			</p>
+			</section>
+			<section></section>
+			<section><a  class="a" href="/OurCommunity/gallery/list">
+			<img style="width: 150px; height: 150px;" src="/OurCommunity/image/photoImage.png">
+			</a></section>
+			<section>학습자료실?</section>
+			<section><a class="a" href="/OurCommunity/jsp/login.jsp">로그인</a></section>
+			<section>
+					<span class="dday">NOTICE</span>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" class="dday">+</a>
+					<c:forEach var="i" items="${noticeList}">
+						<a href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}" class="noticeATag">[공지]${i.title}</a>
+					</c:forEach>
+			</section>
+			<section id="chart_div">
+				<p id="title">${voteList.v_title}</p>
+			</section>
+			<section><a class="a" href="/OurCommunity/workInfo/list">취업정보</a></section>
+			<section></section>
 		</div>
 	</div>
 	<%@include file="/jsp/include/bottomMenu.jsp"%>
-
 </body>
 </html>
