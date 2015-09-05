@@ -19,7 +19,7 @@ public class DeleteController extends HttpServlet{
 			BoardDAO dao = new BoardDAO();
 			try{
 					dao.deleteBoard(no);
-					res.sendRedirect("/Community/ourclassboard/list?type=D");
+					res.sendRedirect("/OurCommunity/ourclassboard/list?type=D");
 			}catch(Exception e) {
 				e.printStackTrace();
 				throw new ServletException(e);
