@@ -30,7 +30,7 @@ public class ModifyController extends HttpServlet{
 			req.setAttribute("board", board);
 			req.setAttribute("no", no);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/board/modify.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/modify.jsp");
 			rd.forward(req, res);
 			
 		} catch (Exception e) {

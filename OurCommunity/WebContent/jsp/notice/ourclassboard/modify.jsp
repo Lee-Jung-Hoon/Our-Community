@@ -7,10 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<body>
+<%@ include file="/jsp/include/topMenu.jsp" %>
 <h1>반 게시판</h1>
 <hr />
-<body>
-<form action="/Community/ourclassboard/modifyUpdate" method="get">
+<form action="/OurCommunity/ourclassboard/modifyUpdate" method="get">
 <td><input type="hidden" value="${board.no}" name="no"></td>
 <table align="center" border="1">
 <tr>
