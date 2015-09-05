@@ -13,20 +13,22 @@
 <style type="text/css">
 
 html {
-	font-family: '나눔고딕';
+	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
+		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	background: url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 	
 body {
 	color : white;
-	background-color: #282b30;
 }
 
 .bitcampdiv table {
     border-top: 2px solid #cd5d31;
 }
 
- a {
-	color: white;
+a {
+	color: white;	
+	text-decoration : none;
 }
 
 .bitcampdiv table td {
@@ -44,7 +46,7 @@ body {
 }
 
 .bitcampdiv h1 {
-    font-size: 25px;
+    font-size: 55px;
     line-height: 35px;
     height: 41px;
     padding: 42px 0;
@@ -65,21 +67,31 @@ body {
     border: 0px;
     font-size: 0px;
     width: 78px;
-    background: url(../../../images/egovframework/board/searchBtn.gif) no-repeat -2px -1px #2d2d2d;
     height: 28px;
+    color : white;
     vertical-align: middle;
-    /* border: 1px solid #48556e; */
+    border: 1px solid #48556e; 
+}
+
+.layerWrap {
+	position: relative;
+	width: 1400px;
+	margin: 100px auto 50px;
+	overflow: hidden;
+    background: #2d2d2d;
+    padding: 40px 40px;
 }
 
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-		<%@ include file="/jsp/include/topMenu.jsp"%>
+	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
 		<h1>비트캠프 공지사항</h1>
-		<small>해당 게시판은 비트캠프의 공지사항을 게시하는 공지사항 게시판입니다.</small>
 		<hr />
+		
+	<div class="layerWrap">
 		<c:if test="${grade eq '운영자'}">
 			<input type="button" value="글쓰기"
 				onclick="location.href='/OurCommunity/jsp/notice/bitcampboard/registnoticebitcampboard.jsp'" />
@@ -107,6 +119,7 @@ body {
 			</c:forEach>
 		</table>
 		<hr />
+		<div align="center">
 			<%
 				for (int i = 1; i <= paging; i++) {
 			%>
@@ -116,6 +129,7 @@ body {
 			<%
 				}
 			%><p />
+			</div>
 		<div  class="search_box">
 		<form action="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" method="get">
 			검색 구분  <select name="searchCategory">
@@ -125,6 +139,8 @@ body {
 			</select> <input type="text" name="search"> <input type="submit" class="SearchBtn" value="검색">
 		</form>
 		</div>
+		</div>
 	</div>
+	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>

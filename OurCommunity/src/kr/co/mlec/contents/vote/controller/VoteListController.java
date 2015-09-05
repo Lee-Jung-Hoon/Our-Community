@@ -38,7 +38,9 @@ public class VoteListController extends HttpServlet{
 			
 			HttpSession session = req.getSession();
 			String id = (String) session.getAttribute("userId");
+			String grade = (String) session.getAttribute("grade");
 			req.setAttribute("userId", id);
+			req.setAttribute("grade", grade);
 			
 			pagingNum = dao.selectPageNum();
 			List<VoteBoardVO> list = dao.selectList(start,end);
