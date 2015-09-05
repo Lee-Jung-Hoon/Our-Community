@@ -1,25 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>°Ô½ÃÆÇ</title>
+<title>ê²Œì‹œíŒ</title>
 </head>
 
 <body>
+<%@ include file="/jsp/include/topMenu.jsp" %>
 	<h1>Bitcamp Board</h1>
 	<hr />
 	
-<!-- 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-		<a href="/Community/ourclassboard/list"><button>¸ñ·Ï</button></a> 
-	<form action="/Community/ourclassboard/write" method="post">
+	<a href="/OurCommunity/ourclassboard/list"><button>ëª©ë¡</button></a> 
+	<form action="/OurCommunity/ourclassboard/write" method="post">
 		<table border="1" align="center">
 					<tr>
 						<th><select name="boardhead">
-								<option value="°øÁö">°øÁö</option>
-								<option value="ÀÚÀ¯">ÀÚÀ¯</option>
-								<option value="ÀÚÀ¯2">ÀÚÀ¯2</option>
+								<option value="ê³µì§€">ê³µì§€</option>
+								<option value="ìžìœ ">ìžìœ </option>
+								<option value="ìžìœ 2">ìžìœ 2</option>
 						</select></th>
 					</tr>
 
@@ -29,18 +28,13 @@
 					</tr>
 
 					<tr>
-						<th align="center">ID</th>
-						<td><input name="id" size="50" maxlength="50"></td>
-					</tr>
-
-					<tr>
 						<th align="center">CONTENT</th>
-						<td><textarea name="content" cols="150" rows="12" placeholder="ÀÌ°÷¿¡ ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä"></textarea></td>
+						<td><textarea name="content" cols="150" rows="12" placeholder="ì´ê³³ì— ë‚´ìš©ì„ ìž…ë ¥í•˜ì„¸ìš”"></textarea></td>
 					</tr>
 
 					<tr align="center">
-						<td colspan="2"><input type="submit" value="±Ûµî·Ï">
-							<input type=reset value="ÀçÀÛ¼º"></td>
+						<td colspan="2"><input type="submit" value="ê¸€ë“±ë¡">
+							<input type=reset value="ìž¬ìž‘ì„±"></td>
 
 
 					</tr>
