@@ -346,6 +346,30 @@ public class VoteBoardDAO {
 		
 		return cnt;
 	}
+	public int selectLastVNo() throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int no = 0;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = " select max(v_no) as max "
+						+ " from t_vote_board ";
+			pstmt = con.prepareStatement(sql);
+			ResultSet r = pstmt.executeQuery();
+			if(r.next()) {
+				no = r.getInt("max");
+			}
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return no;
+	}
 }
 
 /*
