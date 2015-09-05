@@ -32,7 +32,7 @@ public class CommentWriteController extends HttpServlet{
 		
 		try {
 			cdao.insertComment(comment);
-			res.sendRedirect("/Community/ourclassboard/detail?no=" + no);
+			res.sendRedirect("/OurCommunity/ourclassboard/detail?no=" + no);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException(e);
