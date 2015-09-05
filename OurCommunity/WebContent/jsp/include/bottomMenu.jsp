@@ -4,12 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.footer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0 20px;
+    color: #474747;
+    font-size: 12px;
+    float: left;
+    background: #232323;
+    color: silver;
+}
+
+
+</style>
 <title>Insert title here</title>
 </head>
 <body>
-	<div align="center">
-		
-		<br>Copyright (c) Bit 73. All rights reserved.<br/>
+	<div class="footer" align="center">
+		김정우 이용수 윤경원 김영재 이정훈 안수정 조아라
+		<br/><br/>
+		서울특별시 서초구 강남대로53길 8 비트아카데미빌딩 303호
+		<br/>
+		Copyright (c) Bit 73. All rights reserved.
 	</div>
 </body>
 </html>
