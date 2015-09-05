@@ -9,12 +9,13 @@
 <script>
 	function doDelete() {
 		if (confirm("게시물을 삭제하시겠습니까?")) {
-			location.href = "/BoardTestT/board/delete?no=${board.no }";
+			location.href = "/OurCommunity/ourclassboard/delete?no=${board.no }";
 		}
 	}
 </script>
 </head>
 <body>
+<%@ include file="/jsp/include/topMenu.jsp" %>
 <h1>반 게시판</h1>
 <hr />
 
@@ -42,6 +43,7 @@
 						<th>RegDate</th>
 						<td>${board.regDate}</td>
 					</tr>
+					
 					<tr align="center">
 					<td colspan="2"><textarea name="content" cols="150" rows="12" readonly>${board.content}</textarea></td>			
 					</tr>
@@ -49,9 +51,9 @@
 					
 					<table align="center">
 			
-					<td><a href="/Community/ourclassboard/list">목록</a> 
-					<a href="/Community/ourclassboard/modify?no=${board.no }">수정</a> 
-					<a href="/Community/ourclassboard/delete?no=${board.no }">삭제</a></td>
+					<td><a href="/OurCommunity/ourclassboard/list">목록</a> 
+					<a href="/OurCommunity/ourclassboard/modify?no=${board.no }">수정</a> 
+					<a href="/OurCommunity/ourclassboard/delete?no=${board.no }">삭제</a></td>
 				</table>
 			</div>
 	</form>
@@ -59,13 +61,13 @@
 	<br />
 
 
-	<form action="/Community/ourclassboard/commentWrite" method="post">
+	<form action="/OurCommunity/ourclassboard/commentWrite" method="post">
 		<input type="hidden" value="${board.no}" name="no">
 		<table border="1" align="center" width="30">
 			<tr>
 				<td><input type="text" name="id"></td>
 				<td><input type="text" name="content"></td>
-				<td><input type="submit" value="commet"></td>
+				<td><input type="submit" value="덧글"></td>
 			</tr>
 		</table>
 	</form>
@@ -85,7 +87,7 @@
 				<td>${comment.content}</td>
 				<td>${comment.regDate}</td>
 				<td><a
-					href="/Community/ourclassboard/commentDelete?commentNo=${comment.commentNo}&no=${board.no}">delete</a></td>
+					href="/OurCommunity/ourclassboard/commentDelete?commentNo=${comment.commentNo}&no=${board.no}">덧글삭제</a></td>
 			</tr>
 
 		</c:forEach>

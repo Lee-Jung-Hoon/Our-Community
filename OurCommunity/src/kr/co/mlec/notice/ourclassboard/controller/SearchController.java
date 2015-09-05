@@ -29,7 +29,7 @@ public class SearchController extends HttpServlet{
 			List<BoardVO> list = dao.searchBoard(type, search);
 			req.setAttribute("list", list);
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/board/list.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/list.jsp");
 			rd.forward(req, res);
 			
 		}catch(Exception e) {
