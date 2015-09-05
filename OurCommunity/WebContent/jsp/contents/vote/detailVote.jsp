@@ -6,6 +6,67 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+html {
+	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
+		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	background:
+		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+}
+
+body {
+	color: white;
+}
+
+.bitcampdiv table {
+	border-top: 5px solid #cd5d31;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+.bitcampdiv table td {
+	padding: 6px 10px;
+	border: 0.5px solid silver;
+	overflow: hidden;
+	background: #373737;
+}
+
+.bitcampdiv table th {
+	padding: 13px 10px;
+	background: #5A5A5A;
+	border: 0.5px solid silver;
+}
+
+.bitcampdiv h1 {
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
+}
+
+.search_box {
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.layerWrap {
+	position: relative;
+	width: 1400px;
+	margin: 100px auto 50px;
+	overflow: hidden;
+	background: #2d2d2d;
+	padding: 40px 40px;
+}
+</style>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
@@ -28,7 +89,7 @@
 
 		var options = {
 			'title' : document.getElementById("title").innerHTML,
-			'width' : 600,
+			'width' : 1200,
 			'height' : 500
 		};
 		// Instantiate and draw our chart, passing in some options.
@@ -86,33 +147,29 @@
 
 <style>
 table {
-	border-collapse: collapse;
-	align: "center";
-	width: 80%;
+	width: 100%;
 }
 </style>
 </head>
 <body>
 <%@ include file="/jsp/include/topMenu.jsp"%>
+	<div class="bitcampdiv">
 	<h1 align="center">투표 조회</h1>
 	<hr />
 	<br />
 	
-
+<div class="layerWrap">
 	<form action="/OurCommunity/web/checkVote" name="detVote">
-		<table border="1px" align="center">
-			<tr>
-				<td><input type="button" name="regist" value="글쓰기"
+		<input type="button" name="regist" value="글쓰기"
 					onClick="location.href='/OurCommunity/jsp/contents/vote/registVoteForm.jsp'">
 					<input type="button" name="list" value="목록"
 					onClick="location.href='/OurCommunity/vote/listVote'"> 
 					<c:if test="${id eq list.id}">
 						<input type="button" name="deletes" value="투표삭제"
 							onClick="location.href='/OurCommunity/vote/deleteVote?v_no=${list.v_no}'">
-					</c:if></td>
-				<td colspan="3"></td>
-			</tr>
-
+					</c:if>
+		<table align="center">
+	
 			<tr>
 				<th>작성자</th>
 				<td colspan="3">${list.id}</td>
@@ -132,12 +189,13 @@ table {
 				<td colspan="3">${list.v_progress}</td>
 			</tr>
 		</table>
-		<table border="1px" align="center">
-			<c:forEach var="item" items="${ilist}">
-			<c:if test="${list.v_progress ne '0'}">		
+		<table align="center">
 			<tr>
+				<th>투표 통계</th>
 				<td colspan="2"><div align="center" id="chart_div"></div></td>
 			</tr>
+			<c:forEach var="item" items="${ilist}">
+			<c:if test="${list.v_progress ne '0'}">		
 			</c:if>
 				<tr>
 					<td><input type="radio" name="voteSubmit" id="subsection"
@@ -154,7 +212,8 @@ table {
 			</tr>
 		</table>
 	</form>
-
+</div></div>
+	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 
 </body>
 </html>

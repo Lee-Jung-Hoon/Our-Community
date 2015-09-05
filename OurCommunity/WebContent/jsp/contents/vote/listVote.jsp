@@ -21,7 +21,7 @@ body {
 }
 
 .bitcampdiv table {
-    border-top: 2px solid #cd5d31;
+    border-top: 5px solid #cd5d31;
 }
 
 a {
@@ -81,10 +81,6 @@ a {
 }
 
 </style>
-
-
-
-</style>
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
@@ -96,7 +92,7 @@ a {
 	<input type="button" value="글쓰기"
 				onclick="location.href='/OurCommunity/jsp/contents/vote/registVoteForm.jsp'" />
 			<p />
-	<table align="center" border="1">
+	<table align="center">
 		<tr>
 			<th align="center" width="200px">글번호</th>
 			<th align="center" width="600px">제목</th>
@@ -129,5 +125,6 @@ a {
 		</div>
 	</div>
 	</div>
+	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>
