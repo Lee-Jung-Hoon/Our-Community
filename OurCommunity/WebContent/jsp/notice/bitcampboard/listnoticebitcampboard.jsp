@@ -23,7 +23,7 @@ body {
 }
 
 .bitcampdiv table {
-    border-top: 2px solid #cd5d31;
+    border-top: 5px solid #cd5d31;
 }
 
 a {
@@ -33,7 +33,7 @@ a {
 
 .bitcampdiv table td {
     padding: 6px 10px;
-    border: 1px solid #1f1f1f;
+    border: 0.5px solid #1f1f1f;
     overflow: hidden;
     text-align: center;
     background: #373737;
@@ -42,7 +42,7 @@ a {
 .bitcampdiv table th {
     padding: 13px 10px;
     background: #1f1f1f;
-    border: 1px solid #2d2d2d;
+    border: 0.5px solid #2d2d2d;
 }
 
 .bitcampdiv h1 {
@@ -60,17 +60,6 @@ a {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     font-weight: bold;
-}
-
-
-.SearchBtn {
-    border: 0px;
-    font-size: 0px;
-    width: 78px;
-    height: 28px;
-    color : white;
-    vertical-align: middle;
-    border: 1px solid #48556e; 
 }
 
 .layerWrap {
@@ -92,6 +81,15 @@ a {
 		<hr />
 		
 	<div class="layerWrap">
+	<div  class="search_box">
+		<form action="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" method="get">
+			검색 구분  <select name="searchCategory">
+				<option value="1">제목</option>
+				<option value="2">내용</option>	
+				<option value="3">작성자</option>
+			</select> <input type="text" name="search"> <input type="submit"  value="검색">
+		</form>
+		</div>
 		<c:if test="${grade eq '운영자'}">
 			<input type="button" value="글쓰기"
 				onclick="location.href='/OurCommunity/jsp/notice/bitcampboard/registnoticebitcampboard.jsp'" />
@@ -130,15 +128,7 @@ a {
 				}
 			%><p />
 			</div>
-		<div  class="search_box">
-		<form action="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" method="get">
-			검색 구분  <select name="searchCategory">
-				<option value="1">제목</option>
-				<option value="2">내용</option>	
-				<option value="3">작성자</option>
-			</select> <input type="text" name="search"> <input type="submit" class="SearchBtn" value="검색">
-		</form>
-		</div>
+		
 		</div>
 	</div>
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
