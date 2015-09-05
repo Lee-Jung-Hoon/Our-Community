@@ -13,20 +13,19 @@
 	height: 464px;
 	margin: 50px auto 0;
 	padding: 20px 16px;
-/* 	border: 1px solid #ddd; */
+	/* 	border: 1px solid #ddd; */
 	box-sizing: border-box;
 }
 
-html{
-background-color: orange;
-color: white;
-}
-a{
-
-color: black;
-text-decoration: none;
+html {
+	background-color: orange;
+	color: white;
 }
 
+a {
+	color: white;
+	text-decoration: none;
+}
 
 ul {
 	width: 110%;
@@ -67,76 +66,93 @@ li p {
 	text-align: center;
 	font-size: 10px;
 }
-.title{
-font-size: 14px;
-font-weight: bold;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+
+.title {
+	font-size: 14px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.id{
-font-size: 11px
+.id {
+	font-size: 11px
 }
 
-.button{
-width: 902px;
+.button {
+	width: 902px;
 	margin: 0px auto 0;
 	padding: 20px 16px;
 	box-sizing: border-box;
 }
-div{
-width: 902px;
-margin: 0px auto 0;
-}
 
+div {
+	width: 902px;
+	margin: 0px auto 0;
+}
 </style>
 </head>
 <body>
-<h1 align="center">Photo Gallery</h1>
+	<h1 align="center"><a href="/OurCommunity/gallery/list">Photo Gallery</a></h1>
 	<div class="wrapper">
 		<ul>
 			<c:forEach var="vo" items="${list}">
-			
+
 				<li>
 					<div>
-						<a href="/OurCommunity/gallery/detail?no=${vo.no }"><img src="${vo.filePath}/${vo.fileName}" width="100%"></a>
+						<a href="/OurCommunity/gallery/detail?no=${vo.no }"><img
+							src="${vo.filePath}/${vo.fileName}" width="100%"></a>
 					</div>
-					<p class="title"><a href="/OurCommunity/gallery/detail?no=${vo.no }">${vo.title}</a>
-					<p class="id">${vo.id}</p>
-					
-					<c:forEach var="c" items="${cntList }">
-					<c:if test="${c.boardNO eq vo.no}"> <p>덧글수:[${c.commentCnt }]</p></c:if>
-				</c:forEach>
-					
+					<p class="title">
+						<a href="/OurCommunity/gallery/detail?no=${vo.no }">${vo.title}</a>
+					<p class="id">${vo.id}</p> <c:forEach var="c" items="${cntList }">
+						<c:if test="${c.boardNO eq vo.no}">
+							<p>덧글수:[${c.commentCnt }]</p>
+						</c:if>
+					</c:forEach>
+
 					<p>조회 : ${vo.checkCnt}</p>
 					<p>등록일 : ${vo.regDate}</p>
-					
+
 				</li>
 			</c:forEach>
 
 		</ul>
 	</div>
 	<div align="center">
-	<form action="/OurCommunity/gallery/search" >
-	<select><option>기간선택</option><option>1일</option><option>1주일</option><option>1달</option><option>1년</option></select>
-	<select name="select"><option value="tatal">제목+내용</option><option value="title">제목</option><option value="content">내용</option><option value="comment">덧글</option><option value="id">아이디</option></select>
-	<input type="text" name="search" size="20px"/>
-	<input type="submit" size="20px"/>
-	</form>
+		<form action="/OurCommunity/gallery/list">
+			<select name="select"><option value="0">제목+내용</option>
+				<option value="1">제목</option>
+				<option value="2">내용</option>
+				<option value="3">아이디</option></select> <input type="text" name="search"
+				size="20px" /> <input type="submit" size="20px" />
+		</form>
 	</div>
-	<div>
-	
-	</div>
+	<div></div>
 	<div align="center">
-	<c:forEach var="i" begin="1" end="${size }">
 
-	<a href="/OurCommunity/gallery/list?page=${i}" ><input type="button" value="[${i}]" /></a>
-	</c:forEach>
-	
+		<c:choose>
+			<c:when test="${searchPage eq 1 }">
+				<c:forEach var="i" begin="1" end="${size }">
+					<a
+						href="/OurCommunity/gallery/list?page=${i}">
+						<input type="button" value="[${i}]" />
+					</a>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="i" begin="1" end="${size }">
+					<a href="/OurCommunity/gallery/list?select=${select}&page=${i}&search=${search}"> <input
+						type="button" value="[${i}]" /></a>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</div>
-	
-	<div class="button" align="right"> <a href="/OurCommunity/jsp/community/gallery/write.jsp">글등록</a> </div>
+	<c:if test="${!empty userId }">
+		<div class="button" align="right">
+			<a href="/OurCommunity/jsp/community/gallery/write.jsp">글등록</a>
+		</div>
+	</c:if>
 </body>
 </html>
 </body>

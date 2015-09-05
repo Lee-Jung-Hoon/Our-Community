@@ -68,7 +68,7 @@ a {
 
 			<tr>
 				<td colspan="3"><p class="id">&nbsp;작성자 :
-						&nbsp;&nbsp;&nbsp;${ vo.id}</p> <img
+						&nbsp;&nbsp;&nbsp;${userId}</p> <img
 					src="${vo.filePath}/${vo.fileName}" width="100%"> <br /> <br />
 					<p>${vo.content}</p> <br /> <br /> <br /> <br /> <br /></td>
 				<td></td>
@@ -94,38 +94,48 @@ a {
 			</tr>
 		</table>
 	</form>
-	<form action="/OurCommunity/gallery/comment/regist" method="post">
-		<table style="height: 500; width: 900px" align="center">
-			<tr>
-				<td width="10%">${vo.id}</td>
-				<td width="80%"><textarea cols="115" rows="6" name="content"></textarea></td>
-				<td align="center"><input type="hidden" name="id" value="${vo.id}" /><input type="hidden" name="no"value="${vo.no }" /><input type="submit" value="확인" /></td>
-			</tr>
-		</table>
-	</form>
 
+
+	<c:if test="${!empty userId }">
+		<form action="/OurCommunity/gallery/comment/regist" method="post">
+			<table style="height: 500; width: 900px" align="center">
+				<tr>
+					<td width="10%">${userId}</td>
+					<td width="80%"><textarea cols="115" rows="6" name="content"></textarea></td>
+					<td align="center"><input type="hidden" name="id"
+						value="${userId}" /><input type="hidden" name="no"
+						value="${vo.no }" /><input type="submit" value="확인" /></td>
+				</tr>
+			</table>
+		</form>
+	</c:if>
 
 
 	<div>
-	<form action="/OurCommunity/gellery/comment/delete" method="get">
-		<table style="height: 500; width: 900px" align="center">
-			<c:forEach var="cVO" items="${cList}">
+		<form action="/OurCommunity/gellery/comment/delete" method="get">
+			<table style="height: 500; width: 900px" align="center">
+				<c:forEach var="cVO" items="${cList}">
 
-				<tr height="50px">
+					<tr height="50px">
 
-					<td class="a">${cVO.id}</td>
-					<td class="b">${cVO.commentRegDate}</td>
-				</tr>
-				<tr height="50px">
+						<td class="a">${cVO.id}</td>
+						<td class="b">${cVO.commentRegDate}</td>
+					</tr>
+					<tr height="50px">
 
-					<td >${cVO.commentContent}</td>
-					<td>
-					<input type="hidden" value="${cVO.id}" name="id" />
-					<input type="hidden" value="${cVO.commentNo}" name="coNo" />
-					<input type="hidden" value="${cVO.boardNo}" name="no" /><input type="submit" value="삭제"/></td>
-				</tr>
-			</c:forEach>
-		</table>
+						<td>${cVO.commentContent}</td>
+
+						<c:choose>
+							<c:when test="${ !empty userId && userId eq cVO.id }">
+								<td><input type="hidden" value="${cVO.id}" name="id" /> <input
+									type="hidden" value="${cVO.commentNo}" name="coNo" /> <input
+									type="hidden" value="${cVO.boardNo}" name="no" /> <input
+									type="submit" value="삭제" /></td>
+							</c:when>
+						</c:choose>
+					</tr>
+				</c:forEach>
+			</table>
 		</form>
 	</div>
 

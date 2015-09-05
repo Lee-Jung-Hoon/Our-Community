@@ -14,7 +14,7 @@
 		<table style="height: 500;" align="center">
 			<tr>
 				<th>글쓴이</th>
-				<td><input type="text" size="30" name="id"/></td>
+				<td><input type="hidden" size="30" name="id" value="${userId }" />${userId }</td>
 
 			</tr>
 
