@@ -54,16 +54,19 @@ public class GalleryDAO {
 		PreparedStatement pstmt = null;
 		
 		pageNum *= 10;
+		
+		
+		
 		try {
 
 			con = ConnectionPool.getConnection();
 
-			String sql = " select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path, rownum rnum "
+			String sql = " select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path , rownum rnum "
 					+ " from(select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path, rownum rnum "
 					+ " from(select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path"
 					+ "      from ( select id, no, title, content, to_char( reg_date, 'yymmdd HH24:mi:ss')as day, check_cnt, scope, file_name, origin_file_name, file_path "
 					+ "              from t_community_gallery_board ) " + "   order by day desc)) "
-					+ "where rnum between ? and ? ";
+					+ " where rnum between ? and ? ";
 			// String sql = " select id, no, title, content,
 			// to_char(reg_date,'yyyy-mm-dd') as day, "
 			// + " check_cnt, scope, file_name, origin_file_name, file_path "
@@ -299,5 +302,114 @@ public class GalleryDAO {
 		
 		return total;
 	}
+
+	public ArrayList<GalleryVO> selectNotUserVO(int pageNum) throws Exception{
+		
+		ArrayList<GalleryVO> list = new ArrayList<>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		pageNum *= 10;
+		try {
+
+			con = ConnectionPool.getConnection();
+
+			String sql = " select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path "
+					+ " from(select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path, rownum rnum "
+					+ " from(select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path"
+					+ "      from ( select id, no, title, content, to_char( reg_date, 'yymmdd HH24:mi:ss')as day, check_cnt, scope, file_name, origin_file_name, file_path "
+					+ "              from t_community_gallery_board ) " + "   order by day desc)) "
+					+ "where rownum between ? and ? "
+					+ " and scope = 0 ";
+			// String sql = " select id, no, title, content,
+			// to_char(reg_date,'yyyy-mm-dd') as day, "
+			// + " check_cnt, scope, file_name, origin_file_name, file_path "
+			// + " from t_community_gallery_board "
+			// + " order by no desc ";
+			pstmt = con.prepareStatement(sql);
+			int index = 1;
+			pstmt.setInt(index++, (pageNum-9));
+			pstmt.setInt(index++,  pageNum);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				GalleryVO vo = new GalleryVO();
+
+				vo.setId(rs.getString("id"));
+				vo.setCheckCnt(rs.getInt("check_cnt"));
+				vo.setContent(rs.getString("content"));
+				vo.setFileName(rs.getString("file_name"));
+				vo.setFilePath(rs.getString("file_path"));
+
+				vo.setNo(rs.getInt("no"));
+				vo.setOriginFileName(rs.getString("origin_file_name"));
+				vo.setRegDate(rs.getString("day"));
+				vo.setScope(rs.getInt("scope"));
+				vo.setTitle(rs.getString("title"));
+
+				list.add(vo);
+
+			}
+
+		} catch (Exception e) {
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				ConnectionPool.close(con);
+			}
+		}
+
+		return list;
+	}
+
+	public int selectPageNotUser() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int size =0;
+		try {
+
+			con = ConnectionPool.getConnection();
+
+			String sql = " select count(*) as cnt "
+               +" from t_community_gallery_board "
+               + "	where scope = 0 ";
+	
+			pstmt = con.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+
+			 size = rs.getInt("cnt");
+
+			}
+
+		} catch (Exception e) {
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				ConnectionPool.close(con);
+			}
+		}
+		
+		int total = size/10;
+		
+		if( (size %10) != 0){
+		
+			total+=1;
+		
+		}
+		
+		return total;
+	}
+
+	
 
 }
