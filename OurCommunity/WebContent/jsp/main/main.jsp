@@ -297,7 +297,7 @@ html {
 				<p id="title">${voteList.v_title}</p>
 			</section>
 			<section><a class="a" href="/OurCommunity/workInfo/list">취업정보</a></section>
-			<section>메세지</section>
+			<section>회원가입</section>
 		</div>
 	</div>
 	<%@include file="/jsp/include/bottomMenu.jsp"%>
