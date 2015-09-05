@@ -87,9 +87,19 @@ a {
 		<h1 align="center">익명 게시판</h1>
 		<hr />
 		<div class="layerWrap">
+		<div class="search_box">
+			<form action="/OurCommunity/Anonymity/list" method="GET">
+				<select name="searchType">
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select> <input type="text" name="text" /> <input type="submit" value="검색" />
+			</form>
+		</div>
 		<input type="button" value="글등록"
 			onclick="location.href='/OurCommunity/Anonymity/writeform'"><p/>
 		<table border="1" align="center">
+
+		<p/>
 			<tr>
 				<th align="center">번호</th>
 				<th>제목</th>
@@ -112,15 +122,6 @@ a {
 			<a
 				href="/OurCommunity/Anonymity/list?page=${i}&searchType=${type}&text=${text}">[${i}]</a>
 		</c:forEach>
-		</div>
-		<p/>
-		<div class="search_box">
-			<form action="/OurCommunity/Anonymity/list" method="GET">
-				<select name="searchType">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select> <input type="text" name="text" /> <input type="submit" value="검색" />
-			</form>
 		</div>
 	</div>
 	

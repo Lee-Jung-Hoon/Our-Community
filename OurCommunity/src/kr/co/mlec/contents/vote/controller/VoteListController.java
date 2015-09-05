@@ -35,7 +35,6 @@ public class VoteListController extends HttpServlet{
 		int end = Integer.parseInt(pageNum)*page;
 		
 		try {
-			
 			HttpSession session = req.getSession();
 			String id = (String) session.getAttribute("userId");
 			String grade = (String) session.getAttribute("grade");
