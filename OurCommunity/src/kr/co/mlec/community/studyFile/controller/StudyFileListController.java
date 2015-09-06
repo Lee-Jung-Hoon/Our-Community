@@ -15,15 +15,41 @@ import kr.co.mlec.community.studyFile.vo.StudyFileVO;
 
 @WebServlet("/studyFile/list")
 public class StudyFileListController extends HttpServlet {
+	private int PAGE = 2;
+	private int count = 0;
 
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		StudyFileDAO dao = new StudyFileDAO();
+		String search = req.getParameter("searchlist");
+		String content = req.getParameter("content");
+		String pageNum = req.getParameter("pagenum"); 
+		
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		
+		int endNum = Integer.parseInt(pageNum) * PAGE;
+		int startNum = endNum - PAGE + 1;
 		
 		try {
-			List<StudyFileVO> list = dao.selectStudyFileList();
-			req.setAttribute("list", list);
+			
+			if(content == null || content == "") {
+				List<StudyFileVO> list = dao.selectStudyFileList(startNum, endNum);
+				count = dao.selectCount();
+				req.setAttribute("list", list);
+			} else {
+				List<StudyFileVO> sList = dao.slectSearchStudyFileList(search, content, startNum,endNum);
+				count = dao.selectSearchCount(search, content);
+				req.setAttribute("search", search);
+				req.setAttribute("content", content);
+				req.setAttribute("list", sList);
+			}
+			
+			int pageSize = (int)Math.ceil((double)count/PAGE);
+			req.setAttribute("pagingSize", pageSize);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/studyFile/list.jsp");
 			rd.forward(req, res);
 					

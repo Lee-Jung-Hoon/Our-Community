@@ -19,8 +19,8 @@ public class StudyFileDAO {
 			con = ConnectionPool.getConnection();
 			String sql = " insert into t_community_studyFile_board ( " 
 					+ "		no, id, title, type, content,  "
-					+ "		scope, file_name, origin_file_name, file_path )"
-					+ "		values(s_community_studyFile_board_no.nextVal, ?, ?, ?, ?, ?, ?, ?, ? ) ";
+					+ "		scope, file_name, origin_file_name, file_path, check_cnt )"
+					+ "		values(s_community_studyFile_board_no.nextVal, ?, ?, ?, ?, ?, ?, ?, ?, 0) ";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, file.getId());
@@ -44,17 +44,23 @@ public class StudyFileDAO {
 		}
 	}
 
-	public List<StudyFileVO> selectStudyFileList() throws Exception{
+	public List<StudyFileVO> selectStudyFileList(int startNum, int endNum) throws Exception{
+		System.out.println(startNum);
 		List<StudyFileVO> list = new ArrayList<>();
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select id, no, title, type, to_char(reg_date, 'yy-mm-dd')as regDate, check_cnt "
-						   + " from t_community_studyFile_board" 
-						   + " order by no desc ";
+			String sql = "select id, no, title, type, to_char(reg_date, 'yyyy-mm-dd') as regDate, check_cnt, rownum rnum "
+					+ "from (select id, no, title, type, REG_DATE, check_cnt, rownum rnum "
+					+ "from (select id, no, title, type, REG_DATE, check_cnt "
+					+ "from t_community_studyFile_board "
+					+ "order by no desc)) "
+					+ "where rnum between ? and ?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				StudyFileVO file = new StudyFileVO();
@@ -73,6 +79,10 @@ public class StudyFileDAO {
 			}
 			if (con != null) {
 				ConnectionPool.close(con);
+			}
+			for(StudyFileVO vo : list) {
+				System.out.println("Title : "+vo.getTitle());
+				System.out.println("NO : "+vo.getNo());
 			}
 		}
 		return list;
@@ -175,6 +185,128 @@ public class StudyFileDAO {
 			}
 		}
 	}
+
+	public List<StudyFileVO> slectSearchStudyFileList(String search, String content, int startNum, int endNum) throws Exception{
+		List<StudyFileVO> searchList = new ArrayList<>();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql ="select id, no, title, type, to_char(reg_date, 'yyyy-mm-dd') as regDate, check_cnt, rownum rnum "
+						   + "from (select id, no, title, type, REG_DATE, check_cnt, rownum rnum "
+						   + "from (select id, no, title, type, REG_DATE, check_cnt "
+						   + "from t_community_studyFile_board "
+				           + "where "+search+" like ? "
+					       + "order by no desc )) "
+					       + "where rnum between ? and ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+content+"%");
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, endNum);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				StudyFileVO searchFile = new StudyFileVO();
+				searchFile.setId(rs.getString("id"));
+				searchFile.setNo(rs.getInt("no"));
+				searchFile.setTitle(rs.getString("title"));
+				searchFile.setType(rs.getString("type"));
+				searchFile.setCheckCnt(rs.getInt("check_cnt"));
+				searchFile.setRegDate(rs.getString("regDate"));
+				searchList.add(searchFile);
+			}
+		} catch (Exception e) {
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (con != null) {
+				ConnectionPool.close(con);
+			}
+		}
+		return searchList;
+		}
+	
+	public void updateCheckCnt(int no) throws Exception {
+			
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				con = ConnectionPool.getConnection();
+				String sql = "update  t_community_studyFile_board "
+							   + "set check_cnt = (check_cnt + 1) "
+							   + "where no = ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
+			} finally {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				ConnectionPool.close(con);
+			}
+		}
+	
+	public int selectCount() throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select count(no) as count "
+						   + " from t_community_studyFile_board "
+					       + " order by no desc ";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		System.out.println("selectCount : " + count);
+		return count;
+	}
+
+	public int selectSearchCount(String search, String content) throws Exception{
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			int count = 0;
+			try {
+				con = ConnectionPool.getConnection();
+				String sql = "select count(no) as count "
+							   + "from t_community_studyFile_board "
+						       + "where "+search+" like ? "
+						       + " order by no desc ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%"+content+"%");
+				ResultSet rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt("count");
+				}
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
+			} finally {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				ConnectionPool.close(con);
+			}
+			System.out.println("selectSearchCount : " + count);
+			return count;
+		}
 }
 
 
