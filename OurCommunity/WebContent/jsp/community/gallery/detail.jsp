@@ -83,12 +83,15 @@ a {
 
 
 			<tr>
-				<td align="right"><br /> <br /> <a
-					href="/OurCommunity/gallery/modifyDetail?no=${vo.no}"><input
-						type="button" value="수정"> </a></td>
-				<td align="right"><a
-					href="/OurCommunity/gallery/delete?no=${vo.no}"><input
-						type="button" value="삭제"> </a></td>
+				<c:if test="${!empty userId && vo.id eq userId}">
+					<td align="right"><br /> <br /> <a
+						href="/OurCommunity/gallery/modifyDetail?no=${vo.no}"><input
+							type="button" value="수정"> </a></td>
+					<td align="right"><a
+						href="/OurCommunity/gallery/delete?no=${vo.no}"><input
+							type="button" value="삭제"> </a></td>
+
+				</c:if>
 				<td align="right"><a href="/OurCommunity/gallery/list"><input
 						type="button" value="목록"></a></td>
 			</tr>
