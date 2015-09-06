@@ -33,18 +33,18 @@
 		</table>
 		<div  style="text-align:center" >
 		<c:forEach var ="index" begin="1" end="${pagingSize}" >
-					<a href="/OurCommunity/workInfo/list?pagenum=${index}&searchlist=${search}&content=${content}">[${index}]</a>
+					<a href="/OurCommunity/studyFile/list?pagenum=${index}&searchlist=${search}&content=${content}">[${index}]</a>
 		</c:forEach>
 		</div> 
 		<br />
-	<form action="/OurCommunity/workInfo/list" method="get">
+	<form action="/OurCommunity/studyFile/list" method="get">
 		<table border="1" style="width:60%;" align="center" >
 			<tr>
 				<td>
 					<select name="searchlist" >
 						<option value="no">번호</option>
+						<option value="type" >말머리</option>
 						<option value="title" >제목</option>
-						<option value="company" >회사이름</option>
 					</select>
 					<input type="text" name="content" />
 					<input type="submit" value="검색"/>

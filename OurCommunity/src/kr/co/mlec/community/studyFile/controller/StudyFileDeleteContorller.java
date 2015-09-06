@@ -24,7 +24,7 @@ public class StudyFileDeleteContorller extends HttpServlet{
 		
 		try {
 			dao.deleteStudyFile(no);
-			res.sendRedirect("/OurCommunity/jsp/community/studyFile/list.jsp");
+			res.sendRedirect("/OurCommunity/studyFile/list");
 		}catch(Exception e) {
 			throw new ServletException(e);
 		}

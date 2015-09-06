@@ -33,6 +33,8 @@ public class StudyFileDetailController extends HttpServlet{
 			List<StudyFileCommentVO> list = cDao.selectStudyFileComment(no);
 			req.setAttribute("cList", list);
 			
+			dao.updateCheckCnt(no);
+			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/studyFile/detail.jsp");
 			rd.forward(req, res);
 
