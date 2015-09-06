@@ -319,9 +319,9 @@ public class GalleryDAO {
 					+ " from(select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path, rownum rnum "
 					+ " from(select id, no, title, content, day, check_cnt, scope, file_name, origin_file_name, file_path"
 					+ "      from ( select id, no, title, content, to_char( reg_date, 'yymmdd HH24:mi:ss')as day, check_cnt, scope, file_name, origin_file_name, file_path "
-					+ "              from t_community_gallery_board ) " + "   order by day desc)) "
-					+ "where rownum between ? and ? "
-					+ " and scope = 0 ";
+					+ "              from t_community_gallery_board where scope = 0 ) " + "   order by day desc)) "
+					+ "where rnum between ? and ? "
+					+ "  ";
 			// String sql = " select id, no, title, content,
 			// to_char(reg_date,'yyyy-mm-dd') as day, "
 			// + " check_cnt, scope, file_name, origin_file_name, file_path "
