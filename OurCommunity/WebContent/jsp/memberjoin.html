@@ -57,10 +57,11 @@ body {
 	filter: blur(10px);
 	z-index: -10;
 }
- table {
+
+table {
 	color: white;
 	z-index: 1;
- }
+}
 
 .box {
 	position: absolute;
@@ -118,54 +119,162 @@ body {
 	cursor: pointer;
 	color: #666;
 }
-
 </style>
+
+
+<script type="text/javascript">
+	function chkForm() {
+
+		var joinObj = document.joinForm;
+
+		
+		//이름을 입력하지 않았을 때 경고창 발생
+		if (joinObj.name.value == "") {
+
+			alert("이름을 입력하세요.");
+			joinObj.name.focus();
+			return false;
+		}
+			
+		if (joinObj.id.value == "") {
+
+			alert("아이디를 입력하세요.");
+			joinObj.id.focus();
+			return false;
+		}
+
+		
+
+		//비밀번호를 입력하지 않았을 때
+		if (joinObj.password.value == "") {
+
+			alert("비밀번호를 입력하세요.");
+			joinObj.password.focus();
+			return false;
+		}
+
+		//비밀번호 확인을 입력하지 않았을 때
+		if (joinObj.repassword.value == "") {
+
+			alert("비밀번호를 입력하세요.");
+			joinObj.repassword.focus();
+			return false;
+		}
+
+		if (joinObj.password.value != joinObj.repassword.value) {
+			alert("비밀번호가 같지 않습니다.");
+			joinObj.password.focus();
+			joinObj.password.select();
+
+			return false;
+
+		}
+
+		
+		if (joinObj.tel.value == "") {
+
+			alert("전화번호를 입력하세요.");
+			joinObj.tel.focus();
+			return false;
+		}
+		
+		if (joinObj.emailId.value == "") {
+
+			alert("이메일을 입력하세요.");
+			joinObj.emailId.focus();
+			return false;
+		}
+		
+		
+		
+		if (joinObj.adress.value == "") {
+
+			alert("주소를 입력하세요.");
+			joinObj.adress.focus();
+			return false;
+		}
+		
+		
+		if (joinObj.hintAnswer.value == "") {
+
+			alert("가입 힌트를 입력하세요.");
+			joinObj.hintAnswer.focus();
+			return false;
+		}
+
+	}
+	
+	
+	
+	
+	function chkId(){
+		
+		
+		window.open("http://localhost:8000/OurCommunity/member/chkId?id="+document.joinForm.id.value, 
+				"winChkId", 
+				"width=300, height=300" 
+				);
+		
+		
+	}
+</script>
+
+
+
+
 <title>회원가입</title>
 </head>
 <body>
-		<div class="vid-container">
+	<div class="vid-container">
 		<video id="Video1" class="bgvid back" autoplay="false" muted="muted"
 			preload="auto" loop>
 			<source
 				src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4"
 				type="video/mp4">
 		</video>
-		
+
 		<div class="inner-container">
 			<video id="Video2" class="bgvid inner" autoplay="false" muted="muted"
 				preload="auto" loop>
-				<source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4"
-				  class="source back" type="video/mp4">
+				<source
+					src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4"
+					class="source back" type="video/mp4">
+
+
+
+
+
 			</video>
-				<form action="/OurCommunity/join/MemberJoinController" method="post">
-				<table width="600" height="600 "color="#FF8224">
+			<form action="/OurCommunity/join/MemberJoinController" method="post"
+				onsubmit="return chkForm();" name="joinForm">
+				<table width="600" height="600 " color="#FF8224">
 					<tr>
 						<th colspan="2" align="center">회원가입</th>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" name="name"></td>
+						<td><input type="text" name="name" placeholder=" 2자리이상 "></td>
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="id"> <input
-							type="button" name="idbutton" value="중복확인"></td>
+						<td><input type="text" name="id" placeholder=" 2자리이상 " > <input
+							type="button" name="idbutton" value="중복확인" onclick="chkId();"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="password"></td>
+						<td><input type="password" name="password" placeholder=" 4자리이상 "></td>
 					</tr>
 					<tr>
 						<th>비밀번호 재입력</th>
-						<td><input type="password" name="repassword"></td>
+						<td><input type="password" name="repassword" placeholder=" 4자리이상 "></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td><input type="text" name="tel"></td>
+						<td><input type="text" name="tel" placeholder=" ex) 01012345678 "></td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td><input type="radio" name="gender" value="남자">남자 <input
+						<td><input type="radio" name="gender"  value="남자" >남자 <input
 							type="radio" name="gender" value="여자">여자</td>
 					</tr>
 					<tr align="left">
@@ -201,6 +310,12 @@ body {
 					</tr>
 				</table>
 			</form>
+
+
+
+
+
+
 		</div>
 	</div>
 </body>
