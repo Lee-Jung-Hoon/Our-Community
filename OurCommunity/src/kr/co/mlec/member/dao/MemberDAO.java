@@ -69,6 +69,33 @@ public class MemberDAO {
 		}
 		return member;
 	}
+
+	public boolean checkId(memberVO vo) throws Exception {
+		
+		
+		boolean bl = true;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = " select *  from t_member where id = ?        ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bl = false;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			ConnectionPool.close(con);
+		}
+		return bl;
+		
+		
+	}
 }
 
 
