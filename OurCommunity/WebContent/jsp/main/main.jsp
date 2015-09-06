@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="KO">
 <head>
@@ -12,7 +12,7 @@
 <!--[if lt IE 9]><script src="http://www.imbc.com/commons/libs/html5shiv.min.js"></script><![endif]-->
 <style type="text/css">
 /* reset start */
-	html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
 	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
 	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
@@ -90,8 +90,9 @@ button {
 	margin: 100px auto 50px;
 	overflow: hidden;
 }
+
 .layerWrap {
-    background: #2d2d2d;
+	background: #2d2d2d;
 }
 
 .layerInner {
@@ -108,9 +109,55 @@ button {
 	display: block;
 	height: 100%;
 	overflow: hidden;
-	}
+}
+
+.layerInner section:nth-child(1):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(2):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(3):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(4):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(5):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(6):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(7):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(8):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
+
+.layerInner section:nth-child(9):HOVER {
+	opacity: 1;
+	transition: 1s opacity ease-in 0.5s;
+}
 
 .layerInner section:nth-child(1) {
+	opacity: 0.3;
 	float: left;
 	width: 403px;
 	height: 200px;
@@ -119,6 +166,7 @@ button {
 }
 
 .layerInner section:nth-child(2) {
+	opacity: 0.3;
 	float: left;
 	width: 403px;
 	height: 403px;
@@ -126,6 +174,7 @@ button {
 }
 
 .layerInner section:nth-child(3) {
+	opacity: 0.3;
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -133,15 +182,18 @@ button {
 	top: 0;
 	right: 0;
 }
+
 .layerInner section:nth-child(3) a {
-	text-align:center;
-	line-height:200px;
-} 
+	text-align: center;
+	line-height: 200px;
+}
+
 .layerInner section:nth-child(3) img {
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 .layerInner section:nth-child(4) {
+	opacity: 0.3;
 	width: 200px;
 	height: 403px;
 	background: gray;
@@ -151,6 +203,7 @@ button {
 }
 
 .layerInner section:nth-child(5) {
+	opacity: 0.3;
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -158,15 +211,18 @@ button {
 	bottom: 203px;
 	left: 203px;
 }
+
 .layerInner section:nth-child(5) a {
-	text-align:center;
-	line-height:200px;
-} 
+	text-align: center;
+	line-height: 200px;
+}
+
 .layerInner section:nth-child(5) img {
-	vertical-align:middle;
+	vertical-align: middle;
 }
 
 .layerInner section:nth-child(6) {
+	opacity: 0.3;
 	width: 403px;
 	height: 200px;
 	background: gray;
@@ -176,6 +232,7 @@ button {
 }
 
 .layerInner section:nth-child(7) {
+	opacity: 0.1;
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -185,6 +242,7 @@ button {
 }
 
 .layerInner section:nth-child(8) {
+	opacity: 0.3;
 	width: 200px;
 	height: 200px;
 	background: gray;
@@ -192,14 +250,17 @@ button {
 	bottom: 203px;
 	right: 0;
 }
+
 .layerInner section:nth-child(9) {
+	opacity: 0.3;
 	width: 200px;
 	height: 200px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	background:gray;
+	background: gray;
 }
+
 .dday {
 	color: white;
 	padding-left: 10;
@@ -207,13 +268,14 @@ button {
 	color: white;
 	font-weight: bold;
 }
+
 .noticeATag {
 	display: block
 }
 
-
 html {
-	background-color: black;
+	background:
+		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 </style>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -251,52 +313,61 @@ html {
 	<div class="layerWrap">
 		<div class="layerInner">
 			<section>
-			<p align="center" class="dday">
-				<script>
-					function dday(y, m, d) {
-						today = new Date();
-						dday = new Date(y, m - 1, d);
-						n = Math
-								.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
-						document.write("D-" + n);
-					}
-					dday(2015, 12, 09);
-				</script>
-			</p>
+				<p align="center" class="dday">
+					<script>
+						function dday(y, m, d) {
+							today = new Date();
+							dday = new Date(y, m - 1, d);
+							n = Math
+									.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
+							document.write("D-" + n);
+						}
+						dday(2015, 12, 09);
+					</script>
+				</p>
 			</section>
 			<section></section>
-			<section><a  class="a" href="/OurCommunity/gallery/list">
-			<img style="width: 150px; height: 150px;" src="/OurCommunity/image/photoImage.png">
-			</a></section>
+			<section>
+				<a class="a" href="/OurCommunity/gallery/list"> <img
+					style="width: 150px; height: 150px;"
+					src="/OurCommunity/image/photoImage.png">
+				</a>
+			</section>
 			<section>학습자료실?</section>
 			<section>
 				<c:choose>
 					<c:when test="${empty id}">
-						<a class="a" href="/OurCommunity/jsp/login.jsp"> 
-							<img style="width: 100px; height: 100px;"
+						<a class="a" href="/OurCommunity/jsp/login.jsp"> <img
+							style="width: 100px; height: 100px;"
 							src="/OurCommunity/image/loginImage.png">
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a class="a" href="/OurCommunity/join/LogoutController">
-							<img style="width: 100px; height: 100px;"
+						<a class="a" href="/OurCommunity/join/LogoutController"> <img
+							style="width: 100px; height: 100px;"
 							src="/OurCommunity/image/logoutImage.png">
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</section>
 			<section>
-					<span class="dday">NOTICE</span>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" class="dday">+</a>
-					<c:forEach var="i" items="${noticeList}">
-						<a href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}" class="noticeATag">[공지]${i.title}</a>
-					</c:forEach>
+				<span class="dday">NOTICE</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a
+					href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"
+					class="dday">+</a>
+				<c:forEach var="i" items="${noticeList}">
+					<a
+						href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}"
+						class="noticeATag">[공지]${i.title}</a>
+				</c:forEach>
 			</section>
 			<section id="chart_div">
 				<p id="title">${voteList.v_title}</p>
 			</section>
-			<section><a class="a" href="/OurCommunity/workInfo/list">취업정보</a></section>
+			<section>
+				<a class="a" href="/OurCommunity/workInfo/list">취업정보</a>
+			</section>
 			<section>회원가입</section>
 		</div>
 	</div>
