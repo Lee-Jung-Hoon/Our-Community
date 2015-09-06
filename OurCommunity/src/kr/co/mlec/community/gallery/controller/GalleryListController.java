@@ -35,9 +35,7 @@ public class GalleryListController extends HttpServlet {
 
 		String select = req.getParameter("select");
 		String search = req.getParameter("search");
-		
-		
-	
+
 		GallCommentDAO cDao = new GallCommentDAO();
 
 		String pageNum = req.getParameter("page");
@@ -50,11 +48,8 @@ public class GalleryListController extends HttpServlet {
 				sizePage = Integer.parseInt(pageNum);
 			}
 
-			
 			int size = 0;
-			if (userId != null ) {
-
-				
+			if (userId != null) {
 
 				if (search != null) {
 					switch (select) {
@@ -79,17 +74,20 @@ public class GalleryListController extends HttpServlet {
 						size = sDao.selectPageSearchId(search);
 						break;
 					}
-					
-				}else{
-					
+
+				} else {
+
 					list = dao.selectVO(sizePage);
 					size = dao.selectPage();
 					req.setAttribute("searchPage", 1);
 				}
 
-			} else {
-
 				
+				
+				
+				
+				
+			} else {
 
 				if (search != null) {
 					switch (select) {
@@ -117,10 +115,12 @@ public class GalleryListController extends HttpServlet {
 
 						break;
 					}
-				}else{
+				} else {
+					
 					list = dao.selectNotUserVO(sizePage);
 					size = dao.selectPageNotUser();
 					req.setAttribute("searchPage", 1);
+					
 				}
 
 			}
