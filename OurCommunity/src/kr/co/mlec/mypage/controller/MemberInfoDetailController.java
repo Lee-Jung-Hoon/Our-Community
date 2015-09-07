@@ -2,6 +2,7 @@ package kr.co.mlec.mypage.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,9 @@ public class MemberInfoDetailController extends HttpServlet{
 		try {
 			
 			MemberInfoVO memberDetail = dao.selectDetailMember(id, name);
+			req.setAttribute("memberDetail", memberDetail);
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/mypage/memberInfo/MemberDetail.jsp");
+			rd.forward(req, res);
 			
 		}catch(Exception e) {
 			throw new ServletException(e);
