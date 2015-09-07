@@ -320,8 +320,6 @@ public class WorkInfoDAO {
 
 	public void updateCheckCnt(int no) throws Exception {
 		
-		System.out.println("디테일 no값은 : "+no);
-		System.out.println("너 여기까지 안오는거지 맞지");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
