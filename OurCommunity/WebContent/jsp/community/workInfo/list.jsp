@@ -8,18 +8,17 @@
 <title>Insert title here</title>
 </head>
 
+<c:import url="/jsp/include/bootstrap.jsp" />
 <style type="text/css">
 body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	font-size: 15px;
 	
-	color : white;
 	background:	url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 
 body {
-	color: white;
 }
 
 table {

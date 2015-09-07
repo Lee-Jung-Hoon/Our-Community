@@ -10,6 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:import url="/jsp/include/bootstrap.jsp" />
 <style type="text/css">
 body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
@@ -114,9 +115,9 @@ a {
 					<button type="submit" class="btn btn-default btn-sm">
 						<span class="glyphicon glyphicon-search"></span> 검색
 					</button>
-
 				</form>
 			</div>
+			<p>
 			<table width="100%" id="listtable" align="center" class="">
 				<tr>
 					<th align="center" width="15%">글번호</th>

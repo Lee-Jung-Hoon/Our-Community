@@ -9,6 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<c:import url="/jsp/include/bootstrap.jsp" />
 <style type="text/css">
 body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
@@ -100,8 +102,8 @@ a {
 			<p />
 			
 			 <table align="right">
-      <a href = "/OurCommunity/vote/listVoteOngoing">진행중인 투표</a>
-      <a href = "/OurCommunity/vote/listVoteClosing">마감된 투표</a>
+      <a href = "/OurCommunity/vote/listVoteOngoing"><진행중인 투표>   </a>
+      <a href = "/OurCommunity/vote/listVoteClosing"><마감된 투표></a>
    
    </table>
 			<table align="center">
