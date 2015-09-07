@@ -22,17 +22,14 @@ body {
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	font-size: 15px;
 	
-	color : white;
 	background:	url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 
 body {
-	color: white;
 }
 
 table {
 	
-	color : white;
 }
 
 .bitcampdiv table {
@@ -90,6 +87,19 @@ table {
 	width: 100%;
 	height: 100%
 }
+table td {
+
+	color : white;
+}
+
+table th {
+
+	color : white;
+}
+
+.commentDIV {
+		color: black;
+}
 </style>
 
 <script type="text/javascript">
@@ -104,11 +114,6 @@ table {
 		}
 	}
 </script>
-<style>
-table {
-	width: 100%;
-}
-</style>
 </head>
 <body>
 <c:if test="${empty id}">
@@ -135,9 +140,9 @@ table {
 			<input type='button' value='목록'
 				onclick="location.href='/OurCommunity/studyFile/list'">
 			<c:if test="${grade eq '회원'}">
-				<input type="button" value="수정" onclick="doModify();"> <input
-						type="button" value="글 삭제" onClick="doDelete();">
+						<input type="button" value="글 삭제" onClick="doDelete();" />
 			</c:if>
+				<input type="button" value="수정" onclick="doModify();" /> 
 			<hr />
 
 			<table>
@@ -183,8 +188,8 @@ table {
 					<c:forEach var="cList" items="${cList}">
 						<tr>
 							<th width="10%">${cList.id}</th>
-							<td width="1100px">${cList.content}</td>
-							<td width="200px">${cList.regDate}</td>
+							<td width="1000px">${cList.content}</td>
+							<td width="300px" colspan="2">${cList.regDate}</td>
 							<c:if test="${id eq cList.id}">
 								<td width="50px"><a
 									href="/OurCommunity/studyFile/deleteComment?commentNo=${cList.commentNo}&no=${cList.no}">삭제</a></td>
@@ -193,7 +198,7 @@ table {
 					</c:forEach>
 					<tr>
 						<th>댓글</th>
-						<td colspan="2"><input type='text' size='178px'
+						<td class="commentDIV" colspan="2"><input type='text' size='158px'
 							style='height: 100px' name="comment" placeholder="댓글을입력하세요" /></td>
 						<td><input type="submit" value="작성" size='350px'
 							style='height: 100px' /></td>
