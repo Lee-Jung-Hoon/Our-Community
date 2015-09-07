@@ -7,11 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-table {
-	color: white;
-}
 
+<c:import url="/jsp/include/bootstrap.jsp" />
+<style>
 table a {
 	color: white;
 }
@@ -21,7 +19,6 @@ body {
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-	color: white;
 }
 
 .bitcampdiv table {
@@ -34,6 +31,7 @@ a {
 }
 
 .bitcampdiv table td {
+	color : white;
 	padding: 6px 10px;
 	border: 1px solid #1f1f1f;
 	overflow: hidden;
@@ -42,6 +40,7 @@ a {
 }
 
 .bitcampdiv table th {
+	color : white;
 	text-align: center;
 	padding: 13px 10px;
 	background: #1f1f1f;
@@ -71,7 +70,6 @@ a {
 	font-size: 0px;
 	width: 78px;
 	height: 28px;
-	color: white;
 	vertical-align: middle;
 	border: 1px solid #48556e;
 }
@@ -106,7 +104,7 @@ a {
 
 			<div class="search_box">
 				<form action="/OurCommunity/Anonymity/list" method="GET">
-					<select name="searchType">
+					검색 구분  <select name="searchType">
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select> <input type="text" name="text" /> <input type="submit" value="검색" />
