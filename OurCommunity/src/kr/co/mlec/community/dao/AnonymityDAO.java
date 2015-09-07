@@ -256,7 +256,7 @@ public class AnonymityDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, content, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate, check_cnt "
+			String sql = " select no, title, id, content, scope, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate, check_cnt "
 					+ "   from t_anonymity_board "
 					+ "  where no = ? " ;
 			pstmt = con.prepareStatement(sql);
@@ -266,6 +266,7 @@ public class AnonymityDAO {
 			if (rs.next()) {
 				AnonymityVO anonymity = new AnonymityVO();
 				anonymity.setNo(rs.getInt("no"));
+				anonymity.setScope(rs.getString("scope"));
 				anonymity.setTitle(rs.getString("title"));
 				anonymity.setId(rs.getString("id"));
 				anonymity.setContent(rs.getString("content"));
