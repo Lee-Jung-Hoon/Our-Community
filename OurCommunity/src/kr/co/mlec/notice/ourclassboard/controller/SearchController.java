@@ -1,6 +1,7 @@
 package kr.co.mlec.notice.ourclassboard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,22 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.mlec.notice.bitcampboard.vo.NoticeBitcampBoardVO;
 import kr.co.mlec.notice.ourclassboard.DAO.BoardDAO;
 import kr.co.mlec.notice.ourclassboard.vo.BoardVO;
 @WebServlet("/ourclassboard/search")
 public class SearchController extends HttpServlet{
-
+	final int page = 10;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/html; charset=utf-8");
-		BoardDAO dao = new BoardDAO();
 		
+		BoardDAO dao = new BoardDAO();
 		String type = req.getParameter("searchType");
 		String search = req.getParameter("search");
-	
+		
 		
 		try {
 			List<BoardVO> list = dao.searchBoard(type, search);
+			
 			req.setAttribute("list", list);
 			
 			

@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import kr.co.mlec.community.vo.AnonymityVO;
+import kr.co.mlec.notice.bitcampboard.vo.NoticeBitcampBoardVO;
 import kr.co.mlec.notice.ourclassboard.vo.BoardVO;
 import kr.co.mlec.util.ConnectionPool;
 
@@ -224,6 +226,7 @@ public class BoardDAO {
 			ConnectionPool.close(con);
 		}
 	}
+	
 }
 
 
