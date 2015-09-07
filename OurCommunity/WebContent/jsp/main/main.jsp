@@ -462,29 +462,38 @@ body {
          </section>
 
          <section class="seDIV">
+				<table style="width: 403; height: 200;">
+					<tr>
+						<td width="70px" height="50px"><a class="a"
+							href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController">
+								<img style="width: 50px; height: 50px;"
+								src="/OurCommunity/image/notice.png">
+						</a></td>
+						<td rowspan="2">
+							<c:forEach var="i" items="${noticeList}">
 
-            <span class="dday"><a class="a"
+								<a style="color: white;"
+									href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}"
+									class="noticeATag">[공지]${i.title}</a><br/>
+
+							</c:forEach></td>
+					</tr>
+
+					<tr>
+						<td>
+						</td>
+					</tr>
+
+				</table>
+
+
+				<!-- <span class="dday"><a class="a"
                href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"> <img
                   style="width: 50px; height: 50px;"
-                  src="/OurCommunity/image/notice.png"></a></span>
+                  src="/OurCommunity/image/notice.png"></a></span> -->
 
 
-
-
-
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-            <a
-               href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"
-               class="dday">+</a>
-
-            <c:forEach var="i" items="${noticeList}">
-
-               <a style="color: black;"
-                  href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}"
-                  class="noticeATag">[공지]${i.title}</a>
-
-            </c:forEach>
+            
 
          </section>
 
