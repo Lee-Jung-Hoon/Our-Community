@@ -71,6 +71,17 @@ a {
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=f0040f951e55ee311e570465605bc234&libraries=services"></script>
 <script>
+	window.onload = function () {
+		var container = document.getElementById('map');
+		var options = {
+			center : new daum.maps.LatLng(37.494596, 127.0282207),
+			level : 3
+		//지도 확대
+		};
+
+		//지도 생성
+		var map = new daum.maps.Map(container, options);
+	}
 	function doMap() {
 		var container = document.getElementById('map');
 		var options = {
@@ -168,7 +179,9 @@ a {
          				 <span class="glyphicon glyphicon-map-marker"></span> 위치 검색/설정
         			</button>
 					
-					<div id="map" style="width: 500px; height: 400px;"></div></td>
+					<div id="map" style="width: 500px; height: 400px;"></div>
+					
+					</td>
 			</tr>
 			<tr>
 				<td colspan="3" align="right"><button type="submit" class="btn btn-default btn-sm">
