@@ -41,27 +41,6 @@ html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 }
 
 
-.sideBar {
-   width: 200px;
-   position: absolute;
-   top: 180px;
-   right: -100px;
-   background: #ddd;
-}
-
-.sideBar li {
-   border-bottom: 1px solid black;
-   background: blue;
-}
-
-.sideBar a {
-   display: block;
-   width: 100%;
-   height: 100px;
-   line-height: 50px;
-   color: #fff;
-}
-
 table {
    border-collapse: collapse;
    border-spacing: 0;
@@ -251,13 +230,13 @@ button {
 }
 
 .layerInner section:nth-child(6) a {
-   text-align: left;
+   text-align: center;
    line-height: 100px;
    margin-left: 5px;
 }
 
 .layerInner section:nth-child(6) img {
-   vertical-align: left top;
+   vertical-align: middle;
 }
 
 .layerInner section:nth-child(7) {
@@ -398,6 +377,7 @@ body {
 <body>
 
    <%@include file="/jsp/include/topMenu.jsp"%>
+   <%@include file="/jsp/include/sideMenu.jsp"%>
 
    <div class="layerWrap">
 
@@ -485,7 +465,7 @@ body {
 
             <span class="dday"><a class="a"
                href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"> <img
-                  style="width: 70px; height: 70px;"
+                  style="width: 50px; height: 50px;"
                   src="/OurCommunity/image/notice.png"></a></span>
 
 
@@ -554,17 +534,6 @@ body {
 
    </div>
 
-   <div class="sideBar">
-      <ul>
-         <li><a href="#">비트캠프정보</a></li>
-         <li><a href="#">반공지사항</a></li>
-         <li><a href="#"></a></li>
-         <li><a href="#">아이템4</a></li>
-      </ul>
-   </div>
-
-
-
    <%@include file="/jsp/include/bottomMenu.jsp"%>
 
 </body>
@@ -585,20 +554,7 @@ body {
    });
    //-------------------------------------------------
 
-   //---------------- 사이드메뉴 마우스오버 ---------------------------------
-   $('.sideBar a').on('mouseenter',function(){
-         $(this).parent().animate({
-               'margin-left':'-100px', 
-               backgroundColor: 'red'   // 바꿀색상
-            }, 400         // 시간설정 마우스 오버 시간
-         ).siblings().animate({'margin-left':0});
-   }).on('mouseleave',function(){
-         $(this).parent().animate({
-               'margin-left':0,
-               backgroundColor: 'blue' // 되돌릴색상      
-         }, 400         // 시간설정 마우스 아웃 시간
-      );
-   });
+
 </script>
 
 
