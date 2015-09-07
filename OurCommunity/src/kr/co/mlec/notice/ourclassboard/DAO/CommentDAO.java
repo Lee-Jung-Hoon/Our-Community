@@ -41,7 +41,7 @@ public class CommentDAO {
 		
 		try{
 			con = ConnectionPool.getConnection();
-			String sql =" select comment_no ,no, id, content, to_char(reg_date, 'yyyy-mm-dd') as regDate "
+			String sql =" select comment_no ,no, id, content, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate "
 					+ " from t_notice_class_comment "
 					+ " where no = ? "
 					+ "	order by comment_no desc ";

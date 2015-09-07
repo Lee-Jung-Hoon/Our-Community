@@ -18,7 +18,6 @@ public class SearchController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setContentType("text/html; charset=utf-8");
-		
 		BoardDAO dao = new BoardDAO();
 		
 		String type = req.getParameter("searchType");
@@ -28,6 +27,7 @@ public class SearchController extends HttpServlet{
 		try {
 			List<BoardVO> list = dao.searchBoard(type, search);
 			req.setAttribute("list", list);
+			
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/list.jsp");
 			rd.forward(req, res);

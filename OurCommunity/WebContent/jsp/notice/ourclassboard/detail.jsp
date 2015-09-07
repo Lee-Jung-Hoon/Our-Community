@@ -6,56 +6,78 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <script>
+	function doModify() {
+		if (confirm("게시물을 수정하시겠습니까?")) {
+ 			location.href = "/OurCommunity/ourclassboard/modify?no=${board.no}";
+ 		}
+ 	}
 	function doDelete() {
 		if (confirm("게시물을 삭제하시겠습니까?")) {
-			location.href = "/OurCommunity/ourclassboard/delete?no=${board.no }";
-		}
-	}
+ 			location.href = "/OurCommunity/ourclassboard/delete?no=${board.no}";
+ 		}
+ 	}
 </script>
 </head>
+
 <body>
-<%@ include file="/jsp/include/topMenu.jsp" %>
-<h1>반 게시판</h1>
-<hr />
+	<c:if test="${empty userId}">
+		<c:if test="${board.scope eq '멤버'}">
+			<script type="text/javascript">
+             function memberScope() {
+	          location.href = '/OurCommunity/jsp/login.jsp';
+             }
+             alert("멤버공개 게시물 입니다.");
+            memberScope();
+        	</script>
+        </c:if>
+	</c:if>
+
+	<%@ include file="/jsp/include/topMenu.jsp"%>
+	<h1>반 게시판</h1>
+	<hr />
 
 	<form>
 		<div style="width: 1000;">
-				<table border="1" align="center">		
-							
-					<tr align="center">
-						<th >No</th>
-						<td>${board.no}</td>
-					</tr>
-					<tr align="center">
-						<th>Tag</th>
-						<td>${board.boardhead}</td>
-					</tr>
-					<tr align="center">
-						<th>Title</th>
-						<td>${board.title}</td>
-					</tr>
+			<table border="1" align="center">
+
 				<tr align="center">
-						<th>ID</th>
-						<td>${board.id}</td>
-					</tr>
-					<tr align="center">
-						<th>RegDate</th>
-						<td>${board.regDate}</td>
-					</tr>
-					
-					<tr align="center">
-					<td colspan="2"><textarea name="content" cols="150" rows="12" readonly>${board.content}</textarea></td>			
-					</tr>
-					</table>
-					
-					<table align="center">
-			
-					<td><a href="/OurCommunity/ourclassboard/list">목록</a> 
-					<a href="/OurCommunity/ourclassboard/modify?no=${board.no }">수정</a> 
-					<a href="/OurCommunity/ourclassboard/delete?no=${board.no }">삭제</a></td>
-				</table>
-			</div>
+					<th>No</th>
+					<td>${board.no}</td>
+				</tr>
+				<tr align="center">
+					<th>Tag</th>
+					<td>${board.boardhead}</td>
+				</tr>
+				<tr align="center">
+					<th>Title</th>
+					<td>${board.title}</td>
+				</tr>
+				<tr align="center">
+					<th>ID</th>
+					<td>${board.id}</td>
+				</tr>
+				<tr align="center">
+					<th>RegDate</th>
+					<td>${board.regDate}</td>
+				</tr>
+
+				<tr align="center">
+					<td colspan="2"><textarea name="content" cols="150" rows="12"
+							readonly>${board.content}</textarea></td>
+				</tr>
+			</table>
+
+			<table align="center">
+				<tr>
+					<td><input type="button" value="목록"
+						onclick="location.href='/OurCommunity/ourclassboard/list'">
+						<input type="button" value="수정" onclick="doModify();"> <input
+						type="button" value="삭제" onclick="doDelete();"></td>
+				</tr>
+			</table>
+		</div>
 	</form>
 	<br />
 	<br />
@@ -86,8 +108,8 @@
 				<td>${comment.id}</td>
 				<td>${comment.content}</td>
 				<td>${comment.regDate}</td>
-				<td><a
-					href="/OurCommunity/ourclassboard/commentDelete?commentNo=${comment.commentNo}&no=${board.no}">덧글삭제</a></td>
+				<td><input type="button" value="삭제"
+					onclick="location.href='/OurCommunity/ourclassboard/commentDelete?commentNo=${comment.commentNo}&no=${board.no}'"></td>
 			</tr>
 
 		</c:forEach>

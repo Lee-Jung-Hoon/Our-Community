@@ -35,9 +35,12 @@
 					<tr align="center">
 						<td colspan="2"><input type="submit" value="글등록">
 							<input type=reset value="재작성"></td>
-
-
 					</tr>
+				<tr>
+				<td colspan ="2" align="center">
+				<input type="radio" name="scope" checked="checked" value="전체">전체공개
+				<input type="radio" name="scope" value="멤버">멤버공개 </td>
+				</tr>
 				</table>
 		</form>
 		
