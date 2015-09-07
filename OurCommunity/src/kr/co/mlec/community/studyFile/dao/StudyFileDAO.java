@@ -129,20 +129,29 @@ public class StudyFileDAO {
 	}
 
 	public void updateStudyFile(StudyFileVO vo) throws Exception{
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getType());
+		System.out.println(vo.getContent());
+		System.out.println(vo.getScope());
+		System.out.println(vo.getRealFileName());
+		System.out.println(vo.getOriginFileName());
+		System.out.println(vo.getFilePath());
+		System.out.println(vo.getNo());
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql ="update  t_community_studyFile_board "
-							+ "set title = ?, "
-							+ "type = ?, "
-							+ "content	= ?, "
-							+ "scope = ?, "
-							+ "file_name = ?, "
-							+ "origin_file_name = ?, "
-							+ "file_path = ?, "
-							+ "reg_date = sysdate "
-							+ "where  no = ? ";
+			String sql = "update  t_community_studyFile_board "
+						   + "set title = ?, "
+						   + "type = ?, "
+						   + "content	= ?, "
+						   + "scope = ?, "
+						   + "file_name = ?, "
+						   + "origin_file_name = ?, "
+						   + "file_path = ?, "
+						   + "reg_date = sysdate "
+						   + "where  no = ? ";
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, vo.getTitle());
@@ -154,6 +163,7 @@ public class StudyFileDAO {
 			pstmt.setString(index++, vo.getFilePath());
 			pstmt.setInt(index++, vo.getNo());
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 		} finally {
 			if (pstmt != null) {
@@ -320,7 +330,7 @@ create table t_community_studyFile_board (
  content varchar2(1500),
  reg_date date default sysdate,
  check_cnt number,
- scope varchar(5),
+ scope varchar(200),
  file_name varchar(1000),
  origin_file_name varchar2(1000),
  file_path varchar(1000)

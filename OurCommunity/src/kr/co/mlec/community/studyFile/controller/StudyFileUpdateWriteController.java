@@ -25,6 +25,7 @@ public class StudyFileUpdateWriteController extends HttpServlet{
 		try{
 			StudyFileVO update = dao.selectStudyFileDetail(no);
 			req.setAttribute("update", update);
+			req.setAttribute("no", no);
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/studyFile/modify.jsp");
 			rd.forward(req, res);
 			
