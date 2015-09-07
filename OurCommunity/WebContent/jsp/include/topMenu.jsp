@@ -63,7 +63,7 @@
 			<td align="right" width="60%" class="menu"><c:choose>
 					<c:when test="${empty userId}">
 						<button type="button" class="btn btn-default btn-sm"
-							onclick="location.href='/OurCommunity/jsp/main/index.html'">
+							onclick="location.href='/OurCommunity/main'">
 							<span class="glyphicon glyphicon-home"></span> Home
 						</button>
 						<button type="button" class="btn btn-default btn-sm"
@@ -79,7 +79,7 @@
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-default btn-sm"
-							onclick="location.href='/OurCommunity/jsp/main/index.html'">
+							onclick="location.href='/OurCommunity/main'">
 							<span class="glyphicon glyphicon-home"></span> Home
 						</button>
 
