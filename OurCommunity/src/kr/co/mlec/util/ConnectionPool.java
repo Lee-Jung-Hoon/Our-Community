@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class ConnectionPool {
    private static final String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-   private static final String URL = "jdbc:oracle:thin:@192.168.200.93:1521:XE";
+   private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
 //   private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
    private static final String USER = "hr";
    private static final String PASSWORD = "hr";
