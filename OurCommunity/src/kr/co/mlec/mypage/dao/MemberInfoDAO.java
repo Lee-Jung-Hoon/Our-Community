@@ -17,7 +17,7 @@ public class MemberInfoDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select id, name, grade, join_date, "
+			String sql = "select id, name, tel, secession, join_date "
 					+ " from t_member ";
 			pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -25,7 +25,8 @@ public class MemberInfoDAO {
 				MemberInfoVO member = new MemberInfoVO();
 				member.setId(rs.getString("id"));
 				member.setName(rs.getString("name"));
-				member.setGrade(rs.getString("grade"));
+				member.setTel(rs.getString("tel"));
+				member.setSecession(rs.getString("secession"));
 				member.setJoinDate(rs.getString("join_date"));
 				list.add(member);
 			}
@@ -46,19 +47,28 @@ public class MemberInfoDAO {
 		PreparedStatement pstmt = null;
 			try {
 				con = ConnectionPool.getConnection();
-				String sql = "select id, name, password, grade, emailId, emailDomain, tel, address, grade, join_date"
-							   + " "
-						+ " from t_member "
-						+ " where id = ? "
-						+ " and name = ? ";
+				String sql = "select id, name, password, secession, email_id, email_domain, tel, address, gender, join_date, "
+							   + "hint, hint_answer "
+							   + " from t_member "
+							   + " where id = ? "
+							   + " and name = ? ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				pstmt.setString(2, name);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()) {
 					memberInfo.setId(rs.getString("id"));
+					memberInfo.setName(rs.getString("name"));
 					memberInfo.setPassword(rs.getString("password"));
-					memberInfo.setGrade(rs.getString("grade"));
+					memberInfo.setSecession(rs.getString("secession"));
+					memberInfo.setEmailId(rs.getString("email_id"));
+					memberInfo.setEmailDomain(rs.getString("email_domain"));
+					memberInfo.setTel(rs.getString("tel"));
+					memberInfo.setAddress(rs.getString("address"));
+					memberInfo.setGender(rs.getString("gender"));
+					memberInfo.setJoinDate(rs.getString("join_date"));
+					memberInfo.setHint(rs.getString("hint"));
+					memberInfo.setHintAnswer(rs.getString("hint_answer"));
 				}
 			} catch (Exception e) {
 				throw e;
