@@ -163,22 +163,52 @@ public class BoardDAO {
 			ConnectionPool.close(con);
 		}
 	}
-
-	public List<BoardVO> searchBoard(String type, String search) throws Exception {
+	
+	public int selectBoardCnt() throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int cnt = 0;
+		
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select id, no, title, boardhead, CHECK_CNT, reg_date  "
+					+ " from t_notice_class_board ";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs= pstmt.executeQuery();
+			
+			List<BoardVO> list= new ArrayList<>();
+			while(rs.next()) {
+				cnt++;
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally{
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return cnt;
+	}
+	
+	
+	public List<BoardVO> searchBoard(int start, int end) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, boardhead, check_Cnt, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate "
-					+ "	  from t_notice_class_board "
-					+ "   where "+ type +" like ? "
-					+ "   order by no desc ";
+			String sql = "select id, no, title, boardhead, CHECK_CNT, reg_date "
+					+ " from (select no, title, id, boardhead , CHECK_CNT, rownum rnum, reg_date "
+					+ " from( select no, title , id, boardhead, CHECK_CNT, reg_date "
+					+ " from t_notice_class_board "
+					+ " order by reg_date desc)) "
+					+ "  where rnum between ? and ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "%"+ search + "%");
-			
-			
-			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			ResultSet rs= pstmt.executeQuery();
 			
 			List<BoardVO> list= new ArrayList<>();
@@ -188,7 +218,7 @@ public class BoardDAO {
 				board.setTitle(rs.getString("title"));
 				board.setId(rs.getString("id"));
 				board.setBoardhead(rs.getString("boardhead"));
-				board.setRegDate(rs.getString("regDate"));
+				board.setRegDate(rs.getString("reg_date"));
 				board.setCheckCnt(rs.getString("check_Cnt"));
 				list.add(board);
 			}
@@ -205,6 +235,85 @@ public class BoardDAO {
 		}
 	}
 	
+	public int selectBoardCnt(String type, String search) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int cnt = 0;
+		
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select id, no, title, boardhead, CHECK_CNT, reg_date "
+					+ " from t_notice_class_board "
+					+ "   where "+ type +" like ? "
+					+ " order by reg_date desc ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+ search + "%");
+			ResultSet rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				cnt++;
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally{
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return cnt;
+	}
+	
+	
+	public List<BoardVO> searchBoard(int start, int end, String type, String search) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		List<BoardVO> list= new ArrayList<>();
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select id, no, title, boardhead, CHECK_CNT, reg_date "
+					+ " from (select no, title, id, boardhead , CHECK_CNT, rownum rnum, reg_date "
+					+ " from( select no, title , id, boardhead, CHECK_CNT, reg_date "
+					+ " from t_notice_class_board "
+					+ "   where "+ type +" like ? "
+					+ " order by reg_date desc)) "
+					+ "  where rnum between ? and ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+ search + "%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			ResultSet rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardVO board = new BoardVO();
+				board.setNo(rs.getString("no"));
+				board.setTitle(rs.getString("title"));
+				board.setId(rs.getString("id"));
+				board.setBoardhead(rs.getString("boardhead"));
+				board.setRegDate(rs.getString("reg_date"));
+				board.setCheckCnt(rs.getString("check_Cnt"));
+				list.add(board);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally{
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return list;
+	}
+
+	
+	
+	
+	
+
 	public void updateCheckCnt(String no) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
