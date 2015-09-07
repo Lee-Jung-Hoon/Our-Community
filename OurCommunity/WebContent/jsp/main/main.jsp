@@ -166,8 +166,9 @@ button {
 	width: 100%;
 	height: 100%;
 	color: white;
-	padding-left: 10;
-	font-size: 40px;
+	padding-left: 10px;
+	padding-top:25px;
+	font-size: 100px;
 	font-weight: bold;
 }
 
@@ -321,7 +322,7 @@ button {
 .dday {
 	color: white;
 	padding-left: 10;
-	font-size: 40px;
+	font-size: 100px;
 	font-weight: bold;
 }
 
@@ -402,15 +403,9 @@ body {
 						function dday(y, m, d) {
 
 							today = new Date();
-
 							dday = new Date(y, m - 1, d);
-
-							n = Math
-
-									.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
-
+							n = Math.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
 							document.write("D-" + n);
-
 						}
 
 						dday(2015, 12, 09);
@@ -471,7 +466,7 @@ body {
 			<section class="seDIV">
 
 				<span class="dday"><a class="a"
-					href="/OurCommunity/join/LogoutController"> <img
+					href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"> <img
 						style="width: 70px; height: 70px;"
 						src="/OurCommunity/image/notice.png"></a></span>
 
