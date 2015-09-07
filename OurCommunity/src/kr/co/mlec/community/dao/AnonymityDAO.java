@@ -318,7 +318,7 @@ public class AnonymityDAO {
 					   + "  from(select no, title, id, to_char(reg_date, 'yyyy-mm-dd') as regDate, scope, check_cnt "
 					   + "   from t_anonymity_board"
 					   + "  where "+type+" like ? " 
-					   + "  order by no))"
+					   + "  order by no desc))"
 					   + " where rnum between ? and ? ";
 			
 			pstmt = con.prepareStatement(sql);
