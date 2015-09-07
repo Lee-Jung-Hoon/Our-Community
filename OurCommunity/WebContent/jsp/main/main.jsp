@@ -405,7 +405,7 @@ body {
 
          <section>
 
-            <video id="belong-video" autoplay="autoplay" loop="loop">
+            <video id="belong-video" autoplay="autoplay" loop="loop" controls="mute">
                <source src="http://a0.muscache.com/airbnb/static/Belong_p1_v2.mp4"
                   type='video/mp4'>
                <source
