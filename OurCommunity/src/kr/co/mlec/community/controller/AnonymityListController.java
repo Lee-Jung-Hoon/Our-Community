@@ -19,7 +19,7 @@ public class AnonymityListController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		int pageCount = 3;
+		int pageCount = 20;
 		req.setCharacterEncoding("UTF-8");
 		
 		String page = req.getParameter("page");

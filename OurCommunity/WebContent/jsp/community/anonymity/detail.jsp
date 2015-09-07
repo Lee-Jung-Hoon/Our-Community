@@ -72,6 +72,9 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+.commentDIV {
+		color: black;
+}
 </style>
 <style>
 table {
@@ -172,7 +175,7 @@ comm_text {
 						<tr>
 							<th>댓글</th>
 							<input type="hidden" name="no" value="${anonymity.no}">
-							<td colspan="2" class="comm_text"><input type='text'
+							<td colspan="2" class="commentDIV"><input type='text'
 								size='160px' style='height: 100px' name="content"
 								placeholder="댓글을 입력하세요." /></td>
 							<td>
