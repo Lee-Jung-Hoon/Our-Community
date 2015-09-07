@@ -346,6 +346,7 @@ public class VoteBoardDAO {
 		
 		return cnt;
 	}
+	
 	public int selectLastVNo() throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -369,6 +370,112 @@ public class VoteBoardDAO {
 			ConnectionPool.close(con);
 		}
 		return no;
+	}
+
+	public List<VoteBoardVO> selectClosingList(int start , int end) throws Exception {
+		List<VoteBoardVO> list = new ArrayList<>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+					+ " to_char(start_date, 'yyyy-mm-dd') as startDate, to_char(end_date, 'yyyy-mm-dd') as endDate"
+					+ " from ( select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+					+ " to_char(start_date, 'yyyy-mm-dd') as startDate, to_char(end_date, 'yyyy-mm-dd') as endDate, "
+					+ " rownum rnum from ( select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+					+ " to_char(start_date, 'yyyy-mm-dd') as startDate, to_char(end_date, 'yyyy-mm-dd') as endDate "
+					+ " from t_vote_board where sysdate > end_date order by end_date desc)) where rnum between ? and ? ";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.executeQuery();
+			
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				VoteBoardVO vote = new VoteBoardVO();
+				vote.setId(rs.getString("id"));
+				vote.setV_no(rs.getString("v_no"));
+				vote.setStart_date(rs.getString("startdate"));
+				vote.setEnd_date(rs.getString("enddate"));
+				vote.setV_title(rs.getString("v_title"));
+				vote.setV_progress(rs.getString("v_progress"));
+				vote.setV_clicks(rs.getString("v_clicks"));				
+				list.add(vote);
+			}
+			
+			
+			sql = "select if(id, v_no, start_date, end_date, v_title, v_progress, v_clicks,  to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd')as enddate, sysdate > enddate)"
+			+ "from(select if(id, v_no, start_date, end_date, v_title, v_progress, v_clicks,  to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd')as enddate, sysdate>enddate, rownum as rnum"
+			+ " )from(select if(id, v_no, start_date, end_date, v_title, v_progress, v_clicks, to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd')as enddate, "
+			+ " sysdate>enddate)from t_vote_board order by enddate desc)) where rnum between 1 and 20 ";
+			
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return list;
+	}
+
+	public List<VoteBoardVO> selectOngoingList(int start , int end) throws Exception {
+		List<VoteBoardVO> list = new ArrayList<>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+					+ " to_char(start_date, 'yyyy-mm-dd') as startDate, to_char(end_date, 'yyyy-mm-dd') as endDate"
+					+ " from ( select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+					+ " to_char(start_date, 'yyyy-mm-dd') as startDate, to_char(end_date, 'yyyy-mm-dd') as endDate, "
+					+ " rownum rnum from ( select id, v_no, start_date, end_date, v_title, v_progress, v_clicks, "
+					+ " to_char(start_date, 'yyyy-mm-dd') as startDate, to_char(end_date, 'yyyy-mm-dd') as endDate "
+					+ " from t_vote_board where sysdate < end_date order by end_date desc)) where rnum between ? and ? ";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.executeQuery();
+			
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				VoteBoardVO vote = new VoteBoardVO();
+				vote.setId(rs.getString("id"));
+				vote.setV_no(rs.getString("v_no"));
+				vote.setStart_date(rs.getString("startdate"));
+				vote.setEnd_date(rs.getString("enddate"));
+				vote.setV_title(rs.getString("v_title"));
+				vote.setV_progress(rs.getString("v_progress"));
+				vote.setV_clicks(rs.getString("v_clicks"));				
+				list.add(vote);
+			}
+			
+			
+			sql = "select if(id, v_no, start_date, end_date, v_title, v_progress, v_clicks,  to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd')as enddate, sysdate > enddate)"
+			+ "from(select if(id, v_no, start_date, end_date, v_title, v_progress, v_clicks,  to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd')as enddate, sysdate>enddate, rownum as rnum"
+			+ " )from(select if(id, v_no, start_date, end_date, v_title, v_progress, v_clicks, to_char(start_date,'yyyy-mm-dd') as startdate, to_char(end_date,'yyyy-mm-dd')as enddate, "
+			+ " sysdate>enddate)from t_vote_board order by enddate desc)) where rnum between 1 and 20 ";
+			
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+		return list;
 	}
 }
 
