@@ -22,92 +22,101 @@ body {
 	color: white;
 }
 
-table {
-	color: white;
-}
 
-.bitcampdiv table {
-	border-top: 5px solid #cd5d31;
-}
-
-a {
-	color: white;
-	text-decoration: none;
-}
-
-.bitcampdiv table td {
-	padding: 6px 10px;
-	border: 0.9px solid silver;
-	overflow: hidden;
-	background: #373737;
-}
-
-.bitcampdiv table th {
-	text-align: center;
-	padding: 13px 10px;
-	background: #5A5A5A;
-	border: 0.9px solid silver;
-	padding: 13px 10px;
-}
-
-.bitcampdiv h1 {
-	font-size: 55px;
-	line-height: 35px;
-	height: 41px;
-	padding: 42px 0;
-	text-align: center;
-	color: #fff;
-}
-
-.search_box {
-	background: #cd5d31;
-	padding: 15px 20px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	font-weight: bold;
-}
-
-.layerWrap {
-	position: relative;
-	width: 1400px;
-	margin: 100px auto 50px;
-	overflow: hidden;
-	background: #2d2d2d;
-	padding: 40px 40px;
-}
-</style>
-
-<script type="text/javascript">
-	function doDelete() {
-		if (confirm("게시물을 삭제하시겠습니까?")) {
-			location.href = "/OurCommunity/adminboard/NoticeAdminDeleteBoardController?no=${board.no}";
-		}
-	}
-	function doModify() {
-		if (confirm("게시물을 수정하시겠습니까?")) {
-			location.href = '/OurCommunity/adminboard/NoticeAdminModifyBoardController?no=${board.no}';
-		}
-	}
-</script>
-<style>
 table {
 	width: 100%;
 	height: 100%
+}
+
+html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+li {
+	list-style: none;
+}
+
+img {
+	border: 0 none;
+	vertical-align: top;
+}
+
+table {
+	border: 0;
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+legend, caption {
+	visibility: hidden;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	color: transparent;
+}
+
+
+.layerWrap {
+	position: relative;
+	width: 1012px;
+	height: 606px;
+	margin: 100px auto 50px;
+	overflow: hidden;
+}
+
+.layerWrap {
+	background: #2d2d2d;
+}
+
+.layerInner {
+	width: 110%;
+	padding-bottom: 30;
+}
+.layerInner section:nth-child(1) {
+	float: left;
+	width: 503px;
+	height: 606px;
+	background: red;
+	margin-right: 3px;
+}
+
+
+.layerInner section:nth-child(2) {
+	float: left;
+	width: 503px;
+	height: 606px;
+	background: blue;
 }
 </style>
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
-<form action="/OurCommunity/join/MemberJoinController" method="post"
-				onsubmit="return chkForm();" name="joinForm">
-				<table width="600" height="600 " color="#FF8224">
-					<tr>
-						<th><a href="">개인정보 수정</a></th>
-					</tr>
-			
-				</table>
-			</form>
+	<div class="layerWrap">
+
+		<div class="layerInner">
+
+			<section> </section>
+
+			<section> 
+			<a href = "/OurCommunity/mypage/pesonalInfo"> 개인정보수정</a>
+			</section>
 
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 
