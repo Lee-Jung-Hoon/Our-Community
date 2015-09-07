@@ -9,19 +9,21 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-html {
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-}
-
-body {
-	color: white;
+	font-size: 15px;
 }
 
 .bitcampdiv table {
 	border-top: 5px solid #cd5d31;
+}
+
+table {
+	width: 100%;
+	height: 100%;
 }
 
 a {
@@ -37,10 +39,12 @@ a {
 }
 
 .bitcampdiv table th {
-	border-bottom: 1px solid #5A5A5A;
+	color: white;
+	text-align: center; border-bottom : 1px solid #5A5A5A;
 	padding: 15px 0;
 	white-space: normal;
 	background: #1F1F1F;
+	border-bottom: 1px solid #5A5A5A;
 }
 
 .bitcampdiv h1 {
@@ -61,6 +65,10 @@ a {
 	font-weight: bold;
 }
 
+.scope {
+	color: white;
+}
+
 .layerWrap {
 	position: relative;
 	width: 1400px;
@@ -74,18 +82,18 @@ a {
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
-	<h1 align="center">비트캠프 공지사항 수정</h1>
-	<hr />
-	<br />
-	<div class="layerWrap">
-		<div class="bitcampdiv">
+	<div class="bitcampdiv">
+		<h1 align="center">비트캠프 공지사항 수정</h1>
+		<hr />
+		<br />
+		<div class="layerWrap">
 			<form
 				action="/OurCommunity/bitcampboard/NoticeBitcampModifyUpdateBoardController"
 				method="post">
 				<table style="height: 500;" align="center">
 					<tr>
 						<th>말머리</th>
-						<td><select name="boardHead">
+						<td colspan="3"><select name="boardHead">
 								<option value="비트캠프 공지사항">비트캠프 공지사항</option>
 								<option value="개강 공지사항">개강 공지사항</option>
 								<option value="기타 공지사항">기타 공지사항</option>
@@ -99,16 +107,6 @@ a {
 					</tr>
 
 					<tr>
-						<th>&nbsp;&nbsp;&nbsp;첨부 파일 종류&nbsp;&nbsp;&nbsp;</th>
-						<td colspan="3"><input type="checkbox" name="file_type"
-							value="1" checked="checked" /> 동영상 <input type="checkbox"
-							name="file_type" value="2" /> 사진 <input type="checkbox"
-							name="file_type" value="3" /> 음악 <input type="checkbox"
-							name="file_type" value="4" /> 미첨부 &nbsp;&nbsp; <input
-							type="file" /></td>
-					</tr>
-
-					<tr>
 						<th>글 내용</th>
 						<td colspan="3"><textarea cols="150" rows="30" name="content"">${board.content}</textarea>
 						</td>
@@ -116,16 +114,23 @@ a {
 
 					<tr>
 						<th>공개 설정</th>
-						<td colspan="3" align="center"><input type="radio"
-							name="scope" value="전체공개" checked="checked" /> 전체공개 <input
-							type="radio" name="scope" value="멤버공개" /> 멤버공개
+						<td class="scope" colspan="3" align="center"><input
+							type="radio" name="scope" value="전체공개" checked="checked" /> 전체공개
+							<input type="radio" name="scope" value="멤버공개" /> 멤버공개
 					</tr>
 
 					<tr>
 						<td></td>
 						<td></td>
 						<td><input type="hidden" value="${no}" name="no"></td>
-						<td align="right"><input type="submit" value="수정 등록" /></td>
+						<td align="right">
+						<button type="submit" class="btn btn-default btn-sm">
+							<span class="glyphicon glyphicon-floppy-disk"></span> 수정 등록
+						</button>
+						</td>
+
+
+					</tr>
 				</table>
 			</form>
 		</div>

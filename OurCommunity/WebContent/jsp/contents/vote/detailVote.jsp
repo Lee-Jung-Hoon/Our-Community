@@ -6,15 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
-html {
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	font-size: 15px;
+	color: white;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 
 body {
+	color: white;
+}
+
+table {
 	color: white;
 }
 
@@ -35,9 +42,11 @@ a {
 }
 
 .bitcampdiv table th {
+	text-align: center;
 	padding: 13px 10px;
 	background: #5A5A5A;
 	border: 0.5px solid silver;
+	padding: 13px 10px;
 }
 
 .bitcampdiv h1 {
@@ -66,7 +75,13 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+
+table {
+	width: 100%;
+	height: 100%
+}
 </style>
+
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
@@ -97,7 +112,7 @@ a {
 				.getElementById('chart_div'));
 		chart.draw(data, options);
 	}
-	
+
 	Date.prototype.getInterval = function(otherDate) {
 		gap = this.getTime() - otherDate.getTime();
 		var result = Math.floor(gap / (60 * 60 * 24 * 1000));
@@ -107,17 +122,16 @@ a {
 	function voteCheck() {
 		var now = new Date();
 		//alert("now : " + now);
-		
-		
+
 		var sDate = "${list.end_date}";
-		
-		year = sDate.substring(0,4);
-		month = sDate.substr(5,2)-1;
-		date = sDate.substr(8,2);
+
+		year = sDate.substring(0, 4);
+		month = sDate.substr(5, 2) - 1;
+		date = sDate.substr(8, 2);
 		//alert(year+""+month+""+date);
-		
+
 		var inputDate = new Date(year, month, date);
-				
+
 		//alert(now.getInterval(inputDate));
 		var frm = document.detVote;
 		if (now.getInterval(inputDate) > 0) {
@@ -137,11 +151,8 @@ a {
 		}
 	}
 
-	function registVote() {
-		document.regist.submit();
-	}
-	function listVote() {
-		document.list.submit();
+	function deleteVOTE() {
+		location.href = '/OurCommunity/vote/deleteVote?v_no=${list.v_no}';
 	}
 </script>
 
@@ -152,67 +163,76 @@ table {
 </style>
 </head>
 <body>
-<%@ include file="/jsp/include/topMenu.jsp"%>
+	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
-	<h1 align="center">투표 조회</h1>
-	<hr />
-	<br />
-	
-<div class="layerWrap">
-	<form action="/OurCommunity/web/checkVote" name="detVote">
-		<input type="button" name="regist" value="글쓰기"
-					onClick="location.href='/OurCommunity/jsp/contents/vote/registVoteForm.jsp'">
-					<input type="button" name="list" value="목록"
-					onClick="location.href='/OurCommunity/vote/listVote'"> 
-					<c:if test="${id eq list.id}">
-						<input type="button" name="deletes" value="투표삭제"
-							onClick="location.href='/OurCommunity/vote/deleteVote?v_no=${list.v_no}'">
-					</c:if>
-		<table align="center">
-	
-			<tr>
-				<th>작성자</th>
-				<td colspan="3">${list.id}</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td colspan="3" id="title">${list.v_title}</td>
-			</tr>
-			<tr>
-				<th>시작일</th>
-				<td>${list.start_date}</td>
-				<th>종료일</th>
-				<td>${list.end_date}</td>
-			</tr>
-			<tr>
-				<th>투표인원</th>
-				<td colspan="3">${list.v_progress}</td>
-			</tr>
-		</table>
-		<table align="center">
-			<tr>
-				<th>투표 통계</th>
-				<td colspan="2"><div align="center" id="chart_div"></div></td>
-			</tr>
-			<c:forEach var="item" items="${ilist}">
-			<c:if test="${list.v_progress ne '0'}">		
-			</c:if>
-				<tr>
-					<td><input type="radio" name="voteSubmit" id="subsection"
-						value="${item.subsection}"> ${item.subsection}<br /></td>
-					<td id="cnt">투표수 : ${item.count}</td>
-				</tr>
-			</c:forEach>
-			
+		<h1 align="center">투표 조회</h1>
+		<hr />
+		<br />
 
-			<tr>
-				<input type="hidden" name="v_no" value="${list.v_no}">				
-				<td colspan="2" align="right"><input type="button"
-					name="checkvote" value="투표" onClick="voteCheck();"></td>
-			</tr>
-		</table>
-	</form>
-</div></div>
+		<div class="layerWrap">
+			<form action="/OurCommunity/web/checkVote" name="detVote">
+				<button type="button" class="btn btn-default btn-sm"
+					onClick="location.href='/OurCommunity/jsp/contents/vote/registVoteForm.jsp'">
+					<span class="glyphicon glyphicon-pencil"></span> 글등록
+				</button>
+				<button type="button" class="btn btn-default btn-sm"
+					onClick="location.href='/OurCommunity/vote/listVote'">
+					<span class="glyphicon glyphicon-list-alt"></span> 목록
+				</button>
+				<c:if test="${id eq list.id}">
+					<button type="button" class="btn btn-default btn-sm"
+						onClick="deleteVOTE();">
+						<span class="glyphicon glyphicon-trash"></span> 글 삭제
+					</button>
+				</c:if>
+				<p>
+				<table align="center">
+
+					<tr>
+						<th>작성자</th>
+						<td colspan="3">${list.id}</td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td colspan="3" id="title">${list.v_title}</td>
+					</tr>
+					<tr>
+						<th>시작일</th>
+						<td>${list.start_date}</td>
+						<th>종료일</th>
+						<td>${list.end_date}</td>
+					</tr>
+					<tr>
+						<th>투표인원</th>
+						<td colspan="3">${list.v_progress}</td>
+					</tr>
+				</table>
+				<table align="center">
+					<tr>
+						<th>투표 통계</th>
+						<td colspan="2"><div align="center" id="chart_div"></div></td>
+					</tr>
+										
+					<c:forEach var="item" items="${ilist}">
+						<tr>
+						<c:if test="${list.v_progress ne '0'}">
+						</c:if>
+							<td><input type="radio" name="voteSubmit" id="subsection"
+								value="${item.subsection}"> ${item.subsection}<br /></td>
+							<td id="cnt">투표수 : ${item.count}</td>
+						</tr>
+					</c:forEach>
+
+
+					<tr>
+						<input type="hidden" name="v_no" value="${list.v_no}">
+						<td colspan="2" align="right"><input type="button"
+							name="checkvote" value="투표" onClick="voteCheck();"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 
 </body>

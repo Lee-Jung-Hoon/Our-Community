@@ -9,14 +9,12 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-html {
+
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-}
-
-body {
 	color: white;
 }
 
@@ -41,6 +39,8 @@ a {
     padding: 15px 0;
     white-space: normal;
     background: #1F1F1F;
+    color: white;
+    text-align: center;
 }
 
 .bitcampdiv h1 {
@@ -69,22 +69,26 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+
+.scope {
+	color: white;
+}
 </style>
 
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
+   <div class="bitcampdiv">
    <h1 align="center">글 작성</h1>
    <hr />
    <br />
 	
    <form action="/OurCommunity/bitcampboard/NoticeBitcampRegistBoardController" method="post">
    <div class="layerWrap">
-   <div class="bitcampdiv">
       <table style="height: 500;" align="center">
          <tr>
             <th>말머리</th>
-            <td><select name="boardHead">
+            <td colspan="3"><select name="boardHead">
                   <option value="비트캠프 공지사항">비트캠프 공지사항</option>
                   <option value="개강 공지사항">개강 공지사항</option>
                   <option value="기타 공지사항">기타 공지사항</option></select></td>
@@ -103,7 +107,7 @@ a {
 
          <tr>
             <th>공개 설정</th>
-            <td colspan="3" align="center">
+            <td class="scope" colspan="3" align="center">
             <input type="radio" name="scope" value="전체공개" checked="checked" /> 전체공개 
                <input type="radio" name="scope" value="멤버공개" /> 멤버공개
          </tr>

@@ -9,17 +9,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 
-html {
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	background: url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	font-size:15px;
+	color : white;
 }
 	
-body {
+table {
 	color : white;
+}
+
+table a {
+	color: white;
 }
 
 .bitcampdiv table {
@@ -32,6 +45,7 @@ a {
 }
 
 .bitcampdiv table td {
+	color : white;
     padding: 6px 10px;
     border: 0.5px solid #1f1f1f;
     overflow: hidden;
@@ -40,6 +54,8 @@ a {
 }
 
 .bitcampdiv table th {
+	color : white;
+	text-align : center;
     padding: 13px 10px;
     background: #1f1f1f;
     border: 0.5px solid #2d2d2d;
@@ -71,7 +87,12 @@ a {
     padding: 40px 40px;
 }
 
+.pagingDIV a{
+	color: white;
+	font-size: 20px;
+}
 </style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -80,21 +101,28 @@ a {
 		<h1>비트캠프 공지사항</h1>
 		<hr />
 		
+		
+		
 	<div class="layerWrap">
+		<c:if test="${grade eq '운영자'}">
+		<button type="button" class="btn btn-default btn-sm" onclick="location.href='/OurCommunity/jsp/notice/bitcampboard/registnoticebitcampboard.jsp'">
+          <span class="glyphicon glyphicon-pencil"></span> 글등록 
+        </button>
+			<p />
+		</c:if>
 	<div  class="search_box">
 		<form action="/OurCommunity/bitcampboard/NoticeBitcampListBoardController" method="get">
 			검색 구분  <select name="searchCategory">
 				<option value="1">제목</option>
 				<option value="2">내용</option>	
 				<option value="3">작성자</option>
-			</select> <input type="text" name="search"> <input type="submit"  value="검색">
+			</select> <input type="text" name="search"> 
+				<button type="submit" class="btn btn-default btn-sm">
+          			<span class="glyphicon glyphicon-search"></span> 검색
+        		</button>
 		</form>
 		</div>
-		<c:if test="${grade eq '운영자'}">
-			<input type="button" value="글쓰기"
-				onclick="location.href='/OurCommunity/jsp/notice/bitcampboard/registnoticebitcampboard.jsp'" />
 			<p />
-		</c:if>
 		<table border="1" id="listtable" align="center" class="">
 			<tr>
 				<th align="center" width="100px">글번호</th>
@@ -117,7 +145,7 @@ a {
 			</c:forEach>
 		</table>
 		<hr />
-		<div align="center">
+		<div class="pagingDIV" align="center">
 			<%
 				for (int i = 1; i <= paging; i++) {
 			%>
