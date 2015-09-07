@@ -19,7 +19,7 @@ public class VoteBoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select seq_t_board.nextval as num from dual";
+			String sql = "select seq_t_vote_no.nextVal as num from dual";
 			pstmt = con.prepareStatement(sql);
 
 			ResultSet rs = pstmt.executeQuery();

@@ -15,7 +15,7 @@ import kr.co.mlec.community.vo.WorkInfoVO;
 
 @WebServlet("/workInfo/list")
 public class WorkInfoListController extends HttpServlet{
-	private int PAGE = 2;
+	private int PAGE = 10 	;
 	private int count = 0;
 
 	@Override
