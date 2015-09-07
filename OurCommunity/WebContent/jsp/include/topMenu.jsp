@@ -68,7 +68,7 @@
 						</button>
 						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/jsp/memberjoin.html'">
-							<span class="glyphicon glyphicon-user"></span> MyPage
+							<span class="glyphicon glyphicon-user"></span> Join
 						</button>
 
 						<button type="button" class="btn btn-default btn-sm"
