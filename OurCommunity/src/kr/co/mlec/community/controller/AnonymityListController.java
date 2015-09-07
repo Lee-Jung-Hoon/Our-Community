@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.community.dao.AnonymityDAO;
 import kr.co.mlec.community.vo.AnonymityCommentVO;
@@ -55,7 +56,10 @@ public class AnonymityListController extends HttpServlet{
 			int pageLeng = (int)Math.ceil(count/(double)pageCount);
 			System.out.println("pageLeng : " + pageLeng);
 			req.setAttribute("page", pageLeng);
-			
+			HttpSession session = req.getSession();
+			String userId = (String)session.getAttribute("userId");
+		
+			req.setAttribute("userId", userId);
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/list.jsp");
 			rd.forward(req, res);
 			
