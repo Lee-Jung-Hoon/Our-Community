@@ -77,9 +77,11 @@
 			<table align="center">
 				<tr>
 					<td><input type="button" value="목록"
-						onclick="location.href='/OurCommunity/ourclassboard/list'">
-						<input type="button" value="수정" onclick="doModify();">
-						<input type="button" value="삭제" onclick="doDelete();"></td>
+						onclick="location.href='/OurCommunity/ourclassboard/list'"></td>
+						 <c:if test="${userId eq board.id}">
+						<td><input type="button" value="수정" onclick="doModify();"></td>
+						<td><input type="button" value="삭제" onclick="doDelete();"></td>
+						 </c:if>
 				</tr>
 			</table>
 		</div>
@@ -96,7 +98,7 @@
 			
 		<c:forEach var="comment" items="${list}">
 			<tr>
-				<td width="10%" align="center">${board.id}</td>
+				<td width="10%" align="center">${comment.id}</td>
 				<td width="30%" align="center">${comment.content}</td>
 			    <td width="15%" align="center">${comment.regDate}</td>
 			    

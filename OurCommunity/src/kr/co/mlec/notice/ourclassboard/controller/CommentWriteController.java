@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.notice.ourclassboard.DAO.CommentDAO;
 import kr.co.mlec.notice.ourclassboard.vo.CommentVO;
@@ -20,8 +21,10 @@ public class CommentWriteController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		String no = req.getParameter("no");
-		String id = req.getParameter("id");
 		String content = req.getParameter("content");
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("userId");
+		req.setAttribute("userId", id);
 		
 		CommentVO comment = new CommentVO();
 		comment.setNo(no);
