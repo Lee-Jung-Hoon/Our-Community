@@ -36,6 +36,7 @@ table a {
 }
 
 .bitcampdiv table td {
+	text-align:center;
 	padding: 6px 10px;
 	border: 0.5px solid silver;
 	overflow: hidden;
