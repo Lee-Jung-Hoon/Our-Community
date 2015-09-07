@@ -3,13 +3,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" -->
+<!-- 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+<!-- <script -->
+<!-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
+<c:import url="/jsp/include/bootstrap.jsp" />
 <script type="text/javascript">
 	function dday(y, m, d) {
 		today = new Date();
@@ -20,14 +21,11 @@
 	}
 
 	function Message() {
-		window
-				.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지',
+		window.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지',
 						'width=380, height=400,scrollbars=no, menubar=no, status=no, toolbar=no');
 	}
 </script>
 <style>
-
-
 .dday {
 	padding-left: 10;
 	font-size: 40px;
@@ -58,11 +56,16 @@
 <div class="header">
 	<table class="toptable">
 		<tr>
-			<td align="left" width="40%" class="dday"><script>
-				dday(2015, 12, 09);
-			</script></td>
+		<td align="left">
+            <a href="/OurCommunity/main">
+         <img style="width: 305px; height: 70px;"
+               src="/OurCommunity/image/box1.png"></a></td>
 			<td align="right" width="60%" class="menu"><c:choose>
 					<c:when test="${empty userId}">
+						<button type="button" class="btn btn-default btn-sm"
+							onclick="location.href='/OurCommunity/jsp/main/index.html'">
+							<span class="glyphicon glyphicon-home"></span> Home
+						</button>
 						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/jsp/memberjoin.html'">
 							<span class="glyphicon glyphicon-user"></span> MyPage

@@ -8,14 +8,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<c:import url="/jsp/include/bootstrap.jsp" />
 <style type="text/css">
 body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	font-size: 15px;
-	color: white;
-	background:
-		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	
+	color : white;
+	background:	url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 
 body {
@@ -23,7 +24,8 @@ body {
 }
 
 table {
-	color: white;
+	
+	color : white;
 }
 
 .bitcampdiv table {
@@ -37,16 +39,15 @@ a {
 
 .bitcampdiv table td {
 	padding: 6px 10px;
-	border: 0.9px solid silver;
+	border: 0.5px solid silver;
 	overflow: hidden;
 	background: #373737;
 }
 
 .bitcampdiv table th {
-	text-align: center;
-	padding: 13px 10px;
+	text-align: center; padding : 13px 10px;
 	background: #5A5A5A;
-	border: 0.9px solid silver;
+	border: 0.5px solid silver;
 	padding: 13px 10px;
 }
 
@@ -75,6 +76,11 @@ a {
 	overflow: hidden;
 	background: #2d2d2d;
 	padding: 40px 40px;
+}
+
+table {
+	width: 100%;
+	height: 100%
 }
 </style>
 

@@ -6,145 +6,186 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<c:import url="/jsp/include/bootstrap.jsp" />
 <style type="text/css">
-th {
-	width: 200px;
-}
-
-th, td {
-	border-bottom: 1px solid black;
-}
-
 body {
-	font-family: "nanumgothic", '나눔고딕';
+	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
+		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	background:
+		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	color: white;
 }
 
-table {
-	border: 0;
-	border-collapse: separate;
-	border-spacing: 0;
+.bitcampdiv table {
+	border-top: 5px solid #cd5d31;
 }
 
 a {
-	color: #888;
+	color: white;
 	text-decoration: none;
 }
 
-.title {
+.bitcampdiv table td {
+	color: white;
+	padding: 6px 10px;
+	border: 0.5px solid silver;
+	overflow: hidden;
+	background: #373737;
+	padding: 6px 10px;
+}
+
+.bitcampdiv table th {
+	text-align: center;
+	padding: 13px 10px;
+	background: #5A5A5A;
+	border: 0.5px solid silver;
+	color: white;
+	padding: 13px 10px;
+}
+
+.bitcampdiv h1 {
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
+}
+
+.search_box {
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	font-weight: bold;
-	font-size: 30px;
 }
 
-.date {
-	font-size: 13px;
+.layerWrap {
+	position: relative;
+	width: 1400px;
+	margin: 100px auto 50px;
+	overflow: hidden;
+	background: #2d2d2d;
+	padding: 40px 40px;
 }
 
-.id {
-	font-size: 13px;
+table {
+	width: 100%;
+	height: 100%;
 }
 
-.cnt {
-	font-size: 13px;
+.comm, .commB {
+	color: black;
 }
 </style>
-
 </head>
 <body>
+	<%@ include file="/jsp/include/topMenu.jsp"%>
+	<div class="bitcampdiv">
+		<h1 align="center">${vo.no}번게시물</h1>
+		<hr />
+		<br />
+		<div class="layerWrap">
+			<c:if test="${!empty userId }">
+				<button type="button" class="btn btn-default btn-sm"
+					onclick="location.href='/OurCommunity/jsp/community/gallery/write.jsp'">
+					<span class="glyphicon glyphicon-pencil"></span> 글등록
+				</button>
+			</c:if>
+			<button type="button" class="btn btn-default btn-sm"
+				onclick="location.href='/OurCommunity/gallery/list'">
+				<span class="glyphicon glyphicon-list-alt"></span> 목록
+			</button>
+			<c:if test="${vo.id eq userId}">
+				<button type="button" class="btn btn-default btn-sm"
+					onclick="location.href='/OurCommunity/gallery/modifyDetail?no=${vo.no}'">
+					<span class="glyphicon glyphicon-edit"></span> 수정
+				</button>
+				<button type="button" class="btn btn-default btn-sm"
+					onClick="location.href='/OurCommunity/gallery/delete?no=${vo.no}'">
+					<span class="glyphicon glyphicon-trash"></span> 글삭제
+				</button>
+			</c:if>
 
-	<h1 align="center">${vo.no}번게시물</h1>
-	<hr />
-	<br />
-	<form action="/OurCommunity/gallery/regist" method="post"
-		enctype="multipart/form-data">
-		<table style="height: 500; width: 900px" align="center">
-
-			<tr height="50px">
-
-				<td class="title" colspan="2">${vo.title}</td>
-				<td class="date" width="300px" align="right">${vo.regDate}</td>
-			</tr>
-
-
-			<tr>
-				<td colspan="3"><p class="id">&nbsp;작성자 :
-						&nbsp;&nbsp;&nbsp;${userId}</p> <img
-					src="${vo.filePath}/${vo.fileName}" width="100%"> <br /> <br />
-					<p>${vo.content}</p> <br /> <br /> <br /> <br /> <br /></td>
-				<td></td>
-			</tr>
-			<tr class="cnt">
-				<td></td>
-				<td>조회수 : ${vo.checkCnt } 덧글수 : ${cntVO.commentCnt}</td>
-				<td></td>
-			</tr>
-
-
-
-
-			<tr>
-				<c:if test="${!empty userId && vo.id eq userId}">
-					<td align="right"><br /> <br /> <a
-						href="/OurCommunity/gallery/modifyDetail?no=${vo.no}"><input
-							type="button" value="수정"> </a></td>
-					<td align="right"><a
-						href="/OurCommunity/gallery/delete?no=${vo.no}"><input
-							type="button" value="삭제"> </a></td>
-
-				</c:if>
-				<td align="right"><a href="/OurCommunity/gallery/list"><input
-						type="button" value="목록"></a></td>
-			</tr>
-		</table>
-	</form>
+			<p>
 
 
-	<c:if test="${!empty userId }">
-		<form action="/OurCommunity/gallery/comment/regist" method="post">
-			<table style="height: 500; width: 900px" align="center">
-				<tr>
-					<td width="10%">${userId}</td>
-					<td width="80%"><textarea cols="115" rows="6" name="content"></textarea></td>
-					<td align="center"><input type="hidden" name="id"
-						value="${userId}" /><input type="hidden" name="no"
-						value="${vo.no }" /><input type="submit" value="확인" /></td>
+
+
+
+				<form action="/OurCommunity/gallery/regist" method="post"
+				enctype="multipart/form-data">
+
+				<table style="height: 500;"center"><tr>
+					<th>제목</th>
+					<td class="title">${vo.title}</td>
+					<th>작성일</th>
+					<td class="date" align="right">${vo.regDate}</td>
 				</tr>
+				<tr class="cnt">
+					<th>조회수</th>
+					<td>${vo.checkCnt }</td>
+					<th>덧글수
+					<td>${cntVO.commentCnt}</td>
+				</tr>
+
+
+				<tr>
+					<th>작성자</th>
+					<td colspan="3">${userId}
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td colspan="3"><img src="${vo.filePath}/${vo.fileName}">
+						<br /> <br />
+						<p>${vo.content}</p> <br /> <br /> <br /> <br /> <br /></td>
+				</tr>
+
+				</table>
+			</form>
+
+
+			<table>
+				<tr>
+					<form action="/OurCommunity/gallery/comment/regist" method="post">
+						<c:if test="${!empty userId }">
+
+							<th width="10%">댓글</th>
+							<td width="90%" colspan="3"><input class="comm" type='text'
+								size='165px' style='height: 100px' name="content"
+								placeholder="댓글을입력하세요" required autofocus /> <input
+								class="commB" type="submit" value="작성" size='350px'
+								style='height: 100px' /></td>
+							<input type="hidden" name="id" value="${userId}" />
+							<input type="hidden" name="no" value="${vo.no }" />
+						</c:if>
+					</form>
+				</tr>
+				<form action="/OurCommunity/gellery/comment/delete" method="get">
+					<c:forEach var="cVO" items="${cList}">
+
+						<tr height="50px">
+
+							<td align="center" width="15%">${cVO.id}</td>
+							<td width="75%">${cVO.commentContent}</td>
+							<td width="15%">${cVO.commentRegDate}</td>
+
+							<c:choose>
+								<c:when test="${ !empty userId && userId eq cVO.id }">
+									<td width="5%"><input type="hidden" value="${cVO.id}"
+										name="id" /> <input type="hidden" value="${cVO.commentNo}"
+										name="coNo" /> <input type="hidden" value="${cVO.boardNo}"
+										name="no" /> <input type="submit" value="삭제" /></td>
+								</c:when>
+							</c:choose>
+						</tr>
+					</c:forEach>
+				</form>
+
 			</table>
-		</form>
-	</c:if>
-
-
-	<div>
-		<form action="/OurCommunity/gellery/comment/delete" method="get">
-			<table style="height: 500; width: 900px" align="center">
-				<c:forEach var="cVO" items="${cList}">
-
-					<tr height="50px">
-
-						<td class="a">${cVO.id}</td>
-						<td class="b">${cVO.commentRegDate}</td>
-					</tr>
-					<tr height="50px">
-
-						<td>${cVO.commentContent}</td>
-
-						<c:choose>
-							<c:when test="${ !empty userId && userId eq cVO.id }">
-								<td><input type="hidden" value="${cVO.id}" name="id" /> <input
-									type="hidden" value="${cVO.commentNo}" name="coNo" /> <input
-									type="hidden" value="${cVO.boardNo}" name="no" /> <input
-									type="submit" value="삭제" /></td>
-							</c:when>
-						</c:choose>
-					</tr>
-				</c:forEach>
-			</table>
-		</form>
+		</div>
 	</div>
-
-
-
-
-
+	</div>
 </body>
 </html>

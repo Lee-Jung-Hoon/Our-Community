@@ -2,22 +2,22 @@
 <%@page import="org.apache.catalina.connector.Request"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<c:import url="/jsp/include/bootstrap.jsp" />
 <style type="text/css">
-html {
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-}
-
-body {
-	color: white;
 }
 
 .bitcampdiv table {
@@ -37,6 +37,8 @@ a {
 }
 
 .bitcampdiv table th {
+	color : white;
+	text-align:center;
 	border-bottom: 1px solid #5A5A5A;
 	padding: 15px 0;
 	white-space: normal;
@@ -44,6 +46,7 @@ a {
 }
 
 .bitcampdiv h1 {
+	color : white;
 	font-size: 55px;
 	line-height: 35px;
 	height: 41px;
@@ -60,7 +63,6 @@ a {
 	border-radius: 5px;
 	font-weight: bold;
 }
-
 .layerWrap {
 	position: relative;
 	width: 1400px;
@@ -74,11 +76,11 @@ a {
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
+		<div class="bitcampdiv">
 	<h1 align="center">비트캠프 공지사항 수정</h1>
 	<hr />
 	<br />
 	<div class="layerWrap">
-		<div class="bitcampdiv">
 			<form
 				action="/OurCommunity/adminboard/NoticeAdminModifyUpdateBoardController"
 				method="post">
