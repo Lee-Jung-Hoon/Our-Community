@@ -102,12 +102,12 @@ table {
 		<hr />
 		<div class="layerWrap">
 			<c:set var="file" value="${file}" />
-			<c:if test="${!empty userId}">
+		<c:if test="${!empty userId}">
 			<button type="button" class="btn btn-default btn-sm"
 				onclick="location.href='/OurCommunity/jsp/community/studyFile/write.jsp'">
 				<span class="glyphicon glyphicon-pencil"></span> 글등록
 			</button>
-			</c:if>
+
 			<button type="button" class="btn btn-default btn-sm"
 				onclick="location.href='/OurCommunity/studyFile/list'">
 				<span class="glyphicon glyphicon-list-alt"></span> 목록
@@ -121,12 +121,9 @@ table {
 				onClick="doDelete();">
 				<span class="glyphicon glyphicon-trash"></span> 글삭제
 			</button>
+		</c:if>
 			<p>
 
-
-
-			<%-- 		<c:if test="${grade eq '회원'}"> --%>
-			<%-- 		</c:if> --%>
 			<table>
 				<tr>
 					<th width="10%">말머리</th>
@@ -172,10 +169,10 @@ table {
 							<th width="10%">${cList.id}</th>
 							<td width="60%">${cList.content}</td>
 							<td width="20%" align="right">${cList.regDate}</td>
-							<%-- 							<c:if test="${id eq cList.id}"> --%>
-							<%-- 							</c:if> --%>
-							<td width="10%" align="right">
-							<a href="/OurCommunity/studyFile/deleteComment?commentNo=${cList.commentNo}&no=${cList.no}">삭제</a></td>
+							<c:if test="${userId eq cList.id}">
+								<td width="10%" align="right">
+									<a href="/OurCommunity/studyFile/deleteComment?commentNo=${cList.commentNo}&no=${cList.no}">삭제</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 					<tr>
