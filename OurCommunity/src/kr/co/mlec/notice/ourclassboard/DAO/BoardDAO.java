@@ -18,8 +18,8 @@ public class BoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " insert into t_notice_class_board(no, id, title, boardhead, content) "
-					   + " values(seq_t_notice_class_board_no.nextVal, ?, ?, ?, ?) ";
+			String sql = " insert into t_notice_class_board(no, id, title, boardhead, content, scope) "
+					   + " values(seq_t_notice_class_board_no.nextVal, ?, ?, ?, ?, ?) ";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -28,6 +28,7 @@ public class BoardDAO {
 			pstmt.setString(index++, board.getTitle());
 			pstmt.setString(index++, board.getBoardhead());
 			pstmt.setString(index++, board.getContent());
+			pstmt.setString(index++, board.getScope());
 			pstmt.executeUpdate();
 			
 		} catch(Exception e) {
@@ -46,7 +47,7 @@ public class BoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, boardhead, check_Cnt, to_char(reg_date, 'yyyy-mm-dd') as regDate "
+			String sql = " select no, title, id, boardhead, check_Cnt, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate "
 					+ "	  from t_notice_class_board "
 					+ "   order by no desc";
 			pstmt = con.prepareStatement(sql);
@@ -83,7 +84,7 @@ public class BoardDAO {
 			PreparedStatement pstmt = null;
 			try {
 				con = ConnectionPool.getConnection();
-				String sql = " select no, title, id, boardhead, content, to_char(reg_date, 'yyyy-mm-dd') as regDate "
+				String sql = " select no, title, id, boardhead, scope, content, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate "
 						  + "  from t_notice_class_board "
 						  + "  where no = ? ";
 				pstmt = con.prepareStatement(sql);
@@ -94,6 +95,7 @@ public class BoardDAO {
 					board.setTitle(rs.getString("title"));
 					board.setId(rs.getString("id"));
 					board.setBoardhead(rs.getString("boardhead"));
+					board.setScope(rs.getString("scope"));
 					board.setContent(rs.getString("content"));
 					board.setRegDate(rs.getString("regDate"));
 				}
@@ -166,7 +168,7 @@ public class BoardDAO {
 		
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = " select no, title, id, boardhead, to_char(reg_date, 'yyyy-mm-dd') as regDate "
+			String sql = " select no, title, id, boardhead, check_Cnt, to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') as regDate "
 					+ "	  from t_notice_class_board "
 					+ "   where "+ type +" like ? "
 					+ "   order by no desc ";
@@ -185,6 +187,7 @@ public class BoardDAO {
 				board.setId(rs.getString("id"));
 				board.setBoardhead(rs.getString("boardhead"));
 				board.setRegDate(rs.getString("regDate"));
+				board.setCheckCnt(rs.getString("check_Cnt"));
 				list.add(board);
 			}
 			return list;

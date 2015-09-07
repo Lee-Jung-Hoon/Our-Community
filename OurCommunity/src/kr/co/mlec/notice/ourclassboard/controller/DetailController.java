@@ -9,40 +9,40 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.notice.ourclassboard.DAO.BoardDAO;
 import kr.co.mlec.notice.ourclassboard.DAO.CommentDAO;
 import kr.co.mlec.notice.ourclassboard.vo.BoardVO;
 import kr.co.mlec.notice.ourclassboard.vo.CommentVO;
 
-
 @WebServlet("/ourclassboard/detail")
-public class DetailController extends HttpServlet{
+public class DetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-			res.setContentType("text/html; charset=utf-8");
-		
-			String no = req.getParameter("no");
-			
-			BoardDAO dao = new BoardDAO();
-			
-			CommentDAO cdao = new CommentDAO(); 
+		res.setContentType("text/html; charset=utf-8");
 
-			try {
-				BoardVO board =  dao.selectBoardDt(no);
-				req.setAttribute("board", board);
-				
-				dao.updateCheckCnt(no);
-				
-				List<CommentVO> list = cdao.selectComment(no);
-				req.setAttribute("list", list);
-				
-				RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/detail.jsp");
-				rd.forward(req, res);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new ServletException(e);
-			}
+		String no = req.getParameter("no");
+		BoardDAO dao = new BoardDAO();
+		CommentDAO cdao = new CommentDAO();
+
+		try {
+			BoardVO board = dao.selectBoardDt(no);
+			req.setAttribute("board", board);
+			HttpSession session = req.getSession();
+			String id = (String) session.getAttribute("userId");
+
+			dao.updateCheckCnt(no);
+			List<CommentVO> list = cdao.selectComment(no);
+			req.setAttribute("userId", id);
+			req.setAttribute("list", list);
+
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/ourclassboard/detail.jsp");
+			rd.forward(req, res);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServletException(e);
+		}
 	}
 }

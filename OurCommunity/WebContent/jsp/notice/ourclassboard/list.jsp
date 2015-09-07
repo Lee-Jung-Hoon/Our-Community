@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+   
 </head>
 	<body>
 	<%@ include file="/jsp/include/topMenu.jsp" %>
@@ -52,11 +54,6 @@
 		</table>
 	</form>
 	
-	<script>
-	if ("$(msg)") {
-		alert("${msg}");
-		}
-	</script>
 
 </body>
 </html>

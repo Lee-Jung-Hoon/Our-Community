@@ -26,6 +26,7 @@ public class WriteController extends HttpServlet{
 		String title = req.getParameter("title");
 		String boardhead = req.getParameter("boardhead");
 		String content = req.getParameter("content");
+		String scope = req.getParameter("scope");
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("userId");
 		req.setAttribute("userId", id);
@@ -35,6 +36,7 @@ public class WriteController extends HttpServlet{
 		board.setTitle(title);
 		board.setBoardhead(boardhead);
 		board.setContent(content);
+		board.setScope(scope);
 		
 		BoardDAO dao = new BoardDAO();
 		try {
