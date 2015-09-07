@@ -49,7 +49,6 @@ public class WorkInfoListController extends HttpServlet{
 			}
 		
 			int paging = (int) Math.ceil((double)count/PAGE);
-			System.out.println(paging);
 			req.setAttribute("pagingSize", paging);
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/workInfo/list.jsp");
 			rd.forward(req, res);
