@@ -120,6 +120,16 @@ a {
 	font-size: 20px;
 	font-weight: bold;
 }
+.idDIV {
+	color: white;
+}
+.scope {
+	color: white;
+}
+
+.fileDIV {
+	color: white;
+}
 </style>
 
 </head>
@@ -135,7 +145,7 @@ a {
 				<table style="height: 500;" align="center">
 					<tr>
 						<th>글쓴이</th>
-						<td colspan="3">${vo.id }</td>
+						<td colspan="3" class="idDIV">${vo.id }</td>
 
 					</tr>
 
@@ -148,7 +158,7 @@ a {
 
 					<tr>
 						<th>&nbsp;&nbsp;&nbsp;업로드 사진&nbsp;&nbsp;&nbsp;</th>
-						<td colspan="3"><input type="file" name="userfile" /></td>
+						<td colspan="3" class="fileDIV"><input type="file" name="userfile" /></td>
 					</tr>
 
 					<tr>
@@ -159,7 +169,7 @@ a {
 
 					<tr>
 						<th>공개 설정</th>
-						<td colspan="3" align="center"><input type="radio"
+						<td colspan="3" align="center" class="scope"><input type="radio"
 							name="scope" value="0" checked="checked" /> 전체공개 <input
 							type="radio" name="scope" value="1" /> 멤버공개
 					</tr>
