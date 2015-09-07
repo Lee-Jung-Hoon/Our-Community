@@ -55,7 +55,7 @@ public class WorkInfoDAO {
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = "insert into t_temp(id) "
-					+ "values(?)";
+						   + "values(?) ";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, info.getId());
@@ -80,7 +80,6 @@ public class WorkInfoDAO {
 			String sql = "select id from t_temp "
 							+ "minus "
 							+ "select id from t_workInfo_board";
-
 			pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
