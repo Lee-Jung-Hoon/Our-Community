@@ -109,30 +109,23 @@ public class WorkInfoWriteController extends HttpServlet {
 						vo.setSalary(cValue);
 					}
 				}
-				System.out.println(vo.getSalary());
+				System.out.println("id : " + vo.getId());
 				list.add(vo);
 				dao.insertTemp(vo);
 			}
 			WorkInfoDAO wDao = new WorkInfoDAO();
 			List<String> sList = wDao.selectCompanyId();
-			for (String va : sList) {
-				System.out.println("sList id " + va);
-			}
 			if (sList.size() != 0) {
 				for (int index = 0; index < sList.size(); index++) {
 					for (int secIndex = 0; secIndex < list.size(); secIndex++) {
 						if (sList.get(index).equals(list.get(secIndex).getId())) {
-							System.out
-									.println("sList : " + sList.get(index) + ",  list : " + list.get(secIndex).getId());
 							wDao.insertWorkInfo(list.get(secIndex));
 							wDao.deleteTemp();
-							break;
 						}
 					}
 				}
-			} else {
+			} else
 				wDao.deleteTemp();
-			}
 			
 			wDao.deleteWorkInfo();
 			res.sendRedirect("/OurCommunity/workInfo/list");
