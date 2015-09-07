@@ -20,9 +20,8 @@ public class StudyFileRegisteCommentController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		int no = Integer.parseInt(req.getParameter("no"));
-//		HttpSession session = req.getSession();
-//		String id = (String) session.getAttribute("userId");
-		String id = req.getParameter("id");
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("userId");
 		String content = req.getParameter("comment");
 		
 		StudyFileCommentVO commentVo = new StudyFileCommentVO();
