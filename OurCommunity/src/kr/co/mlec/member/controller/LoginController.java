@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet{
 				session.setAttribute("userId", id);
 				session.setAttribute("grade", member.getGrade());
 				System.err.println( member.getGrade());
-				res.sendRedirect("/OurCommunity/jsp/main/index.html");
+				res.sendRedirect("/OurCommunity/index.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
