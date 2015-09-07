@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
@@ -55,7 +56,8 @@ public class StudyFileRegisterController extends HttpServlet{
 		StudyFileVO file = new StudyFileVO();
 
 		
-		String id = multi.getParameter("id");
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("userId");
 		String title = multi.getParameter("title");
 		String type = multi.getParameter("searchType");
 		String content = multi.getParameter("content");
