@@ -98,6 +98,12 @@ a {
 			</button>
 
 			<p />
+			
+			 <table align="right">
+      <a href = "/OurCommunity/vote/listVoteOngoing">진행중인 투표</a>
+      <a href = "/OurCommunity/vote/listVoteClosing">마감된 투표</a>
+   
+   </table>
 			<table align="center">
 				<tr>
 					<th align="center" width="200px">글번호</th>
