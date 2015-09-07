@@ -21,7 +21,8 @@
 	}
 
 	function Message() {
-		window.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지',
+		window
+				.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지',
 						'width=380, height=400,scrollbars=no, menubar=no, status=no, toolbar=no');
 	}
 </script>
@@ -56,14 +57,13 @@
 <div class="header">
 	<table class="toptable">
 		<tr>
-		<td align="left">
-            <a href="/OurCommunity/main">
-         <img style="width: 305px; height: 70px;"
-               src="/OurCommunity/image/box1.png"></a></td>
+			<td align="left"><a href="/OurCommunity/main"> <img
+					style="width: 305px; height: 70px;"
+					src="/OurCommunity/image/box1.png"></a></td>
 			<td align="right" width="60%" class="menu"><c:choose>
 					<c:when test="${empty userId}">
 						<button type="button" class="btn btn-default btn-sm"
-							onclick="location.href='/OurCommunity/main'">
+							onclick="location.href='/OurCommunity/index.jsp'">
 							<span class="glyphicon glyphicon-home"></span> Home
 						</button>
 						<button type="button" class="btn btn-default btn-sm"
@@ -79,15 +79,15 @@
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-default btn-sm"
-							onclick="location.href='/OurCommunity/main'">
+							onclick="location.href='/OurCommunity/index.jsp'">
 							<span class="glyphicon glyphicon-home"></span> Home
 						</button>
 
-						<button type="button" class="btn btn-default btn-sm"
-							onclick="location.href='/OurCommunity/jsp/login.jsp'">
-							<span class="glyphicon glyphicon-cog"></span> MyPage
-						</button>
-
+					
+							<button type="button" class="btn btn-default btn-sm"
+								onclick="location.href='/OurCommunity/jsp/mypage/myPage.jsp'">
+								<span class="glyphicon glyphicon-cog"></span> MyPage
+							</button>
 						<button type="button" class="btn btn-default btn-sm"
 							onclick='Message();'>
 							<span class="glyphicon glyphicon-envelope"></span> Message
