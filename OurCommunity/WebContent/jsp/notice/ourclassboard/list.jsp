@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+	int paging = (int) request.getAttribute("paging");
+	String search = (String) request.getAttribute("search");
+	String searchCategory = (String) request.getAttribute("searchCategory");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,15 +54,27 @@ body {
 		</c:forEach>
 	</table>
 
+	<div class="pagingDIV" align="center">
+		<%
+				for (int i = 1; i <= paging; i++) {
+			%>
+		<a
+			href="/OurCommunity/ourclassboard/list?pageNum=<%=i%>&search=<%=search%>&searchCategory=<%=searchCategory%>">[<%=i%>]
+		</a>
+		<%
+				}
+			%><p />
+	</div>
 
-	<form action="/OurCommunity/ourclassboard/search">
+
+	<form action="/OurCommunity/ourclassboard/list">
 		<table align="center">
 			<tr>
-				<td align="center"><select name="searchType">
-						<option value="title">title</option>
-						<option value="content">content</option>
-				</select> <input type="text" name="search"> <input type="submit"
-					value="검색"></td>
+				<td align="center"><select name="searchCategory">
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+				</select> <input type="text" name="search"> 
+				<input type="submit" value="검색"></td>
 			</tr>
 		</table>
 	</form>
