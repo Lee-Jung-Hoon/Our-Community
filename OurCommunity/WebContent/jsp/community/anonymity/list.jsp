@@ -96,10 +96,12 @@ a {
 		<h1 align="center">익명 게시판</h1>
 		<hr />
 		<div class="layerWrap">
+		<c:if test="${!empty userId}">
 			<button type="button" class="btn btn-default btn-sm"
 				onclick="location.href='/OurCommunity/Anonymity/writeform'">
 				<span class="glyphicon glyphicon-pencil"></span> 글등록
 			</button>
+		</c:if>
 			<p />
 
 			<div class="search_box">

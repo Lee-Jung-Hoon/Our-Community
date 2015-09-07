@@ -75,8 +75,9 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+
 .commentDIV {
-		color: black;
+	color: black;
 }
 </style>
 <style>
@@ -106,6 +107,17 @@ comm_text {
 
 </head>
 <body>
+	<c:if test="${empty id}">
+		<c:if test="${anonymity.scope eq 'm'}">
+			<script type="text/javascript">
+				function memberScope() {
+					alert("회원 공개 게시글입니다.");
+					location.href = '/OurCommunity/jsp/login.jsp';
+				}
+				memberScope();
+			</script>
+		</c:if>
+	</c:if>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
 		<h1>상세목록</h1>

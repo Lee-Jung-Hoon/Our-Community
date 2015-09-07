@@ -34,7 +34,7 @@ public class AnonymityDetailController extends HttpServlet{
 			
 			List<AnonymityCommentVO> comment = dao.selectComment(no);
 			req.setAttribute("comment", comment);
-			req.setAttribute("userId", id);
+			req.setAttribute("id", id);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/community/anonymity/detail.jsp");
 			rd.forward(req, res);
