@@ -63,6 +63,7 @@ public class NoticeBitcampListBoardController extends HttpServlet {
 				pagingNum = dao.selectBitcampBoard();
 			}
 			
+			
 			req.setAttribute("list", list);
 			
 			HttpSession session = req.getSession();
