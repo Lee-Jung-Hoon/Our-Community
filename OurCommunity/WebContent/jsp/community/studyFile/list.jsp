@@ -98,7 +98,7 @@ a {
 		<h1>학습 게시판</h1>
 		<hr />
 		<div class="layerWrap">
-			<c:if test="${grade eq '운영자'}">
+			<c:if test="${!empty userId}">
 				<button type="button" class="btn btn-default btn-sm"
 					onclick="location.href='/OurCommunity/jsp/community/studyFile/write.jsp'">
 					<span class="glyphicon glyphicon-pencil"></span> 글등록

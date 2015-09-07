@@ -83,11 +83,6 @@ a {
 	<form action="/OurCommunity/studyFile/regist" method="post" enctype="multipart/form-data">
 		<table style="height: 500;" align="center">
 			<tr>
-				<th>글쓴이</th>
-				<td colspan="3"><input type="text" size="148" name="id"/></td>
-			</tr>
-			
-			<tr>
 				<th>제목</th>
 				<td colspan="3"><input type="text" size="148" name="title" /></td>
 			</tr>
