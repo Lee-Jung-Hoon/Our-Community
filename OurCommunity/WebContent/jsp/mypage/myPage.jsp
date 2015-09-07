@@ -76,13 +76,13 @@ legend, caption {
 .layerWrap {
 	position: relative;
 	width: 1012px;
-	height: 606px;
+	height: 300px;
 	margin: 100px auto 50px;
 	overflow: hidden;
 }
 
 .layerWrap {
-	background: #2d2d2d;
+	background: black;
 }
 
 .layerInner {
@@ -91,19 +91,36 @@ legend, caption {
 }
 .layerInner section:nth-child(1) {
 	float: left;
-	width: 503px;
-	height: 606px;
-	background: red;
-	margin-right: 3px;
+	width: 491px;
+	height: 300px;
+	background: black;
+	margin-right: 30px;
+	border: white solid 1px;
+}
+.layerInner section:nth-child(1) a {
+   text-align: center;
+   line-height: 200px;
+  
 }
 
 
 .layerInner section:nth-child(2) {
 	float: left;
-	width: 503px;
-	height: 606px;
-	background: blue;
+	width: 491px;
+	height: 300px;
+	background: black;
+	border: white solid 1px;
 }
+
+.layerInner section:nth-child(2) a {
+   text-align: center;
+   line-height: 300px;
+   color: white;
+   font-size: 45px;
+   margin-left: 110px
+  
+}
+
 </style>
 </head>
 <body>
@@ -112,7 +129,40 @@ legend, caption {
 
 		<div class="layerInner">
 
-			<section> </section>
+			<section>
+				<table width="491" height="300" border="1px">
+					<tr>
+						<td height="60">
+						adsfasdf
+						</td>
+					</tr>
+					<tr>
+						<td height="60">
+						asdfadsf
+						</td>
+					</tr>
+					<tr>
+						<td height="60">
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td height="60">
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td height="60">
+						asdf
+						</td>
+					</tr>
+					<tr>
+						<td height="60">
+						
+						</td>
+					</tr>
+				</table>
+			 </section>
 
 			<section> 
 			<a href = "/OurCommunity/mypage/pesonalInfo"> 개인정보수정</a>
