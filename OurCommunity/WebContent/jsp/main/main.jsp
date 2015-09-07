@@ -1,16 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!doctype html>
+
 <html lang="KO">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <meta name="viewport" content="width=device-width">
-<title></title>
-<script src="http://www.imbc.com/commons/libs/jquery-1.11.1.min.js"></script>
+
+<title>★Welcom to BitBox★</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <!--[if lt IE 9]><script src="http://www.imbc.com/commons/libs/html5shiv.min.js"></script><![endif]-->
+
 <style type="text/css">
+
 /* reset start */
 html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
@@ -25,6 +38,27 @@ html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+}
+
+.sideBar {
+	width: 200px;
+	position: absolute;
+	top: 180px;
+	right: -100px;
+	background: #ddd;
+}
+
+.sideBar li {
+	border-bottom: 1px solid black;
+	background: blue;
+}
+
+.sideBar a {
+	display: block;
+	width: 100%;
+	height: 100px;
+	line-height: 50px;
+	color: #fff;
 }
 
 table {
@@ -82,6 +116,7 @@ button {
 	font-size: 0;
 	color: transparent;
 }
+
 /* reset end */
 .layerWrap {
 	position: relative;
@@ -111,62 +146,32 @@ button {
 	overflow: hidden;
 }
 
-.layerInner section:nth-child(1):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
+/* section: hover { */
 
-.layerInner section:nth-child(2):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
+/* 	opacity: 1; */
 
-.layerInner section:nth-child(3):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
+/* 	transition: 1s opacity ease-in 3s; */
 
-.layerInner section:nth-child(4):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
-
-.layerInner section:nth-child(5):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
-
-.layerInner section:nth-child(6):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
-
-.layerInner section:nth-child(7):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
-
-.layerInner section:nth-child(8):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
-
-.layerInner section:nth-child(9):HOVER {
-	opacity: 1;
-	transition: 1s opacity ease-in 0.5s;
-}
-
+/* } */
 .layerInner section:nth-child(1) {
-	opacity: 0.3;
 	float: left;
 	width: 403px;
 	height: 200px;
-	background: gray;
+	background: #4A48E2;
 	margin-right: 3px;
 }
 
+.layerInner section:nth-child(1) p {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: white;
+	padding-left: 10;
+	font-size: 40px;
+	font-weight: bold;
+}
+
 .layerInner section:nth-child(2) {
-	opacity: 0.3;
 	float: left;
 	width: 403px;
 	height: 403px;
@@ -174,10 +179,9 @@ button {
 }
 
 .layerInner section:nth-child(3) {
-	opacity: 0.3;
 	width: 200px;
 	height: 200px;
-	background: gray;
+	background: #DA9C2A;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -193,20 +197,27 @@ button {
 }
 
 .layerInner section:nth-child(4) {
-	opacity: 0.3;
 	width: 200px;
 	height: 403px;
-	background: gray;
+	background: #D23B2C;
 	position: absolute;
 	bottom: 0;
 	left: 0;
 }
 
+.layerInner section:nth-child(4) a {
+	text-align: center;
+	line-height: 400px;
+}
+
+.layerInner section:nth-child(4) img {
+	vertical-align: middle;
+}
+
 .layerInner section:nth-child(5) {
-	opacity: 0.3;
 	width: 200px;
 	height: 200px;
-	background: gray;
+	background: #F1CB02;
 	position: absolute;
 	bottom: 203px;
 	left: 203px;
@@ -222,50 +233,95 @@ button {
 }
 
 .layerInner section:nth-child(6) {
-	opacity: 0.3;
 	width: 403px;
 	height: 200px;
-	background: gray;
+	background: #C19EEF;
 	position: absolute;
 	bottom: 0;
 	left: 203px;
 }
 
+.layerInner section:nth-child(6) a {
+	text-align: left;
+	line-height: 100px;
+	margin-left: 5px;
+}
+
+.layerInner section:nth-child(6) img {
+	vertical-align: left top;
+}
+
 .layerInner section:nth-child(7) {
-	opacity: 0.1;
 	width: 200px;
 	height: 200px;
-	background: gray;
+	background: #4FB126;
 	position: absolute;
 	bottom: 0;
 	right: 203px;
 }
 
 .layerInner section:nth-child(8) {
-	opacity: 0.3;
 	width: 200px;
 	height: 200px;
-	background: gray;
+	background: #E65986;
 	position: absolute;
 	bottom: 203px;
 	right: 0;
+	font-size: 100px;
+}
+
+.layerInner section:nth-child(8) a {
+	text-align: center;
+	line-height: 200px;
+}
+
+.layerInner section:nth-child(8) img {
+	vertical-align: middle;
 }
 
 .layerInner section:nth-child(9) {
-	opacity: 0.3;
 	width: 200px;
 	height: 200px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	background: gray;
+	background: #2476DA;
+}
+
+.layerInner section:nth-child(9) a {
+	text-align: center;
+	line-height: 200px;
+}
+
+.layerInner section:nth-child(9) img {
+	vertical-align: middle;
+}
+
+.layer-grid {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: #000;
+	opacity: .4;
+}
+
+.bodyInner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.opacity {
+	opacity: .5;
+	background: #888;
 }
 
 .dday {
 	color: white;
 	padding-left: 10;
 	font-size: 40px;
-	color: white;
 	font-weight: bold;
 }
 
@@ -279,99 +335,259 @@ body {
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 </style>
+
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <script>
 	google.load('visualization', '1.0', {
+
 		'packages' : [ 'corechart' ]
+
 	});
 
 	google.setOnLoadCallback(drawChart);
 
 	function drawChart() {
+
 		// Create the data table.
+
 		var data = new google.visualization.DataTable();
+
 		data.addColumn('string', 'Topping');
+
 		data.addColumn('number', 'Slices');
 
 		<c:forEach var="item" items="${ilist}">
+
 		data.addRows([ [ "${item.subsection}", Number("${item.count}") ] ]);
+
 		</c:forEach>
 
 		var options = {
+
 			'title' : document.getElementById("title").innerHTML,
+
 			'width' : 200,
+
 			'height' : 200
+
 		};
+
 		// Instantiate and draw our chart, passing in some options.
+
 		var chart = new google.visualization.PieChart(document
-				.getElementById('chart_div'));
+
+		.getElementById('chart_div'));
+
 		chart.draw(data, options);
+
 	}
 </script>
+
 </head>
+
 <body>
+
 	<%@include file="/jsp/include/topMenu.jsp"%>
+
 	<div class="layerWrap">
+
 		<div class="layerInner">
+
 			<section>
-				<p align="center" class="dday">
+
+				<p align="center">
+
 					<script>
 						function dday(y, m, d) {
+
 							today = new Date();
+
 							dday = new Date(y, m - 1, d);
+
 							n = Math
+
 									.floor((dday.getTime() - today.getTime()) / 86400000) + 1;
+
 							document.write("D-" + n);
+
 						}
+
 						dday(2015, 12, 09);
 					</script>
+
 				</p>
+
 			</section>
+
 			<section></section>
+
 			<section>
+
 				<a class="a" href="/OurCommunity/gallery/list"> <img
-					style="width: 150px; height: 150px;"
-					src="/OurCommunity/image/photoImage.png">
+					style="width: 70px; height: 70px;"
+					src="/OurCommunity/image/gallery.png">
+
+				</a>
+
+			</section>
+
+			<section>
+				<a class="a" href="/OurCommunity/studyFile/list"> <img
+					style="width: 80px; height: 80px;"
+					src="/OurCommunity/image/study.png">
+
 				</a>
 			</section>
-			<section>학습자료실?</section>
+
 			<section>
+
 				<c:choose>
+
 					<c:when test="${empty id}">
+
 						<a class="a" href="/OurCommunity/jsp/login.jsp"> <img
-							style="width: 100px; height: 100px;"
-							src="/OurCommunity/image/loginImage.png">
+							style="width: 70px; height: 70px;"
+							src="/OurCommunity/image/lock.png">
+
 						</a>
+
 					</c:when>
+
 					<c:otherwise>
+
 						<a class="a" href="/OurCommunity/join/LogoutController"> <img
-							style="width: 100px; height: 100px;"
-							src="/OurCommunity/image/logoutImage.png">
+							style="width: 70px; height: 70px;"
+							src="/OurCommunity/image/unlock.png">
+
 						</a>
+
 					</c:otherwise>
+
 				</c:choose>
+
 			</section>
+
 			<section class="seDIV">
-				<span class="dday">NOTICE</span>
+
+				<span class="dday"><a class="a"
+					href="/OurCommunity/join/LogoutController"> <img
+						style="width: 70px; height: 70px;"
+						src="/OurCommunity/image/notice.png"></a></span>
+
+
+
+
+
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 				<a
 					href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"
 					class="dday">+</a>
+
 				<c:forEach var="i" items="${noticeList}">
+
 					<a style="color: black;"
 						href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}"
 						class="noticeATag">[공지]${i.title}</a>
+
 				</c:forEach>
+
 			</section>
+
 			<section id="chart_div">
+
 				<p id="title">${voteList.v_title}</p>
+
 			</section>
+
 			<section>
-				<a class="a" href="/OurCommunity/workInfo/list">취업정보</a>
+
+				<a class="a" href="/OurCommunity/workInfo/list"><img
+					style="width: 100px; height: 100px;"
+					src="/OurCommunity/image/jobInfo.png"></a>
+
 			</section>
-			<section>회원가입</section>
+
+			<section>
+
+				<c:choose>
+
+					<c:when test="${empty id}">
+
+						<a class="a" href="/OurCommunity/jsp/memberjoin.html"> <img
+							style="width: 70px; height: 70px;"
+							src="/OurCommunity/image/join.png">
+
+						</a>
+
+					</c:when>
+
+					<c:otherwise>
+
+						<a class="a" href="/OurCommunity/jsp/message/messagemain.jsp">
+							<img style="width: 70px; height: 70px;"
+							src="/OurCommunity/image/message.png">
+
+						</a>
+
+					</c:otherwise>
+
+				</c:choose>
+
+			</section>
+
 		</div>
+
 	</div>
+
+	<div class="sideBar">
+		<ul>
+			<li><a href="#">비트캠프정보</a></li>
+			<li><a href="#">반공지사항</a></li>
+			<li><a href="#"></a></li>
+			<li><a href="#">아이템4</a></li>
+		</ul>
+	</div>
+
+
+
 	<%@include file="/jsp/include/bottomMenu.jsp"%>
+
 </body>
+
+
+<script type="text/javascript">
+	//---------------- 박스 마우스오버 액션 ---------------------------------
+	var layer = $('.layer-grid');
+	$('section').on('mouseenter', function(){
+		var h = $('window').height();
+		layer.css('height',h+'px');
+		$('section').removeClass('opacity');
+		$(this).siblings().addClass('opacity');
+	});
+	$('.layerWrap').on('mouseleave', function(){
+		layer.css('height','auto');
+		$('section').removeClass('opacity');
+	});
+	//-------------------------------------------------
+
+	//---------------- 사이드메뉴 마우스오버 ---------------------------------
+	$('.sideBar a').on('mouseenter',function(){
+			$(this).parent().animate({
+					'margin-left':'-100px', 
+					backgroundColor: 'red'	// 바꿀색상
+				}, 400			// 시간설정 마우스 오버 시간
+			).siblings().animate({'margin-left':0});
+	}).on('mouseleave',function(){
+			$(this).parent().animate({
+					'margin-left':0,
+					backgroundColor: 'blue' // 되돌릴색상		
+			}, 400			// 시간설정 마우스 아웃 시간
+		);
+	});
+</script>
+
+
+
 </html>
