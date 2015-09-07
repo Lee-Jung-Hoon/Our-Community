@@ -6,18 +6,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <style type="text/css">
-html {
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
-	background:
-		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	font-size: 15px;
+	
+	color : white;
+	background:	url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 
 body {
 	color: white;
+}
+
+table {
+	
+	color : white;
 }
 
 .bitcampdiv table {
@@ -33,13 +48,15 @@ a {
 	padding: 6px 10px;
 	border: 0.5px solid silver;
 	overflow: hidden;
+	color: balck;
 	background: #373737;
 }
 
 .bitcampdiv table th {
-	padding: 13px 10px;
+	text-align: center; padding : 13px 10px;
 	background: #5A5A5A;
 	border: 0.5px solid silver;
+	padding: 13px 10px;
 }
 
 .bitcampdiv h1 {
@@ -68,6 +85,11 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+
+table {
+	width: 100%;
+	height: 100%
+}
 </style>
 
 <script type="text/javascript">
@@ -89,22 +111,33 @@ table {
 </style>
 </head>
 <body>
+<c:if test="${empty id}">
+		<c:if test="${scope eq '멤버공개'}">
+			<script type="text/javascript">
+				function memberScope() {
+					alert("회원 공개 게시글입니다.");
+					location.href = '/OurCommunity/jsp/login.jsp';
+				}
+				memberScope();
+			</script>
+		</c:if>
+	</c:if>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
 		<h1>학습 게시판</h1>
 		<hr />
 		<div class="layerWrap">
 			<c:set var="file" value="${file}" />
-			<%-- 		<c:if test="${grade eq '회원'}"> --%>
-			<%-- 		</c:if> --%>
-			<input type='button' value='글쓰기'
-				onclick="location.href='/OurCommunity/jsp/community/studyFile/write.jsp'">
+				<c:if test="${grade eq '회원'}">
+					<input type='button' value='글쓰기'
+						onclick="location.href='/OurCommunity/jsp/community/studyFile/write.jsp'">
+				</c:if>
 			<input type='button' value='목록'
 				onclick="location.href='/OurCommunity/studyFile/list'">
-			<%-- 		<c:if test="${grade eq '회원'}"> --%>
-			<%-- 		</c:if> --%>
-			<input type="button" value="수정" onclick="doModify();"> <input
-				type="button" value="글 삭제" onClick="doDelete();">
+			<c:if test="${grade eq '회원'}">
+				<input type="button" value="수정" onclick="doModify();"> <input
+						type="button" value="글 삭제" onClick="doDelete();">
+			</c:if>
 			<hr />
 
 			<table>
@@ -139,22 +172,6 @@ table {
 				</tr>
 
 			</table>
-
-			<%-- 			${board.title} | <a --%>
-			<!-- 				href='/OurCommunity/bitcampboard/NoticeBitcampListBoardController'>비트캠프 -->
-			<!-- 				공지사항</a> -->
-			<!-- 			<hr /> -->
-			<!-- 			<small> <a href='#' -->
-			<%-- 				onclick="window.open('/MyProject/ca/MemberInfoController?id=${board.id}', '회원정보',  --%>
-			<%-- 					'width=300, height=300,scrollbars=no, menubar=no, status=no, toolbar=no');">${board.id}</a> --%>
-			<%-- 				| 조회 ${board.checkCnt} | 추천 0 | ${board.regDate} --%>
-			<!-- 			</small> -->
-			<!-- 			<hr /> -->
-			<%-- 			<br /> ${board.content}<br /> <br /> <br /> <br /> <br /> <br /> --%>
-			<!-- 			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> -->
-			<!-- 			<br /> -->
-			<!-- 			<hr /> -->
-
 		<p>
 			<form action="/OurCommunity/studyFile/comment" method="post">
 				<div>
@@ -168,16 +185,16 @@ table {
 							<th width="10%">${cList.id}</th>
 							<td width="1100px">${cList.content}</td>
 							<td width="200px">${cList.regDate}</td>
-<%-- 							<c:if test="${id eq cList.id}"> --%>
-<%-- 							</c:if> --%>
+							<c:if test="${id eq cList.id}">
 								<td width="50px"><a
 									href="/OurCommunity/studyFile/deleteComment?commentNo=${cList.commentNo}&no=${cList.no}">삭제</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 					<tr>
 						<th>댓글</th>
 						<td colspan="2"><input type='text' size='178px'
-							style='height: 100px' name="comment" placeholder="뎃글을입력하세요" /></td>
+							style='height: 100px' name="comment" placeholder="댓글을입력하세요" /></td>
 						<td><input type="submit" value="작성" size='350px'
 							style='height: 100px' /></td>
 					</tr>
