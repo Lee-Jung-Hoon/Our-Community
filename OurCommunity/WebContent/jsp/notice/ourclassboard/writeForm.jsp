@@ -8,7 +8,7 @@
 
 <body>
 <%@ include file="/jsp/include/topMenu.jsp" %>
-	<h1>Bitcamp Board</h1>
+	<h1>Class Board</h1>
 	<hr />
 	
 	<a href="/OurCommunity/ourclassboard/list"><button>목록</button></a> 
@@ -16,9 +16,8 @@
 		<table border="1" align="center">
 					<tr>
 						<th><select name="boardhead">
-								<option value="공지">공지</option>
-								<option value="자유">자유</option>
-								<option value="자유2">자유2</option>
+								<option value="공지사항">공지사항</option>
+								<option value="자유게시판">자유게시판</option>
 						</select></th>
 					</tr>
 
@@ -31,7 +30,7 @@
 						<th align="center">CONTENT</th>
 						<td><textarea name="content" cols="150" rows="12" placeholder="이곳에 내용을 입력하세요"></textarea></td>
 					</tr>
-
+					
 					<tr align="center">
 						<td colspan="2"><input type="submit" value="글등록">
 							<input type=reset value="재작성"></td>

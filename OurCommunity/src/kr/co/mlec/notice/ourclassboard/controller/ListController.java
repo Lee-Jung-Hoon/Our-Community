@@ -21,7 +21,6 @@ public class ListController extends HttpServlet {
 			res.setContentType("text/html; charset=utf-8");
 			BoardDAO dao = new BoardDAO();
 			
-			
 			try {
 				String type = req.getParameter("type");
 				if (type != null) {
