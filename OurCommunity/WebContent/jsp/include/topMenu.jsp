@@ -3,6 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 	function dday(y, m, d) {
 		today = new Date();
@@ -13,11 +20,13 @@
 	}
 
 	function Message() {
-		window.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지',
-						'width=380, height=300,scrollbars=no, menubar=no, status=no, toolbar=no');
+		window
+				.open('/OurCommunity/jsp/message/messagemain.jsp', '쪽지',
+						'width=380, height=400,scrollbars=no, menubar=no, status=no, toolbar=no');
 	}
 </script>
 <style>
+
 
 .dday {
 	padding-left: 10;
@@ -54,19 +63,37 @@
 			</script></td>
 			<td align="right" width="60%" class="menu"><c:choose>
 					<c:when test="${empty userId}">
-						<input type="button" value="Join Us"
+						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/jsp/memberjoin.html'">
-						<input type="button" value="Login"
+							<span class="glyphicon glyphicon-user"></span> MyPage
+						</button>
+
+						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/jsp/login.jsp'">
+							<span class="glyphicon glyphicon-log-in"></span> Login
+						</button>
+
 					</c:when>
 					<c:otherwise>
-						<input type="button" value="Home"
+						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/jsp/main/index.html'">
-						<input type="button" value="MyPage"
+							<span class="glyphicon glyphicon-home"></span> Home
+						</button>
+
+						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/jsp/login.jsp'">
-						<input type="button" value="Message" onclick='Message();'>
-						<input type="button" value="LogOut"
+							<span class="glyphicon glyphicon-cog"></span> MyPage
+						</button>
+
+						<button type="button" class="btn btn-default btn-sm"
+							onclick='Message();'>
+							<span class="glyphicon glyphicon-envelope"></span> Message
+						</button>
+
+						<button type="button" class="btn btn-default btn-sm"
 							onclick="location.href='/OurCommunity/join/LogoutController'">
+							<span class="glyphicon glyphicon-log-out"></span> LogOut
+						</button>
 					</c:otherwise>
 				</c:choose></td>
 		</tr>

@@ -5,6 +5,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+body {
+	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
+		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	background:
+		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+
+	color: white;
+}
+
+.bitcampdiv table {
+	border-top: 5px solid #cd5d31;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+.bitcampdiv table td {
+    padding-left: 10px;
+	border-bottom: 1px solid #5A5A5A;
+    padding: 15px 0;
+    white-space: normal;
+}
+
+.bitcampdiv table th {
+	text-align:center;
+	color : white;
+	border-bottom: 1px solid #5A5A5A;
+    padding: 15px 0;
+    white-space: normal;
+    background: #1F1F1F;
+}
+
+.bitcampdiv h1 {
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
+}
+
+.search_box {
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.layerWrap {
+	position: relative;
+	width: 1400px;
+	margin: 100px auto 50px;
+	overflow: hidden;
+	background: #2d2d2d;
+	padding: 40px 40px;
+}
+</style>
+
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=f0040f951e55ee311e570465605bc234&libraries=services"></script>
 <script>
@@ -80,29 +143,42 @@
 </script>
 </head>
 <body>
+	<%@ include file="/jsp/include/topMenu.jsp"%>
+	<div class="bitcampdiv">
+	<h1>오늘의 맛집 추천</h1>
+	<hr/>
+	<div class="layerWrap">
 	<form action="/OurCommunity/menu/regist" method="post">
-		<table border="1" align="center">
+		<table align="center">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" size=70 /></td>
+				<td colspan="3"><input type="text" name="title" size="148" /></td>
 			</tr>
 			<tr>
 				<th>메뉴정보</th>
-				<td><textarea rows="6" cols="72" name="content"></textarea></td>
+				<td colspan="3"><textarea rows="30" cols="150" name="content"></textarea></td>
 			</tr>
 			<tr>
 				<th>위치설정</th>
-				<td><input type="hidden" id="latitude" name="latitude" /> <input
+				<td colspan="3"><input type="hidden" id="latitude" name="latitude" /> <input
 					type="hidden" id="longitude" name="longitude" /> <input
-					type="hidden" id="restaurantName" name="restaurantName" /> <a
-					href="#" onclick="doMap();">지도등록</a>
+					type="hidden" id="restaurantName" name="restaurantName" /> 
+					
+					 <button type="button" class="btn btn-default btn-sm" onclick="doMap()">
+         				 <span class="glyphicon glyphicon-map-marker"></span> 위치 검색/설정
+        			</button>
+					
 					<div id="map" style="width: 500px; height: 400px;"></div></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="등록" />
+				<td colspan="3" align="right"><button type="submit" class="btn btn-default btn-sm">
+								<span class="glyphicon glyphicon-floppy-disk"></span> 등록
+							</button>
 				</td>
 			</tr>
 		</table>
 	</form>
+	</div></div>
+	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>

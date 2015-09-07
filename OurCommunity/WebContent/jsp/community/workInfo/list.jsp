@@ -7,66 +7,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-html {
+
+<style type="text/css">
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
-	background: url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-}
+	font-size: 15px;
 	
+	color : white;
+	background:	url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+}
+
 body {
+	color: white;
+}
+
+table {
+	
 	color : white;
 }
 
 .bitcampdiv table {
-    border-top: 2px solid #cd5d31;
+	border-top: 5px solid #cd5d31;
 }
 
-a {
-	color: white;	
-	text-decoration : none;
+table a {
+	color: white;
+	text-decoration: none;
 }
 
 .bitcampdiv table td {
-    padding: 6px 10px;
-    border: 1px solid #1f1f1f;
-    overflow: hidden;
-    text-align: center;
-    background: #373737;
+	padding: 6px 10px;
+	border: 0.5px solid silver;
+	overflow: hidden;
+	background: #373737;
 }
 
 .bitcampdiv table th {
-    padding: 13px 10px;
-    background: #1f1f1f;
-    border: 1px solid #2d2d2d;
+	text-align: center; padding : 13px 10px;
+	background: #5A5A5A;
+	border: 0.5px solid silver;
+	padding: 13px 10px;
 }
 
 .bitcampdiv h1 {
-    font-size: 55px;
-    line-height: 35px;
-    height: 41px;
-    padding: 42px 0;
-    text-align: center;
-    color: #fff;
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
 }
+
 .search_box {
-    background: #cd5d31;
-    padding: 15px 20px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-
-.SearchBtn {
-    border: 0px;
-    font-size: 0px;
-    width: 78px;
-    height: 28px;
-    color : white;
-    vertical-align: middle;
-    border: 1px solid #48556e; 
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
 }
 
 .layerWrap {
@@ -74,10 +73,19 @@ a {
 	width: 1400px;
 	margin: 100px auto 50px;
 	overflow: hidden;
-    background: #2d2d2d;
-    padding: 40px 40px;
+	background: #2d2d2d;
+	padding: 40px 40px;
 }
 
+table {
+	width: 100%;
+	height: 100%
+}
+
+.pagingDIV a{
+	color: white;
+	font-size: 20px;
+}
 </style>
 
 <body>
@@ -95,7 +103,9 @@ a {
 							<option value="title">제목</option>
 							<option value="company">회사이름</option>
 					</select> <input type="text" name="content" /> 
-					<input type="submit" value="검색" /></td>
+					<button type="submit" class="btn btn-default btn-sm">
+          			<span class="glyphicon glyphicon-search"></span> 검색
+        		</button></td>
 		</form>
 		</div>
 		<p>
@@ -120,7 +130,7 @@ a {
 			</c:forEach>
 		</table>
 		<hr/>
-		<div style="text-align: center">
+		<div class="pagingDIV" style="text-align: center">
 			<c:forEach var="index" begin="1" end="${pagingSize}">
 				<a
 					href="/OurCommunity/workInfo/list?pagenum=${index}&searchlist=${search}&content=${content}">[${index}]</a>

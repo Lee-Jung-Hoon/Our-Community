@@ -46,75 +46,56 @@
 </script>
 
 
-
-
-<style>
-
-table {
-	width: 100%;
-	height: 100%;
-}
-</style>
-
-<style>
-html {
+<style type="text/css">
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
-	background: url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-}
-	
-body {
-	color : white;
+	background:
+		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	color: white;
 }
 
 .bitcampdiv table {
-    border-top: 5px solid #cd5d31;
+	border-top: 5px solid #cd5d31;
 }
 
 a {
-	color: white;	
-	text-decoration : none;
+	color: white;
+	text-decoration: none;
 }
 
 .bitcampdiv table td {
-    padding: 6px 10px;
-    border: 1px solid #1f1f1f;
-    overflow: hidden;
-    background: #373737;
+	padding-left: 10px;
+	border-bottom: 1px solid #5A5A5A;
+	padding: 15px 0;
+	white-space: normal;
 }
 
 .bitcampdiv table th {
-    padding: 13px 10px;
-    background: #1f1f1f;
-    border: 1px solid #2d2d2d;
+	border-bottom: 1px solid #5A5A5A;
+	padding: 15px 0;
+	white-space: normal;
+	background: #1F1F1F;
+	color: white;
+	text-align: center;
 }
 
 .bitcampdiv h1 {
-    font-size: 55px;
-    line-height: 35px;
-    height: 41px;
-    padding: 42px 0;
-    text-align: center;
-    color: #fff;
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
 }
+
 .search_box {
-    background: #cd5d31;
-    padding: 15px 20px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-
-.SearchBtn {
-    border: 0px;
-    font-size: 0px;
-    width: 78px;
-    height: 28px;
-    color : white;
-    vertical-align: middle;
-    border: 1px solid #48556e; 
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
 }
 
 .layerWrap {
@@ -122,47 +103,59 @@ a {
 	width: 1400px;
 	margin: 100px auto 50px;
 	overflow: hidden;
-    background: #2d2d2d;
-    padding: 40px 40px;
+	background: #2d2d2d;
+	padding: 40px 40px;
 }
 
+.scope {
+	color: white;
+}
 </style>
+
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
-		<div class="bitcampdiv">
-	<h1 align="center">글 작성</h1>
-	<hr />
-	<br />
+	<div class="bitcampdiv">
+		<h1 align="center">글 작성</h1>
+		<hr />
+		<br />
 		<div class="layerWrap">
 			<form action="/OurCommunity/vote/registVote" name="form"
 				method="post">
-				<table>
+				<table align="center">
 					<tr>
 						<th align="center">제목</th>
 						<td colspan="3"><input name="v_title" size="148" name="title" /></td>
 					</tr>
 					<tr>
 						<th align="center">마감일</th>
-						<td colspan="3"><input type="text" name="end_date" size="60" placeholder="예)20150831"></td>
+						<td colspan="3"><input type="text" name="end_date" size="60"
+							placeholder="예)20150831"></td>
 					</tr>
 					<tr>
 						<th>투표항목추가</th>
-						<td><input type="button" name = "addTextBox" value="항목 추가" onClick="addTB();"/>
-						<br /> </td>
+						<td>
+							<button type="button" class="btn btn-default btn-sm"
+								onClick="addTB();">
+								<span class="glyphicon glyphicon-plus" /></span> 투표 추가
+							</button>
+						</td>
 					</tr>
 					<tr>
 						<th align="center">투표항목</th>
-						<td id = "tableTD"></td>
+						<td id="tableTD"></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="right"><input type="button" name="button"
-										value="등록" onClick="frmCheck();"></td>
+
+						<td colspan="2" align="right"><button type="button"
+								class="btn btn-default btn-sm" onClick="frmCheck();">
+								<span class="glyphicon glyphicon-floppy-disk"></span> 등록
+							</button></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-	</div>		
+	</div>
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>

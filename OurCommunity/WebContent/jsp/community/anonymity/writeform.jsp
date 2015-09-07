@@ -6,14 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-html {
+
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
-}
-
-body {
 	color: white;
 }
 
@@ -27,17 +25,19 @@ a {
 }
 
 .bitcampdiv table td {
-	padding: 6px 10px;
-	border: 1px solid #1f1f1f;
-	overflow: hidden;
-	text-align: center;
-	background: #373737;
+    padding-left: 10px;
+	border-bottom: 1px solid #5A5A5A;
+    padding: 15px 0;
+    white-space: normal;
 }
 
 .bitcampdiv table th {
-	padding: 13px 10px;
-	background: #5A5A5A;
-	border: 1px solid #2d2d2d;
+	border-bottom: 1px solid #5A5A5A;
+    padding: 15px 0;
+    white-space: normal;
+    background: #1F1F1F;
+    color: white;
+    text-align: center;
 }
 
 .bitcampdiv h1 {
@@ -66,6 +66,12 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+
+.scope {
+	color: white;
+}
+</style>
+
 </style>
 </head>
 <body><%@ include file="/jsp/include/topMenu.jsp"%>
@@ -90,13 +96,16 @@ a {
 
          <tr>
             <th>공개 설정</th>
-            <td colspan="3" align="center">
+            <td class="scope" colspan="3" align="center">
             <input type="radio" name="scope"value="t" checked="checked" /> 전체공개 
             <input type="radio" name="scope" value="m" /> 멤버공개
          </tr>
 
          <tr>
-            <td colspan="3" align="right"><input type="submit" value="등록" ></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="right"><input type="submit" value="등록" ></td>
       </table>
    </form>
    </div></div>

@@ -38,9 +38,11 @@ public class NoticeBitcampDetailBoardController extends HttpServlet{
 			HttpSession session = req.getSession();
 			String id = (String) session.getAttribute("userId");
 			String grade = (String) session.getAttribute("grade");
+			String scope = (String) board.getScope();
 			System.err.println(grade);
 			req.setAttribute("grade", grade);
 			req.setAttribute("id", id);
+			req.setAttribute("scope", scope);
 			req.setAttribute("list", list);
 			RequestDispatcher rd = req.getRequestDispatcher("/jsp/notice/bitcampboard/detailnoticebitcampboard.jsp");
 			rd.forward(req, res);

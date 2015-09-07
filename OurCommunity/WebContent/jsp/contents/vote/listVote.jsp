@@ -9,66 +9,66 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style>
-html {
+<style type="text/css">
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
-	background: url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	background:
+		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
+	font-size: 15px;
+	color: white;
 }
-	
-body {
-	color : white;
+
+table {
+	color: white;
+}
+
+table a {
+	color: white;
 }
 
 .bitcampdiv table {
-    border-top: 5px solid #cd5d31;
+	border-top: 5px solid #cd5d31;
 }
 
 a {
-	color: white;	
-	text-decoration : none;
+	color: white;
+	text-decoration: none;
 }
 
 .bitcampdiv table td {
-    padding: 6px 10px;
-    border: 1px solid #1f1f1f;
-    overflow: hidden;
-    text-align: center;
-    background: #373737;
+	color: white;
+	padding: 6px 10px;
+	border: 0.5px solid #1f1f1f;
+	overflow: hidden;
+	text-align: center;
+	background: #373737;
 }
 
 .bitcampdiv table th {
-    padding: 13px 10px;
-    background: #1f1f1f;
-    border: 1px solid #2d2d2d;
+	color: white;
+	text-align: center;
+	padding: 13px 10px;
+	background: #1f1f1f;
+	border: 0.5px solid #2d2d2d;
 }
 
 .bitcampdiv h1 {
-    font-size: 55px;
-    line-height: 35px;
-    height: 41px;
-    padding: 42px 0;
-    text-align: center;
-    color: #fff;
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
 }
+
 .search_box {
-    background: #cd5d31;
-    padding: 15px 20px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-
-.SearchBtn {
-    border: 0px;
-    font-size: 0px;
-    width: 78px;
-    height: 28px;
-    color : white;
-    vertical-align: middle;
-    border: 1px solid #48556e; 
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
 }
 
 .layerWrap {
@@ -76,54 +76,59 @@ a {
 	width: 1400px;
 	margin: 100px auto 50px;
 	overflow: hidden;
-    background: #2d2d2d;
-    padding: 40px 40px;
+	background: #2d2d2d;
+	padding: 40px 40px;
 }
 
+.pagingDIV a {
+	color: white;
+	font-size: 20px;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
-	<h1>투표 게시판</h1>
-	<small>해당 게시판은 비트캠프 자바 73기의 투표 게시판입니다.</small>
-	<hr />
-	<div class="layerWrap">
-	<input type="button" value="글쓰기"
+		<h1>투표 게시판</h1>
+		<hr />
+		<div class="layerWrap">
+			<button type="button" class="btn btn-default btn-sm"
 				onclick="location.href='/OurCommunity/jsp/contents/vote/registVoteForm.jsp'" />
+			<span class="glyphicon glyphicon-pencil"></span> 글등록
+			</button>
+
 			<p />
-	<table align="center">
-		<tr>
-			<th align="center" width="200px">글번호</th>
-			<th align="center" width="600px">제목</th>
-			<th align="center" width="300px">마감일</th>
-			<th align="center" width="300px">작성자</th>
-			<th align="center" width="200px">조회수</th>
-		</tr>
-		<c:forEach var="list" items="${list}">
-			<tr align="center">
-				<td>${list.v_no}</td>
-				<td><a href="/OurCommunity/vote/detailVote?v_no=${list.v_no}">${list.v_title}</a></td>
-				<td>${list.end_date}</td>
-				<td>${list.id}</td>
-				<td>${list.v_clicks}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<hr />
-	
-	<div align="center">
-	<%
+			<table align="center">
+				<tr>
+					<th align="center" width="200px">글번호</th>
+					<th align="center" width="600px">제목</th>
+					<th align="center" width="300px">마감일</th>
+					<th align="center" width="300px">작성자</th>
+					<th align="center" width="200px">조회수</th>
+				</tr>
+				<c:forEach var="list" items="${list}">
+					<tr align="center">
+						<td>${list.v_no}</td>
+						<td><a href="/OurCommunity/vote/detailVote?v_no=${list.v_no}">${list.v_title}</a></td>
+						<td>${list.end_date}</td>
+						<td>${list.id}</td>
+						<td>${list.v_clicks}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<hr />
+
+			<div align="center" class="pagingDIV">
+				<%
 				for (int i = 1; i <= paging; i++) {
 			%>
-			<a
-				href="/OurCommunity/vote/listVote?pageNum=<%=i%>">[<%=i%>]
-			</a>
-			<%
+				<a href="/OurCommunity/vote/listVote?pageNum=<%=i%>">[<%=i%>]
+				</a>
+				<%
 				}
 			%><p />
+			</div>
 		</div>
-	</div>
 	</div>
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>

@@ -8,14 +8,20 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-html {
+body {
 	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
 		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	font-size: 15px;
+	color: white;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
 
 body {
+	color: white;
+}
+
+table {
 	color: white;
 }
 
@@ -36,9 +42,11 @@ a {
 }
 
 .bitcampdiv table th {
+	text-align: center;
 	padding: 13px 10px;
 	background: #5A5A5A;
 	border: 0.5px solid silver;
+	padding: 13px 10px;
 }
 
 .bitcampdiv h1 {
@@ -70,101 +78,136 @@ a {
 
 table {
 	width: 100%;
+	height: 100%
 }
 </style>
 
 <script type="text/javascript"
 	src="//apis.daum.net/maps/maps3.js?apikey=f0040f951e55ee311e570465605bc234&libraries=services"></script>
+
+<script type="text/javascript">
+	function doDelete() {
+		if (confirm("게시물을 삭제하시겠습니까?")) {
+			location.href = "/OurCommunity/menu/delete?num=${menu.num}";
+		}
+	}
+	function doModify() {
+		if (confirm("게시물을 수정하시겠습니까?")) {
+			location.href = '/OurCommunity/mod?num=${menu.num}';
+		}
+	}
+</script>
 </head>
 
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
-			<h1>맛집 게시판</h1>
-			<hr />
+		<h1>맛집 게시판</h1>
+		<hr />
 		<div class="layerWrap">
-				<a href="/OurCommunity/jsp/contents/menu/registForm.jsp">등록</a> <a
-					href="/OurCommunity/mod?num=${menu.num}">수정</a> <a
-					href="/OurCommunity/menu/delete?num=${menu.num}">삭제</a>
-				<table align="center">
-					<tr>
-						<th>장소</th>
-						<td colspan="4">${menu.restaurantName}</td>
-					</tr>
-					<tr>
-						<th>제목</th>
-						<td colspan="4">${menu.title}</td>
-					</tr>
-					<tr>
-						<th>작성일</th>
-						<td colspan="4">${menu.regDate}</td>
-					</tr>
-					<tr>
-						<th>작성자</th>
-						<td colspan="4">${menu.id}</td>
-					</tr>
-					<tr>
-						<th>내용 및 위치</th>
-						<td >
-							<div id="map" style="width: 520px; height: 420px;"></div> <input 
-							type="hidden" id="latitude" value="${menu.latitude}" /> <input
-							type="hidden" id="longitude" value="${menu.longitude}" /> <script>
-								var container = document.getElementById('map');
-								var latitude = document
-										.getElementById("latitude");
-								var longitude = document
-										.getElementById("longitude");
-								var options = {
-									center : new daum.maps.LatLng(
-											latitude.value, longitude.value),
-									level : 3
-								};
-								var map = new daum.maps.Map(container, options);
-								displayMarker(latitude.value, longitude.value);
 
-								function displayMarker(latitude, longitude) {
-									var marker = new daum.maps.Marker({
-										map : map,
-										position : new daum.maps.LatLng(
-												latitude, longitude)
-									});
-								}
-							</script>
-							<p>
-							${menu.content}
-						</td>
-					</tr>
-				</table>
-				<hr />
-				<h1 align="center">댓글</h1>
-				<table style="width: 50%" border="1" align="center">
+			<c:if test="${!empty id}">
+				<button type="button" class="btn btn-default btn-sm"
+					onclick="location.href='/OurCommunity/jsp/contents/menu/registForm.jsp'">
+					<span class="glyphicon glyphicon-pencil"></span> 글등록
+				</button>
+			</c:if>
+			<button type="button" class="btn btn-default btn-sm"
+				onclick="location.href='/OurCommunity/menu/list'">
+				<span class="glyphicon glyphicon-list-alt"></span> 목록
+			</button>
+			<c:if test="${id eq menu.id}">
+				<button type="button" class="btn btn-default btn-sm"
+					onclick="doModify();">
+					<span class="glyphicon glyphicon-edit"></span> 수정
+				</button>
+				<button type="button" class="btn btn-default btn-sm"
+					onclick="doDelete();">
+					<span class="glyphicon glyphicon-trash"></span> 글 삭제
+				</button>
+			</c:if>
+
+
+			<p>
+			<table align="center">
+				<tr>
+					<th>장소</th>
+					<td colspan="4">${menu.restaurantName}</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td colspan="4">${menu.title}</td>
+				</tr>
+				<tr>
+					<th>작성일</th>
+					<td colspan="4">${menu.regDate}</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td colspan="4">${menu.id}</td>
+				</tr>
+				<tr>
+					<th>내용 및 위치</th>
+					<td>
+						<div id="map" style="width: 520px; height: 420px;"></div> <input
+						type="hidden" id="latitude" value="${menu.latitude}" /> <input
+						type="hidden" id="longitude" value="${menu.longitude}" /> <script>
+							var container = document.getElementById('map');
+							var latitude = document.getElementById("latitude");
+							var longitude = document
+									.getElementById("longitude");
+							var options = {
+								center : new daum.maps.LatLng(latitude.value,
+										longitude.value),
+								level : 3
+							};
+							var map = new daum.maps.Map(container, options);
+							displayMarker(latitude.value, longitude.value);
+
+							function displayMarker(latitude, longitude) {
+								var marker = new daum.maps.Marker({
+									map : map,
+									position : new daum.maps.LatLng(latitude,
+											longitude)
+								});
+							}
+						</script>
+						<p>${menu.content}
+					</td>
+				</tr>
+			</table>
+			<p>
+			<table>
+				<c:forEach var="comment" items="${list}">
 					<tr>
-						<th>댓글</th>
-						<th>내용</th>
-						<th>등록일</th>
-					</tr>
-					<c:forEach var="comment" items="${list}">
-						<tr>
-							<td align="center" width="15%">${comment.id}</td>
-							<td align="center" width="55%">${comment.menuComment}</td>
-							<td align="center" width="25%">${comment.commentDate}</td>
+						<th width="10%">${comment.id}</th>
+						<td width="1100px">${comment.menuComment}</td>
+						<td width="200px">${comment.commentDate}</td>
+						<c:if test="${id eq comment.id}">
 							<td width="5"><a
-								href="/OurCommunity/comment/delete?no=${comment.no}&num=${menu.num}">X</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-				<form action="/OurCommunity/comment/regist" method="post">
-					<table style="height: 500;" align="center">
-
+								href="/OurCommunity/comment/delete?no=${comment.no}&num=${menu.num}">삭제</a></td>
+						</c:if>
+					</tr>
+				</c:forEach>
+				<c:if test="${!empty id}">
+					<form action="/OurCommunity/comment/regist" method="post">
+						<input type="hidden" size="15" name="id" value="${id}" />
 						<tr>
-							<td><input type="text" size="15" name="id" /></td>
-							<td colspan="3"><input type="text" size="80" name="content" /></td>
-							<td align="right"><input type="submit" value="등록"> <input
-								type="hidden" name="num" value="${menu.num}" /></td>
+							<th>댓글</th>
+							<input type="hidden" value="${board.no}" name="no" />
+							<td colspan="2"><input type='text' size='178px'
+								style='height: 100px' name="content" placeholder="댓글을 입력하세요." /></td>
+							<td><input type="submit" value="작성" size='350px'
+								style='height: 100px' /></td>
+							<input type="hidden" name="num" value="${menu.num}" />
+							</td>
 						</tr>
-					</table>
-				</form>
-			</div>
-			<%@ include file="/jsp/include/bottomMenu.jsp"%>
+					</form>
+				</c:if>
+			</table>
+
+
+		</div>
+		<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>

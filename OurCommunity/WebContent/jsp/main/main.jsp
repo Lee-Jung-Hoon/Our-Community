@@ -273,7 +273,8 @@ button {
 	display: block
 }
 
-html {
+body {
+	color: white;
 	background:
 		url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
@@ -350,14 +351,14 @@ html {
 					</c:otherwise>
 				</c:choose>
 			</section>
-			<section>
+			<section class="seDIV">
 				<span class="dday">NOTICE</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a
 					href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"
 					class="dday">+</a>
 				<c:forEach var="i" items="${noticeList}">
-					<a
+					<a style="color: black;"
 						href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}"
 						class="noticeATag">[공지]${i.title}</a>
 				</c:forEach>
