@@ -165,7 +165,7 @@ legend, caption {
 			 </section>
 
 			<section> 
-			<a href = "/OurCommunity/mypage/pesonalInfo"> 개인정보수정</a>
+			<a href = "/OurCommunity/mypage/personalInfo"> 개인정보수정</a>
 			</section>
 
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
