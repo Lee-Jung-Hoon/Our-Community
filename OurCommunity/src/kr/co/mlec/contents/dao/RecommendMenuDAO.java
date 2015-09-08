@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import kr.co.mlec.contents.vo.MenuCommentVO;
 import kr.co.mlec.contents.vo.RecommendMenuVO;
+import kr.co.mlec.mypage.dao.MemberHistoryDAO;
 import kr.co.mlec.util.ConnectionPool;
 
 public class RecommendMenuDAO {
@@ -27,6 +28,8 @@ public class RecommendMenuDAO {
 			pstmt.setString(index++, menu.getLongitude());
 			pstmt.executeUpdate();
 
+			MemberHistoryDAO dao = new MemberHistoryDAO();
+			dao.insertMemberHistory(menu.getId(),  menu.getTitle(), "맛집 추천");
 		} catch (Exception e) {
 			throw e;
 		} finally {
