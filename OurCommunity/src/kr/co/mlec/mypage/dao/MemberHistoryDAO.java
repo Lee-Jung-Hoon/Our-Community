@@ -18,7 +18,7 @@ public class MemberHistoryDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
-			String sql = "select id, title, board, REG_DATE "
+			String sql = "select id, title, board, REG_DATE, no "
 					    + " from t_member_history_board "
 					    + " where id = ? ";
 			pstmt = con.prepareStatement(sql);
@@ -30,6 +30,7 @@ public class MemberHistoryDAO {
 				member.setBoard(rs.getString("board"));
 				member.setTitle(rs.getString("title"));
 				member.setRegDate(rs.getString("reg_date"));
+				member.setNo(rs.getString("no"));
 				list.add(member);
 			}
 		} catch (Exception e) {
@@ -73,17 +74,18 @@ public class MemberHistoryDAO {
 		return list;
 	}
 
-	public void insertMemberHistory(String id, String title, String board) throws Exception {
+	public void insertMemberHistory(String id, String title, String board, String num) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ConnectionPool.getConnection();
 			String sql = "insert into t_member_history_board(no, id, title, board) "
-					+ " values(seq_t_member_history_board_no.nextVal, ?, ?, ?) ";
+					+ " values(?, ?, ?, ?) ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, title);
-			pstmt.setString(3, board);
+			pstmt.setString(1, num);
+			pstmt.setString(2, id);
+			pstmt.setString(3, title);
+			pstmt.setString(4, board);
 			pstmt.executeQuery();
 		} catch (Exception e) {
 			throw e;

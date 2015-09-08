@@ -34,8 +34,17 @@ public class BoardDAO {
 			pstmt.setString(index++, board.getScope());
 			pstmt.executeUpdate();
 
+			String num = null;
+			sql = " select seq_t_notice_class_board_no.currVal "
+					+ " from dual";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				num = rs.getString("currVal");
+			}
+			
 			MemberHistoryDAO dao = new MemberHistoryDAO();
-			dao.insertMemberHistory(board.getId(),  board.getTitle(), "우리반 게시판");
+			dao.insertMemberHistory(board.getId(),  board.getTitle(), "우리반 게시판", num);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

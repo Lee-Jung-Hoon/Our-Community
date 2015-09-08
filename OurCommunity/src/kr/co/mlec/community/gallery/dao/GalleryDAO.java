@@ -34,8 +34,17 @@ public class GalleryDAO {
 			pstmt.setString(index++, vo.getOriginFileName());
 			pstmt.setString(index++, vo.getFilePath());
 			
+			String num = null;
+			sql = " select s_community_Gallery_board.currVal "
+					+ " from dual";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				num = rs.getString("currVal");
+			}
+			
 			MemberHistoryDAO dao = new MemberHistoryDAO();
-			dao.insertMemberHistory(vo.getId(),  vo.getTitle(), "포토갤러리");
+			dao.insertMemberHistory(vo.getId(),  vo.getTitle(), "포토갤러리", num);
 
 			pstmt.executeUpdate();
 

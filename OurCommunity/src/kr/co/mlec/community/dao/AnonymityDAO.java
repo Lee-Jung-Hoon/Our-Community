@@ -27,10 +27,17 @@ public class AnonymityDAO {
 			pstmt.setString(index++, anonymity.getScope());
 			pstmt.executeUpdate();
 			
+			String num = null;
+			sql = " select seq_t_anonymity_board_no.currVal "
+					+ " from dual";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				num = rs.getString("currVal");
+			}
 			
-
 			MemberHistoryDAO dao = new MemberHistoryDAO();
-			dao.insertMemberHistory(anonymity.getId(),  anonymity.getTitle(), "익명게시판");
+			dao.insertMemberHistory(anonymity.getId(),  anonymity.getTitle(), "익명게시판", num);
 
 		} catch (Exception e) {
 			e.printStackTrace();

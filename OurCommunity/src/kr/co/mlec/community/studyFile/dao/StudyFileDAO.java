@@ -33,9 +33,18 @@ public class StudyFileDAO {
 			pstmt.setString(index++, file.getOriginFileName());
 			pstmt.setString(index++, file.getFilePath());
 			pstmt.executeUpdate();
+			
+			String num = null;
+			sql = " select s_community_studyFile_board_no.currVal "
+					+ " from dual";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				num = rs.getString("currVal");
+			}
 
 			MemberHistoryDAO dao = new MemberHistoryDAO();
-			dao.insertMemberHistory(file.getId(),  file.getTitle(), "학습자료실");
+			dao.insertMemberHistory(file.getId(),  file.getTitle(), "학습자료실", num);
 		} 
 		catch (Exception e) {
 		} finally {
