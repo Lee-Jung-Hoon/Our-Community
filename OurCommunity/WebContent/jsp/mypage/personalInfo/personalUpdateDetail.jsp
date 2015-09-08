@@ -117,8 +117,7 @@ color: white;
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td class="div1"><input type="text" name="id"  value="${vo.id }" readonly="readonly"> <input
-							type="button" name="idbutton" value="중복확인" onclick="chkId();"></td>
+						<td class="div1"><input type="text" name="id"  value="${vo.id }" readonly="readonly"> </td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>

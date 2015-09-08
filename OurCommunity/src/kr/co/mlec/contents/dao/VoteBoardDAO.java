@@ -488,15 +488,15 @@ public class VoteBoardDAO {
 /*
  * 
  * // 투표 테이블 
-  create table t_vote_board( 
- id varchar2(20) not null ,
- v_no number not null primary key, 
- start_date date default sysdate, 
-  end_date date, 
-  v_title varchar2(50) not null, 
-  v_progress char(1) not null, 
-  v_clicks number not null
-  );
+	  create table t_vote_board( 
+	 id varchar2(20) not null ,
+	 v_no number not null primary key, 
+	 start_date date default sysdate, 
+	  end_date date, 
+	  v_title varchar2(50) not null, 
+	  v_progress char(1) not null, 
+	  v_clicks number not null
+	  );
  * 
  * // 투표 상세 항목 테이블 
   create table t_vote_items( 
