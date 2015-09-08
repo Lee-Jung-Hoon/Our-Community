@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.co.mlec.community.gallery.vo.GalleryVO;
 import kr.co.mlec.community.studyFile.vo.StudyFileVO;
+import kr.co.mlec.mypage.dao.MemberHistoryDAO;
 import kr.co.mlec.util.ConnectionPool;
 
 public class StudyFileDAO {
@@ -32,6 +33,9 @@ public class StudyFileDAO {
 			pstmt.setString(index++, file.getOriginFileName());
 			pstmt.setString(index++, file.getFilePath());
 			pstmt.executeUpdate();
+
+			MemberHistoryDAO dao = new MemberHistoryDAO();
+			dao.insertMemberHistory(file.getId(),  file.getTitle(), "학습자료실");
 		} 
 		catch (Exception e) {
 		} finally {

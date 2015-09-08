@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import kr.co.mlec.community.gallery.vo.GalleryVO;
+import kr.co.mlec.mypage.dao.MemberHistoryDAO;
 import kr.co.mlec.util.ConnectionPool;
 
 public class GalleryDAO {
@@ -32,6 +33,9 @@ public class GalleryDAO {
 			pstmt.setString(index++, vo.getFileName());
 			pstmt.setString(index++, vo.getOriginFileName());
 			pstmt.setString(index++, vo.getFilePath());
+			
+			MemberHistoryDAO dao = new MemberHistoryDAO();
+			dao.insertMemberHistory(vo.getId(),  vo.getTitle(), "포토갤러리");
 
 			pstmt.executeUpdate();
 
