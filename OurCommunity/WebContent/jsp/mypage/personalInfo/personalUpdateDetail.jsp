@@ -95,6 +95,12 @@ table {
 	width: 100%;
 	height: 100%
 }
+.div1 {
+color: black;
+}
+.div2{
+color: white;
+}
 </style>
 </head>
 <body>
@@ -107,33 +113,33 @@ table {
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" name="name" value="${vo.name }"></td>
+						<td class="div1"><input type="text" name="name" value="${vo.name }"></td>
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="id"  value="${vo.id }"> <input
+						<td class="div1"><input type="text" name="id"  value="${vo.id }" readonly="readonly"> <input
 							type="button" name="idbutton" value="중복확인" onclick="chkId();"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="password" ></td>
+						<td class="div1"><input type="password" name="password" ></td>
 					</tr>
 					<tr>
 						<th>비밀번호 재입력</th>
-						<td><input type="password" name="repassword" ></td>
+						<td class="div1"><input type="password" name="repassword" ></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td><input type="text" name="tel"  value="${ vo.tel}"></td>
+						<td class="div1"><input type="text" name="tel"  value="${ vo.tel}"></td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td><input type="radio" name="gender" checked="checked" value="남자" >남자 <input
+						<td class="div2"><input type="radio" name="gender" checked="checked" value="남자" >남자 <input
 							type="radio" name="gender" value="여자">여자</td>
 					</tr>
 					<tr align="left">
 						<th align="center">E-Mail
-						<th><input type="text" name="emailId" value="${vo.emailId }"> @ 
+						<th class="div1"><input type="text" name="emailId" value="${vo.emailId }"> @ 
 						
 						<c:choose>
 						<c:when test="${vo.emailDomain eq '다음'}">
@@ -173,13 +179,13 @@ table {
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td><input type="text" name="address" size="52" value="${vo.address }"></td>
+						<td class="div1"><input type="text" name="address" size="52" value="${vo.address }"></td>
 					</tr>
 					<tr>
 						<th>가입 힌트</th>
 						<c:choose>
 						<c:when test="${vo.hint eq '출신초' }">
-						<td><select name="hint">
+						<td><select name="hint" class="div1">
 								<option value="출신초" selected="selected">출신 초등학교는 어디인가요?</option>
 								<option value="책 이름">가장 감명 깊게 읽은 책 이름은?</option>
 								<option value="고향">본인이 태어난 곳은?</option>
@@ -206,7 +212,7 @@ table {
 						</select></td>
 						</c:when>
 						<c:when test="${vo.hint eq '어머니' }">
-						<td><select name="hint">
+						<td ><select name="hint">
 								<option value="출신초" selected="selected">출신 초등학교는 어디인가요?</option>
 								<option value="책 이름">가장 감명 깊게 읽은 책 이름은?</option>
 								<option value="고향">본인이 태어난 곳은?</option>
@@ -219,13 +225,13 @@ table {
 					</tr>
 					<tr>
 						<th>가입 힌트 입력</th>
-						<td><textarea rows="3" cols="35" name="hintAnswer" > ${vo.hintAnswer }</textarea></td>
+						<td><textarea rows="3" cols="35" name="hintAnswer" class="div1" > ${vo.hintAnswer }</textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
-						<input type="submit" value="정보수정"  /> 
-						<input type="reset" value="다시쓰기" /> 
-						<input type="button" value="취소" /></td>
+						<input type="submit" value="정보수정" class="div1" /> 
+						<input type="reset" value="다시쓰기" class="div1" /> 
+						<input type="button" value="취소" class="div1"/></td>
 					</tr>
 				</table>
 			</form>
