@@ -10,23 +10,95 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <style type="text/css">
+<c:import url="/jsp/include/bootstrap.jsp" />
+<style>
+table a {
+	color: white;
+}
 
 body {
-	color: white;
-	background-image: url("http://www.gphotography.ch/v1/assets/templates/Version2009/BG.jpg");
-	
+	font-family: "나눔고딕", "Nanum Gothic", Nanum Gothic, "돋움", Dotum, "굴림",
+		Gulim, Open Sans, Verdana, AppleGothic, sans-serif;
+	background:	url("http://www.hanium.or.kr/images/egovframework/cmmn/bg_wrap.gif");
 }
-</style> 
--->
+
+.bitcampdiv table {
+	border-top: 2px solid #cd5d31;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+.bitcampdiv table td {
+	color : white;
+	padding: 6px 10px;
+	border: 1px solid #1f1f1f;
+	overflow: hidden;
+	text-align: center;
+	background: #373737;
+}
+
+.bitcampdiv table th {
+	color : white;
+	text-align: center;
+	padding: 13px 10px;
+	background: #1f1f1f;
+	border: 1px solid #2d2d2d;
+}
+
+.bitcampdiv h1 {
+	font-size: 55px;
+	line-height: 35px;
+	height: 41px;
+	padding: 42px 0;
+	text-align: center;
+	color: #fff;
+}
+
+.search_box {
+	background: #cd5d31;
+	padding: 15px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.SearchBtn {
+	border: 0px;
+	font-size: 0px;
+	width: 78px;
+	height: 28px;
+	vertical-align: middle;
+	border: 1px solid #48556e;
+}
+
+.layerWrap {
+	position: relative;
+	width: 1400px;
+	margin: 100px auto 50px;
+	overflow: hidden;
+	background: #2d2d2d;
+	padding: 40px 40px;
+}
+
+.pagingDIV a {
+	color: white;
+	font-size: 20px;
+}
+</style>
+
 <title>Insert title here</title>
-
-
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
+	<div class="bitcampdiv">
 	<h1>자바 73 게시판</h1>
 	<hr />
+	
+	<div class="layerWrap">
 	<c:if test="${!empty userId}">
 		<a href="/OurCommunity/jsp/notice/ourclassboard/writeForm.jsp"><button>글등록</button></a>
 	</c:if>
@@ -78,7 +150,8 @@ body {
 			</tr>
 		</table>
 	</form>
-
+	</div>
+	</div>
 
 </body>
 </html>
