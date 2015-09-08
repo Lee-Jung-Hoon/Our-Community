@@ -70,6 +70,9 @@ a {
 table {
 	width: 100%;
 }
+.sendtype{ 
+color: black; 
+ } 
 </style>
 </head>
 <body>
@@ -82,10 +85,10 @@ table {
 
 				<tr>
 					<th>제목</th>
-					<td colspan="3"><input type="text" size="50" name="title" /></td>
+					<td class=sendtype colspan="3"><input type="text" size="50" name="title" /></td>
 				</tr>
 				<th>받는 이</th>
-				<td colspan="3"><input type="text" size="30" name="sendId" />
+				<td colspan="3"><input type="text" size="30" name="sendId" class=sendtype />
 					<input type="checkbox" /> 강사님에게</td>
 				<tr>
 
@@ -93,7 +96,7 @@ table {
 
 				<tr>
 					<th>메세지 내용</th>
-					<td colspan="3"><textarea cols="50" rows="15" name="content"></textarea>
+					<td colspan="3"><textarea class=sendtype cols="50" rows="15" name="content"></textarea>
 					</td>
 				</tr>
 
