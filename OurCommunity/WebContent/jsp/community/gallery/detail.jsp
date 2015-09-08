@@ -153,7 +153,7 @@ table {
 
 							<th width="10%">댓글</th>
 							<td width="90%" colspan="3"><input class="comm" type='text'
-								size='165px' style='height: 100px' name="content"
+								size='160px' style='height: 100px' name="content"
 								placeholder="댓글을입력하세요" required autofocus /> <input
 								class="commB" type="submit" value="작성" size='350px'
 								style='height: 100px' /></td>
