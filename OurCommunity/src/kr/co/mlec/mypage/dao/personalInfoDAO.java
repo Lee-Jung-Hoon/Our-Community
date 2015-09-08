@@ -75,7 +75,8 @@ public class personalInfoDAO {
 					+ " address = ? ,"
 					+ " hint = ? ,"
 					+ "  hint_answer = ? , "
-					+ " secession = ? ";
+					+ " secession = ? "
+					+ " where id = ? ";
 					
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
@@ -89,6 +90,7 @@ public class personalInfoDAO {
 			pstmt.setString(index++, member.getHint());
 			pstmt.setString(index++, member.getHintAnswer());
 			pstmt.setString(index++, "회원");
+			pstmt.setString(index++, member.getId());
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -100,6 +102,32 @@ public class personalInfoDAO {
 		}
 		
 		
+	}
+
+	public void deletePersonal(memberVO vo) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionPool.getConnection();
+			String sql = "update t_member "
+					+ " set  "
+					+ " secession = ? "
+					+ " where id = ? ";
+					
+			pstmt = con.prepareStatement(sql);
+			int index = 1;
+
+			pstmt.setString(index++, vo.getId());
+			pstmt.setString(index++, "탈퇴");
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			ConnectionPool.close(con);
+		}
 	}
 
 }
