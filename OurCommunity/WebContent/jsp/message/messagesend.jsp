@@ -79,6 +79,7 @@ color: black;
 	<div class="bitcampdiv">
 		<h1>메세지 작성</h1>
 		<hr />
+		
 		<form action="/OurCommunity/message/MessageSendController"
 			method="post">
 			<table style="height: 200;">
