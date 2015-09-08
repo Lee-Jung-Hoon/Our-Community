@@ -25,6 +25,7 @@ public class MemberInfoUpdateController extends HttpServlet {
 		String emailId = req.getParameter("emilId");
 		String emailDomain = req.getParameter("emailDomain");
 		String grade = req.getParameter("grade");
+		String tel = req.getParameter("tel");
 		String hint = req.getParameter("hint");
 		String hintAnswer = req.getParameter("hintAnswer");
 		
@@ -34,6 +35,7 @@ public class MemberInfoUpdateController extends HttpServlet {
 		member.setPassword(password);
 		member.setEmailId(emailId);
 		member.setEmailDomain(emailDomain);
+		member.setTel(tel);
 		member.setGrade(grade);
 		member.setHint(hint);
 		member.setHintAnswer(hintAnswer);
@@ -41,7 +43,7 @@ public class MemberInfoUpdateController extends HttpServlet {
 		try {
 			
 			dao.updateMember(member);
-			res.sendRedirect("/OurCommunity/memberInfo/detail?id="+id+"&name="+name);
+			res.sendRedirect("/OurCommunity/memberInfo/detail?id="+id);
 			
 		}catch(Exception e) {
 			throw new ServletException(e);

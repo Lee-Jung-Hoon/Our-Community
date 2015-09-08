@@ -101,7 +101,7 @@ comm_text {
 		<div class="layerWrap">
 			<hr />
 			<form action="/OurCommunity/memberInfo/modify" method="post">
-				<input type="hidden" name="name" value="${update.name}">
+				<input type="hidden" name="tel" value="${update.tel}">
 				<table>
 					<tr>
 						<th>아이디</th>

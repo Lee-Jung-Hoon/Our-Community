@@ -113,7 +113,7 @@ public class MemberInfoDAO {
 							   + "      grade = ?, "
 							   + "      hint = ?, "
 							   + "      hint_answer = ? "
-							   + " where id = ? ";
+							   + " where tel = ? ";
 				pstmt = con.prepareStatement(sql);
 				int index = 1;
 				pstmt.setString(index++, member.getId());
@@ -123,7 +123,7 @@ public class MemberInfoDAO {
 				pstmt.setString(index++, member.getGrade());
 				pstmt.setString(index++, member.getHint());
 				pstmt.setString(index++, member.getHintAnswer());
-				pstmt.setString(index++, member.getId());
+				pstmt.setString(index++, member.getTel());
 				pstmt.executeUpdate();
 			} catch (Exception e) {
 				throw e;

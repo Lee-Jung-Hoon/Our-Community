@@ -23,9 +23,9 @@ public class MemberInfoDeleteController extends HttpServlet{
 		MemberInfoDAO dao = new MemberInfoDAO();
 		
 		try {
-			dao.updateSecessionMember(name);
+			dao.updateSecessionMember(id);
 			
-			res.sendRedirect("/OurCommunity/memberInfo/detail?name="+name+"&id="+id);
+			res.sendRedirect("/OurCommunity/memberInfo/detail?id="+id);
 			
 		}catch (Exception e) {
 			throw new ServletException(e);
