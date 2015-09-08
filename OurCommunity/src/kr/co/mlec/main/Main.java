@@ -30,6 +30,7 @@ public class Main extends HttpServlet {
 			List<VoteItemsVO> ilist = voteDAO.selectItems(no+"");
 			VoteBoardVO voteList = voteDAO.selectDetail(no+"");
 			String id = (String) session.getAttribute("userId"); //로그인여부 전달
+			String grade = (String) session.getAttribute("grade"); // 관리자 여부 전달
 			req.setAttribute("voteList", voteList);
 			req.setAttribute("noticeList", noticeList ); //공지사항리스트 전달
 			req.setAttribute("ilist", ilist);  //최신 투표데이터 전달
