@@ -103,7 +103,7 @@ color: black;
 				<tr></tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button type="button" class="btn btn-default btn-sm">
+						<button type="submit" class="btn btn-default btn-sm">
 							<span class="glyphicon glyphicon-pencil"></span> 글등록
 						</button>
 						<button type="button" class="btn btn-default btn-sm"
