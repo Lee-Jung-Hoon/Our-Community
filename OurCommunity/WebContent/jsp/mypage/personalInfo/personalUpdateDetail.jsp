@@ -229,6 +229,8 @@ color: white;
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
+						<input type="button" value="탈퇴" class="div1" onclick="location.href='/OurCommunity/member/secession'"/> 
+						
 						<input type="submit" value="정보수정" class="div1" /> 
 						<input type="reset" value="다시쓰기" class="div1" /> 
 						<input type="button" value="취소" class="div1"/></td>
