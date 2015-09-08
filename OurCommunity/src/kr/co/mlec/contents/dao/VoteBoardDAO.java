@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.co.mlec.contents.vo.VoteBoardVO;
 import kr.co.mlec.contents.vo.VoteItemsVO;
+import kr.co.mlec.mypage.dao.MemberHistoryDAO;
 import kr.co.mlec.util.ConnectionPool;
 
 public class VoteBoardDAO {
@@ -35,6 +36,8 @@ public class VoteBoardDAO {
 			pstmt.setString(index++, num);
 			pstmt.setString(index++, vote.getEnd_date());
 			pstmt.setString(index++, vote.getV_title());
+			MemberHistoryDAO dao = new MemberHistoryDAO();
+			dao.insertMemberHistory(vote.getId(),  vote.getV_title(), "투표게시판");
 			
 			pstmt.executeUpdate();
 
