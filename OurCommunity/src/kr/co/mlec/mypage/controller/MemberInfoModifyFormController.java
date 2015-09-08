@@ -2,6 +2,7 @@ package kr.co.mlec.mypage.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,26 +10,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.mlec.mypage.dao.MemberInfoDAO;
+import kr.co.mlec.mypage.vo.MemberInfoVO;
 
-@WebServlet("/memberInfo/delete")
-public class MemberInfoDeleteController extends HttpServlet{
+@WebServlet("/memberInfo/modifyForm")
+public class MemberInfoModifyFormController extends HttpServlet{
 
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
-		System.out.println("delet부분입니다."+id + "" + name);
 		
 		MemberInfoDAO dao = new MemberInfoDAO();
-		
-		try {
-			dao.updateSecessionMember(name);
+		try{
+			MemberInfoVO update = dao.selectDetailMember(id);
+			req.setAttribute("update", update);
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/mypage/memberInfo/memberModify.jsp");
+			rd.forward(req, res);
 			
-			res.sendRedirect("/OurCommunity/memberInfo/detail?name="+name+"&id="+id);
-			
-		}catch (Exception e) {
+		}catch(Exception e) {
 			throw new ServletException(e);
 		}
+		
 	}
 }

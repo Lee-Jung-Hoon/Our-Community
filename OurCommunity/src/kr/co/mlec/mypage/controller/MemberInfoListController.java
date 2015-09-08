@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.mlec.mypage.dao.MemberInfoDAO;
 import kr.co.mlec.mypage.vo.MemberInfoVO;
@@ -20,12 +21,10 @@ public class MemberInfoListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		MemberInfoDAO dao = new MemberInfoDAO();
-		
 		try {
-			
 			List<MemberInfoVO> mList = dao.selectMember();
 			req.setAttribute("mList", mList);
-			RequestDispatcher rd = req.getRequestDispatcher("/jsp/mypage/memberInfo/MemberList.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/jsp/mypage/memberInfo/memberList.jsp");
 			rd.forward(req, res);
 			
 		}catch(Exception e) {
