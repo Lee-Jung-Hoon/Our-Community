@@ -120,7 +120,7 @@ li {
 						href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController">□
 							비트캠프정보</a></li>
 					<li><a href="/OurCommunity/ourclassboard/list">□ 반 공지사항</a></li>
-					<!-- <li><a href="/OurCommunity">▷ 관리자게시판</a></li> -->
+					<c:if test="${grade eq '운영자'}"><li><a href="/OurCommunity">▷ 관리자게시판</a></li></c:if>
 				</ul></li>
 		</ul>
 		<ul class="ul3">
