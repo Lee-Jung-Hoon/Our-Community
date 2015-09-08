@@ -52,9 +52,18 @@ a {
 	text-align: center;
 	color: #fff;
 }
+.page-photo .bitcampdiv h1 a {
+	color:#fff;
+}
+.page-photo .title a {
+	color:#fff;
+}
+.page-photo .layerWrap ul {
+	margin-top:20px;
+}
 
 .search_box {
-	background: #cd5d31;
+	background: orange;
 	padding: 15px 20px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -74,12 +83,12 @@ a {
 
 .layerWrap {
 	position: relative;
-	width: 1400px;
-	margin: 100px auto 50px;
+	width: 100%;
+	margin: 40px auto 50px;
 	overflow: hidden;
 	background: #2d2d2d;
 	padding: 40px 40px;
-	margin: 100px auto 50px;
+	margin: 50px auto 50px;
 }
 
 .pagingDIV a {
@@ -93,7 +102,6 @@ a {
 <style type="text/css">
 .wrapper {
 	width: 902px;
-	height: 464px;
 	margin: 50px auto 0;
 	padding: 20px 16px;
 	/* 	border: 1px solid #ddd; */
@@ -101,7 +109,7 @@ a {
 }
 
 a {
-	color: white;
+	color: orange;
 	text-decoration: none;
 }
 
@@ -170,9 +178,15 @@ div {
 	width: 902px;
 	margin: 0px auto 0;
 }
+.page-photo .button {
+	text-align:left;
+}
+.page-photo .search_box {
+	margin-top:10px;
+}
 </style>
 </head>
-<body>
+<body class="page-photo">
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
 		<h1 align="center">
@@ -180,6 +194,14 @@ div {
 		</h1>
 		<div class="layerWrap">
 			<div class="wrapper">
+				<c:if test="${!empty userId }">
+					<button type="button" class="btn btn-default btn-sm" onclick="location.href='/OurCommunity/jsp/community/gallery/write.jsp'">
+						<span class="glyphicon glyphicon-pencil"></span> 글등록
+					</button>
+					<!--  <div class="button btn btn-default btn-sm" align="right">
+						<a href="/OurCommunity/jsp/community/gallery/write.jsp">글등록</a>
+					</div>-->
+				</c:if>
 				<div class="search_box" align="left">
 					<form action="/OurCommunity/gallery/list">
 						검색 구분 <select name="select"><option value="0">제목+내용</option>
@@ -213,9 +235,10 @@ div {
 					</c:forEach>
 
 				</ul>
+				
+				
 			</div>
 				
-	</div>
 	<div class="paging" align="center" >
 				<c:choose>
 					<c:when test="${searchPage eq 1 }">
@@ -236,12 +259,9 @@ div {
 				</c:choose>
 			</div>
 			
-			<c:if test="${!empty userId }">
-				<div class="button" align="right">
-					<a href="/OurCommunity/jsp/community/gallery/write.jsp">글등록</a>
-				</div>
-			</c:if>
+			
 		</div>
+	</div>
 	<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>
