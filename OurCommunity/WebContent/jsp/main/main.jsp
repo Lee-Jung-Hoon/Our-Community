@@ -227,15 +227,15 @@ button {
 	left: 203px;
 }
 
-.layerInner section:nth-child(6) a {
-	text-align: center;
-	line-height: 100px;
-	margin-left: 5px;
-}
+/* .layerInner section:nth-child(6) a { */
+/* 	text-align: center; */
+/* 	line-height: 100px; */
+/* 	margin-left: 5px; */
+/* } */
 
-.layerInner section:nth-child(6) img {
-	vertical-align: middle;
-}
+/* .layerInner section:nth-child(6) img { */
+/* 	vertical-align: middle; */
+/* } */
 
 .layerInner section:nth-child(7) {
 	width: 200px;
@@ -304,16 +304,18 @@ button {
 	background: #888;
 }
 
+
 .dday {
 	color: white;
 	padding-left: 10;
-	font-size: 100px;
+	font-size: 40px;
+	color: white;
 	font-weight: bold;
 }
 
 .noticeATag {
 	display: block;
-	height: 5px;
+/* 	height: 5px; */
 }
 
 body {
@@ -463,60 +465,20 @@ body {
 			</section>
 
 			<section class="seDIV">
-
-				<a class="a"
-					href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController">
-					<img style="width: 50px; height: 50px;"
-					src="/OurCommunity/image/notice.png" />
-				</a>
-
+				<br />
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"
+					class="dday">
+					<img style="width: 50px; height: 50px;" src="/OurCommunity/image/notice.png" />
+					</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span class="dday">NOTICE</span>
 				<c:forEach var="i" items="${noticeList}">
 					<a style="color: white;"
 						href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}"
-						class="noticeATag">[공지]${i.title}</a>
-
+						class="noticeATag">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[공지]&nbsp;&nbsp;${i.title}</a>
 				</c:forEach>
-
-
-
-				<!-- 				<table style="width: 403; height: 200; border: 10px"> -->
-
-<!-- 					<tr> -->
-<!-- 						<td width="70px" height="50px"><a class="a" -->
-<!-- 							href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"> -->
-<!-- 								<img style="width: 50px; height: 50px;" -->
-<!-- 								src="/OurCommunity/image/notice.png"> -->
-<!-- 						</a> -->
-<!-- 						</td> -->
-
-
-<!-- 						<td> -->
-<!-- 							<table > -->
-<%-- 								<c:forEach var="i" items="${noticeList}"> --%>
-<!-- 									<tr height="10px"> -->
-<!-- 										<td><a style="color: white;"  -->
-<%-- 											href="/OurCommunity/bitcampboard/NoticeBitcampDetailBoardController?no=${i.no}" --%>
-<%-- 											class="noticeATag" >[공지]${i.title}</a></td> --%>
-<!-- 									</tr> -->
-<%-- 								</c:forEach> --%>
-
-<!-- 							</table> -->
-<!-- 						</td> -->
-
-
-<!-- 					</tr> -->
-
-
-<!-- 				</table> -->
-
-
-				<!-- <span class="dday"><a class="a"
-               href="/OurCommunity/bitcampboard/NoticeBitcampListBoardController"> <img
-                  style="width: 50px; height: 50px;"
-                  src="/OurCommunity/image/notice.png"></a></span> -->
-
-
-
 
 			</section>
 
