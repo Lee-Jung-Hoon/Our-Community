@@ -94,12 +94,12 @@ comm_text {
 <script type="text/javascript">
 	function doDelete() {
 		if (confirm("회원을 탈퇴 시키겠습니까?")) {
-			location.href = '/OurCommunity/memberInfo/delete?name=${memberDetail.name}&id=${memberDetail.id}';
+			location.href = '/OurCommunity/memberInfo/delete?id=${memberDetail.id}';
 		}
 	}
 	function doModify() {
 		if (confirm("회원정보를 수정하겠습니까?")) {
-			location.href = '/OurCommunity/memberInfo/modifyForm?name=${memberDetail.name}&id={memberDetail.id}';
+			location.href = '/OurCommunity/memberInfo/modifyForm?id=${memberDetail.id}';
 		}
 	}
 </script>
@@ -132,7 +132,7 @@ comm_text {
 					<th>아이디</th>
 					<td width="40%" class="Id">${memberDetail.id}</td>
 					<c:choose>
-						<c:when test="${secession eq '회원' }">
+						<c:when test="${memberDetail.secession eq '회원' }">
 							<th>가입일</th>
 							<td width="40%">${memberDetail.joinDate}</td>
 						</c:when>

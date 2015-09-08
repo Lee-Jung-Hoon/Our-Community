@@ -120,7 +120,7 @@ a {
 					<tr>
 						<td align="center" width="100px">${mList.id}</td>
 						<td align="center" width="820px">
-							<a href="/OurCommunity/memberInfo/detail?id=${mList.id}&name=${mList.name}">${mList.name}</a></td>
+							<a href="/OurCommunity/memberInfo/detail?id=${mList.id}&secession=${mList.secession}">${mList.name}</a></td>
 						<td align="center" width="200px">${mList.tel}</td>
 						<td align="center" width="200px">${mList.secession}</td>
 						<td align="center" width="200px">${mList.joinDate}</td>

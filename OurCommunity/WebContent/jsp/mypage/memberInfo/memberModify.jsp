@@ -40,6 +40,7 @@ a {
 	border: 0.5px solid #1f1f1f;
 	overflow: hidden;
 	background: #373737;
+	color:white;
 }
 
 .bitcampdiv table th {
@@ -75,8 +76,9 @@ a {
 	background: #2d2d2d;
 	padding: 40px 40px;
 }
+
 .commentDIV {
-		color: black;
+	color: black;
 }
 </style>
 <style>
@@ -89,90 +91,86 @@ comm_text {
 	color: black;
 }
 </style>
-
-<script type="text/javascript">
-	function doDelete() {
-		if (confirm("회원을 탈퇴 시키겠습니까?")) {
-			location.href = '/OurCommunity/Anonymity/delete?no=${anonymity.no}';
-		}
-	}
-	function doModify() {
-		if (confirm("회원정보를 수정하겠습니까?")) {
-			location.href = '/OurCommunity/Anonymity/modifyForm?no=${anonymity.no}';
-		}
-	}
-</script>
-
-
 </head>
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="bitcampdiv">
-		<h1>회원정보 상세목록</h1>
+		<h1>회원정보 수정사항</h1>
 		<hr />
 
 		<div class="layerWrap">
-
-			<button type="button" class="btn btn-default btn-sm"
-				onclick="location.href='/OurCommunity/Anonymity/list'">
-				<span class="glyphicon glyphicon-list-alt"></span> 목록
-			</button>
-			<button type="button" class="btn btn-default btn-sm"
-				onclick="doModify();">
-				<span class="glyphicon glyphicon-edit"></span> 수정
-			</button>
-			<button type="button" class="btn btn-default btn-sm"
-				onclick="doDelete();">
-				<span class="glyphicon glyphicon-trash"></span> 회원 탈퇴
-			</button>
 			<hr />
-	<table>
-				<tr>
-					<th>아이디</th>
-					<td  width="40%" class="Id">
-						<input type="text" name="id" style="color:black;" value="${memberDetail.id}" /></td>
-				<c:if test="${secession eq '탈퇴' }">
-				<th>가입일</th>
-					<td width="40%" >${memberDetail.joinDate}</td>
-				</c:if>
-					<th >탈퇴일</th>
-					<td width="40%" >${memberDetail.joinDate}</td>
-				</tr>
-				
-				<tr>
-					<th>이름</th>
-					<td width="40%">${memberDetail.name}</td>
-					<th>성별</th>
-					<td width="40%">${memberDetail.gender}</td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td colspan="3" width="40%" class="password">
-					<input type="text" name="password" style="color:black;" value="${memberDetail.password}" /></td>
-				</tr>
-				<tr>
-				<th>이메일</th>
-				<td width="40%" style="color:white;" class="email">
-					<input type="text" name="emilId" style="color:black;" value="${memberDetail.emailId}" /> @
-					<input type="text" name="emilDomain" style="color:black;" value="${memberDetail.emailDomain}" />
-					</td>
-				<th>회원상태</th>
-				<td width="40%">${memberDetail.secession}</td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td width="40%">${memberDetail.address}</td>
-					<th>전화번호</th>
-					<td width="40%">${memberDetail.tel}</td>
-				</tr>
-				<tr>
-					<th>힌트</th>
-					<td width="40%">${memberDetail.hint}</td>
-					<th>힌트정답</th>
-					<td width="40%">${memberDetail.hintAnswer}</td>
-				</tr>
-			</table>
+			<form action="/OurCommunity/memberInfo/modify" method="post">
+				<input type="hidden" name="name" value="${update.name}">
+				<table>
+					<tr>
+						<th>아이디</th>
+						<td width="40%" class="Id" style="color: black;"><input type="text" name="id"
+							 value="${update.id}" /></td>
+						<c:choose>
+							<c:when test="${update.secession eq '회원' }">
+								<th>가입일</th>
+								<td width="40%">${update.joinDate}</td>
+							</c:when>
+							<c:otherwise>
+								<th>탈퇴일</th>
+								<td width="40%">${update.joinDate}</td>
+							</c:otherwise>
+						</c:choose>
+					</tr>
 
+					<tr>
+						<th>이름</th>
+						<td width="40%" style="color: white;">${update.name}</td>
+						<th>성별</th>
+						<td width="40%">${update.gender}</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td colspan="3" width="40%" class="password"><input
+							type="text" name="password" style="color: black;"
+							value="${update.password}" /></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td width="40%" style="color: white;" class="email"><input
+							type="text" name="emilId" style="color: black;"
+							value="${update.emailId}" /> @ <select name="emailDomain" style="color: black;">
+								<option value="naver.com">naver.com</option>
+								<option value="daum.net">daum.net</option>
+								<option value="google.com">google.com</option>
+						</select></td>
+						<th>등급</th>
+						<td width="40%">
+							<select name="grade" style="color: black;">
+								<option value="운영자">운영자</option>
+								<option value="회원">회원</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td width="40%">${update.address}</td>
+						<th>전화번호</th>
+						<td width="40%">${update.tel}</td>
+					</tr>
+					<tr>
+						<th>힌트</th>
+						<td width="40%"><select name="hint"  style="color: black;">
+								<option value="출신초">출신 초등학교는 어디인가요?</option>
+								<option value="책 이름">가장 감명 깊게 읽은 책 이름은?</option>
+								<option value="고향">본인이 태어난 곳은?</option>
+								<option value="어머니">본인의 어머니 성함은?</option>
+						</select></td>
+						<th>힌트정답</th>
+						<td width="40%"  style="color: black;">
+							<input type="text" name="hintAnswer" value="${update.hintAnswer}"></td>
+					</tr>
+					<tr>
+						<td colspan="4" align="right"><input type="submit" value="수정완료" />
+						</td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 
