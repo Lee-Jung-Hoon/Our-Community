@@ -36,6 +36,6 @@ public class MessageSendController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		res.sendRedirect("/OurCommunity/jsp/main/index.html");
+		res.sendRedirect("/OurCommunity/jsp/message/messagemain.jsp");
 	}
 }
