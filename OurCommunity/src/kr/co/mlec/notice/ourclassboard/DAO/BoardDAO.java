@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import kr.co.mlec.community.vo.AnonymityVO;
+import kr.co.mlec.mypage.dao.MemberHistoryDAO;
 import kr.co.mlec.notice.bitcampboard.vo.NoticeBitcampBoardVO;
 import kr.co.mlec.notice.ourclassboard.vo.BoardVO;
 import kr.co.mlec.util.ConnectionPool;
@@ -32,6 +33,9 @@ public class BoardDAO {
 			pstmt.setString(index++, board.getContent());
 			pstmt.setString(index++, board.getScope());
 			pstmt.executeUpdate();
+
+			MemberHistoryDAO dao = new MemberHistoryDAO();
+			dao.insertMemberHistory(board.getId(),  board.getTitle(), "우리반 게시판");
 			
 		} catch(Exception e) {
 			e.printStackTrace();
