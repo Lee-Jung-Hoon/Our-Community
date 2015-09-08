@@ -40,7 +40,7 @@ public class MemberInfoDAO {
 		return list;
 	}
 
-	public MemberInfoVO selectDetailMember(String id, String name) throws Exception{
+	public MemberInfoVO selectDetailMember(String id) throws Exception{
 		
 		MemberInfoVO memberInfo = new MemberInfoVO();
 		Connection con = null;
@@ -50,11 +50,9 @@ public class MemberInfoDAO {
 				String sql = "select id, name, password, secession, email_id, email_domain, tel, address, gender, join_date, "
 							   + "hint, hint_answer "
 							   + " from t_member "
-							   + " where id = ? "
-							   + " and name = ? ";
+							   + " where id = ? ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
-				pstmt.setString(2, name);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()) {
 					memberInfo.setId(rs.getString("id"));
@@ -79,6 +77,62 @@ public class MemberInfoDAO {
 			}
 			return memberInfo;
 	}
-}
+
+	public void updateSecessionMember(String id) throws Exception{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+			try {
+				con = ConnectionPool.getConnection();
+				String sql = "update t_member "
+							   + " set secession = '탈퇴', "
+							   + " join_date = sysdate "
+							   + " where id = ? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				ResultSet rs = pstmt.executeQuery();
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				if (pstmt != null)
+					pstmt.close();
+				ConnectionPool.close(con);
+			}
+		}
+
+	public void updateMember(MemberInfoVO member) throws Exception{
+		System.out.println();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+			try {
+				con = ConnectionPool.getConnection();
+				String sql = "update t_member "
+							   + " set id = ?, "
+							   + "      password = ?, "
+							   + "      email_id = ?, "
+							   + "      email_domain = ?, "
+							   + "      grade = ?, "
+							   + "      hint = ?, "
+							   + "      hint_answer = ? "
+							   + " where id = ? ";
+				pstmt = con.prepareStatement(sql);
+				int index = 1;
+				pstmt.setString(index++, member.getId());
+				pstmt.setString(index++, member.getPassword());
+				pstmt.setString(index++, member.getEmailId());
+				pstmt.setString(index++, member.getEmailDomain());
+				pstmt.setString(index++, member.getGrade());
+				pstmt.setString(index++, member.getHint());
+				pstmt.setString(index++, member.getHintAnswer());
+				pstmt.setString(index++, member.getId());
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				if (pstmt != null)
+					pstmt.close();
+			}
+			ConnectionPool.close(con);
+		}
+	}
 
 
