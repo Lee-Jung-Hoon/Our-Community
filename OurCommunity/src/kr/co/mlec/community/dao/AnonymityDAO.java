@@ -8,6 +8,7 @@ import java.util.List;
 
 import kr.co.mlec.community.vo.AnonymityCommentVO;
 import kr.co.mlec.community.vo.AnonymityVO;
+import kr.co.mlec.mypage.dao.MemberHistoryDAO;
 import kr.co.mlec.util.ConnectionPool;
 
 public class AnonymityDAO {
@@ -18,7 +19,6 @@ public class AnonymityDAO {
 			con = ConnectionPool.getConnection();
 			String sql = " insert into t_anonymity_board(no, title, id, content, scope) "
 					+ " values(seq_t_anonymity_board_no.nextVal, ?, ?, ?, ?)";
-
 			pstmt = con.prepareStatement(sql);
 			int index = 1;
 			pstmt.setString(index++, anonymity.getTitle());
@@ -26,6 +26,11 @@ public class AnonymityDAO {
 			pstmt.setString(index++, anonymity.getContent());
 			pstmt.setString(index++, anonymity.getScope());
 			pstmt.executeUpdate();
+			
+			
+
+			MemberHistoryDAO dao = new MemberHistoryDAO();
+			dao.insertMemberHistory(anonymity.getId(),  anonymity.getTitle(), "익명게시판");
 
 		} catch (Exception e) {
 			e.printStackTrace();
