@@ -96,12 +96,6 @@ table {
 							onclick="location.href='/OurCommunity/workInfo/list'">
 							<span class="glyphicon glyphicon-list-alt"></span> 목록
 						</button>
-
-
-						<button type="button" class="btn btn-default btn-sm"
-							onclick="doDelete();">
-							<span class="glyphicon glyphicon-trash"></span> 글 삭제
-						</button>
 					</td>
 				</tr>
 				<c:set var="info" value="${info}" />
