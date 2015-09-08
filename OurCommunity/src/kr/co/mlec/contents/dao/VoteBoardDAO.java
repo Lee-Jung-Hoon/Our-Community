@@ -36,8 +36,11 @@ public class VoteBoardDAO {
 			pstmt.setString(index++, num);
 			pstmt.setString(index++, vote.getEnd_date());
 			pstmt.setString(index++, vote.getV_title());
+			
+			
+			
 			MemberHistoryDAO dao = new MemberHistoryDAO();
-			dao.insertMemberHistory(vote.getId(),  vote.getV_title(), "투표게시판");
+			dao.insertMemberHistory(vote.getId(),  vote.getV_title(), "투표게시판", num);
 			
 			pstmt.executeUpdate();
 

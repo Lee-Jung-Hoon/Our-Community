@@ -107,11 +107,28 @@ comm_text {
 					<th width="620px">제목</th>
 					<th width="300px">등록일</th>
 				</tr>
-				<c:forEach var="list" items="${list}">
+				<c:forEach var="list" items="${Hlist}">
 					<tr>
 						<td align="center" width="300px">${list.id}</td>
 						<td align="center" width="300px">${list.board}</td>
-						<td align="center" width="620px">${list.title}</td>
+						<c:if test="${list.board eq '익명게시판'}">
+							<td align="center" width="620px"><a href="/OurCommunity/Anonymity/detail?no=${list.no}">${list.title}</a></td>
+						</c:if>
+						<c:if test="${list.board eq '포토갤러리'}">
+							<td align="center" width="620px"><a href="/OurCommunity/gallery/detail?no=${list.no}">${list.title}</a></td>
+						</c:if>
+						<c:if test="${list.board eq '학습자료실'}">
+							<td align="center" width="620px"><a href="/OurCommunity/studyFile/detail?no=${list.no}">${list.title}</a></td>
+						</c:if>
+						<c:if test="${list.board eq '맛집추천'}">
+							<td align="center" width="620px"><a href="/OurCommunity/menu/detail?num=${list.no}">${list.title}</a></td>
+						</c:if>
+						<c:if test="${list.board eq '투표게시판'}">
+							<td align="center" width="620px"><a href="/OurCommunity/vote/detailVote?v_no=${list.no}">${list.title}</a></td>
+						</c:if>
+						<c:if test="${list.board eq '우리반 게시판'}">
+							<td align="center" width="620px"><a href="/OurCommunity/ourclassboard/detail?no=${list.no}">${list.title}</a></td>
+						</c:if>
 						<td align="center" width="300px">${list.regDate}</td>
 					</tr>
 				</c:forEach>

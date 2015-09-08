@@ -22,7 +22,6 @@ body {
 	color: white;
 }
 
-
 table {
 	width: 100%;
 	height: 100%
@@ -72,7 +71,6 @@ legend, caption {
 	color: transparent;
 }
 
-
 .layerWrap {
 	position: relative;
 	width: 1012px;
@@ -89,6 +87,7 @@ legend, caption {
 	width: 110%;
 	padding-bottom: 30;
 }
+
 .layerInner section:nth-child(1) {
 	float: left;
 	width: 491px;
@@ -97,12 +96,11 @@ legend, caption {
 	margin-right: 30px;
 	border: white solid 1px;
 }
-.layerInner section:nth-child(1) a {
-   text-align: center;
-   line-height: 200px;
-  
-}
 
+.layerInner section:nth-child(1) a {
+	text-align: center;
+	line-height: 200px;
+}
 
 .layerInner section:nth-child(2) {
 	float: left;
@@ -113,14 +111,12 @@ legend, caption {
 }
 
 .layerInner section:nth-child(2) a {
-   text-align: center;
-   line-height: 300px;
-   color: white;
-   font-size: 45px;
-   margin-left: 110px
-  
+	text-align: center;
+	line-height: 300px;
+	color: white;
+	font-size: 45px;
+	margin-left: 110px
 }
-
 </style>
 </head>
 <body>
@@ -130,46 +126,17 @@ legend, caption {
 		<div class="layerInner">
 
 			<section>
-				<table width="491" height="300" border="1px">
-					<tr>
-						<td height="60">
-						adsfasdf
-						</td>
-					</tr>
-					<tr>
-						<td height="60">
-						asdfadsf
-						</td>
-					</tr>
-					<tr>
-						<td height="60">
-						asdf
-						</td>
-					</tr>
-					<tr>
-						<td height="60">
-						asdf
-						</td>
-					</tr>
-					<tr>
-						<td height="60">
-						asdf
-						</td>
-					</tr>
-					<tr>
-						<td height="60">
-						
-						</td>
-					</tr>
-				</table>
-			 </section>
-
-			<section> 
-			<a href = "/OurCommunity/mypage/personalInfo"> 개인정보수정</a>
+			<table width="491" height="300" border="1px">
+				<tr>
+					<a href="/OurCommunity/mypage/detailMemberHistory">내가 쓴 글</a>
+				</tr>
+			</table>
 			</section>
 
-	<%@ include file="/jsp/include/bottomMenu.jsp"%>
+			<section> <a href="/OurCommunity/mypage/personalInfo">
+				개인정보수정</a> </section>
 
+			<%@ include file="/jsp/include/bottomMenu.jsp"%>
 </body>
 </html>
 

@@ -27,9 +27,18 @@ public class RecommendMenuDAO {
 			pstmt.setString(index++, menu.getLatitude());
 			pstmt.setString(index++, menu.getLongitude());
 			pstmt.executeUpdate();
+			
+			String num = null;
+			sql = " select seq_recommend_menu_num.currVal "
+					+ " from dual";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				num = rs.getString("currVal");
+			}
 
 			MemberHistoryDAO dao = new MemberHistoryDAO();
-			dao.insertMemberHistory(menu.getId(),  menu.getTitle(), "맛집 추천");
+			dao.insertMemberHistory(menu.getId(),  menu.getTitle(), "맛집추천", num);
 		} catch (Exception e) {
 			throw e;
 		} finally {

@@ -1,10 +1,20 @@
 package kr.co.mlec.mypage.vo;
 
 public class MemberHistoryVO {
+	private String no;
 	private String id;
 	private String title;
 	private String regDate;
 	private String board;
+
+	
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
 
 	public String getId() {
 		return id;
