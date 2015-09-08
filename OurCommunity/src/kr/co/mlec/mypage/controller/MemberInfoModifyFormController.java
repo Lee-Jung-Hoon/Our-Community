@@ -19,7 +19,6 @@ public class MemberInfoModifyFormController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		String id = req.getParameter("id");
-		String name = req.getParameter("name");
 		
 		MemberInfoDAO dao = new MemberInfoDAO();
 		try{
