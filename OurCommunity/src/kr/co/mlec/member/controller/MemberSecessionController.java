@@ -32,10 +32,10 @@ public class MemberSecessionController extends HttpServlet {
 		vo.setId(id);
 		
 		try {
-			 dao.deletePersonal(vo);;
+			 dao.deletePersonal(vo);
 			
 			
-			RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
+			 resp.sendRedirect("/OurCommunity/index.jsp");
 			
 			
 		} catch (Exception e) {
