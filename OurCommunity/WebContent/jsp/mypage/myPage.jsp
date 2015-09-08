@@ -93,13 +93,15 @@ legend, caption {
 	width: 491px;
 	height: 300px;
 	background: black;
-	margin-right: 30px;
 	border: white solid 1px;
 }
 
 .layerInner section:nth-child(1) a {
 	text-align: center;
-	line-height: 200px;
+	line-height: 300px;
+	color: white;
+	font-size: 45px;
+	margin-left: 110px
 }
 
 .layerInner section:nth-child(2) {
@@ -122,21 +124,14 @@ legend, caption {
 <body>
 	<%@ include file="/jsp/include/topMenu.jsp"%>
 	<div class="layerWrap">
-
 		<div class="layerInner">
-
-			<section>
-			<table width="491" height="300" border="1px">
-				<tr>
-					<a href="/OurCommunity/mypage/detailMemberHistory">내가 쓴 글</a>
-				</tr>
-			</table>
-			</section>
+			<section><a href="/OurCommunity/mypage/detailMemberHistory">내가 쓴 글</a></section>
 
 			<section> <a href="/OurCommunity/mypage/personalInfo">
 				개인정보수정</a> </section>
-
 			<%@ include file="/jsp/include/bottomMenu.jsp"%>
+			</div>
+		</div>
 </body>
 </html>
 

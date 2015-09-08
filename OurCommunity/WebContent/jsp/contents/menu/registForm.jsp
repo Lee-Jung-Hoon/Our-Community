@@ -69,7 +69,7 @@ a {
 </style>
 
 <script type="text/javascript"
-	src="//apis.daum.net/maps/maps3.js?apikey=f0040f951e55ee311e570465605bc234&libraries=services"></script>
+	src="//apis.daum.net/maps/maps3.js?apikey=50989deb7cd81c1ee38467082c934717&libraries=services"></script>
 <script>
 	window.onload = function () {
 		var container = document.getElementById('map');
