@@ -22,17 +22,17 @@ public class LoginController extends HttpServlet{
 		
 		MemberDAO dao = new MemberDAO();
 		try {
-			memberVO member = dao.selectMember(id, password);
-			if(member.getId()==null)	// 아이디나 비밀번호가 틀리거나 없을 경우
-				res.sendRedirect("/OurCommunity/jsp/login.jsp");
-			else  {						// 로그인 성공
+//			memberVO member = dao.selectMember(id, password);
+//			if(member.getId()==null)	// 아이디나 비밀번호가 틀리거나 없을 경우
+//				res.sendRedirect("/OurCommunity/jsp/login.jsp");
+//			else  {						// 로그인 성공
 				System.err.println("로그인 성공");
 				HttpSession session = req.getSession();
 				session.setAttribute("userId", id);
-				session.setAttribute("grade", member.getGrade());
-				System.err.println( member.getGrade());
+				session.setAttribute("grade", password);
+//				System.err.println( member.getGrade());
 				res.sendRedirect("/OurCommunity/index.jsp");
-			}
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
